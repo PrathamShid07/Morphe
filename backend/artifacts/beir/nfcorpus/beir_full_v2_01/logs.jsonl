@@ -1,0 +1,29 @@
+{"t": "2026-10-24T20:15:34.441Z", "elapsed_s": 0.0, "phase": "data", "message": "loading nfcorpus with the official BEIR loader"}
+{"t": "2026-10-24T20:15:34.508Z", "elapsed_s": 0.1, "phase": "data", "message": "corpus=3633 test_queries=323 validation=323 workload=500 official_test=True"}
+{"t": "2026-10-24T20:15:35.105Z", "elapsed_s": 0.7, "phase": "embed", "message": "embedding nfcorpus: 128/3633 (1s elapsed)"}
+{"t": "2026-10-24T20:15:38.476Z", "elapsed_s": 4.0, "phase": "embed", "message": "embedding nfcorpus: 768/3633 (4s elapsed)"}
+{"t": "2026-10-24T20:15:41.476Z", "elapsed_s": 7.0, "phase": "embed", "message": "embedding nfcorpus: 1408/3633 (7s elapsed)"}
+{"t": "2026-10-24T20:15:44.576Z", "elapsed_s": 10.1, "phase": "embed", "message": "embedding nfcorpus: 2048/3633 (10s elapsed)"}
+{"t": "2026-10-24T20:15:47.618Z", "elapsed_s": 13.2, "phase": "embed", "message": "embedding nfcorpus: 2688/3633 (13s elapsed)"}
+{"t": "2026-10-24T20:15:50.662Z", "elapsed_s": 16.2, "phase": "embed", "message": "embedding nfcorpus: 3328/3633 (16s elapsed)"}
+{"t": "2026-10-24T20:15:52.225Z", "elapsed_s": 17.8, "phase": "embed", "message": "embedded 3633 documents in 17.7s -> /Users/ps07/Desktop/VJTI Hack/Morphe/data/beir/embeddings/nfcorpus/c195ab18c3855b14/corpus.npy"}
+{"t": "2026-10-24T20:15:52.822Z", "elapsed_s": 18.4, "phase": "graph", "message": "initial graph: 36 modules, 6 groups, module size {'min': 48, 'median': 101.5, 'max': 153, 'mean': 100.91666666666667}"}
+{"t": "2026-10-24T20:15:54.616Z", "elapsed_s": 20.2, "phase": "ingest", "message": "3633 documents ingested in 1.07s; BEIR id mapping verified; initial version arch_0002"}
+{"t": "2026-10-24T20:16:20.082Z", "elapsed_s": 45.6, "phase": "sweep", "message": "seeds=3 cap=8: nDCG@10 0.2549, mean candidates 1233"}
+{"t": "2026-10-24T20:16:36.983Z", "elapsed_s": 62.6, "phase": "sweep", "message": "seeds=5 cap=12: nDCG@10 0.2591, mean candidates 1630"}
+{"t": "2026-10-24T20:16:55.368Z", "elapsed_s": 80.9, "phase": "sweep", "message": "seeds=8 cap=20: nDCG@10 0.2787, mean candidates 2383"}
+{"t": "2026-10-24T20:17:14.721Z", "elapsed_s": 100.3, "phase": "sweep", "message": "seeds=12 cap=32: nDCG@10 0.2820, mean candidates 3195"}
+{"t": "2026-10-24T20:18:40.216Z", "elapsed_s": 185.8, "phase": "adaptation", "message": "window 1/5: 31 proposals, 1 applied (83s)", "window": 1, "proposals": 31, "applied": 1}
+{"t": "2026-10-24T20:22:47.583Z", "elapsed_s": 433.1, "phase": "adaptation", "message": "window 2/5: 32 proposals, 0 applied (246s)", "window": 2, "proposals": 32, "applied": 0}
+{"t": "2026-10-24T20:26:43.212Z", "elapsed_s": 668.8, "phase": "adaptation", "message": "window 3/5: 32 proposals, 0 applied (234s)", "window": 3, "proposals": 32, "applied": 0}
+{"t": "2026-10-24T20:30:43.301Z", "elapsed_s": 908.9, "phase": "adaptation", "message": "window 4/5: 32 proposals, 0 applied (239s)", "window": 4, "proposals": 32, "applied": 0}
+{"t": "2026-10-24T20:34:40.309Z", "elapsed_s": 1145.9, "phase": "adaptation", "message": "window 5/5: 32 proposals, 0 applied (236s)", "window": 5, "proposals": 32, "applied": 0}
+{"t": "2026-10-24T20:34:40.311Z", "elapsed_s": 1145.9, "phase": "adaptation", "message": "frozen adaptive architecture arch_0003 after 1 accepted operations"}
+{"t": "2026-10-24T20:34:43.196Z", "elapsed_s": 1148.8, "phase": "eval", "message": "BM25"}
+{"t": "2026-10-24T20:34:43.852Z", "elapsed_s": 1149.4, "phase": "eval", "message": "global dense"}
+{"t": "2026-10-24T20:35:01.943Z", "elapsed_s": 1167.5, "phase": "eval", "message": "fixed graph"}
+{"t": "2026-10-24T20:35:37.896Z", "elapsed_s": 1203.5, "phase": "eval", "message": "adaptive graph"}
+{"t": "2026-10-24T20:36:50.079Z", "elapsed_s": 1275.6, "phase": "safety", "message": "harmful candidate -> rejected (pre_commit)"}
+{"t": "2026-10-24T20:37:24.128Z", "elapsed_s": 1309.7, "phase": "safety", "message": "post-commit fault -> rolled_back"}
+{"t": "2026-10-24T20:38:15.065Z", "elapsed_s": 1360.6, "phase": "safety", "message": "restoration -> completed"}
+{"t": "2026-10-24T20:38:15.067Z", "elapsed_s": 1360.6, "phase": "done", "message": "nfcorpus finished in 1360.6s"}

@@ -1,0 +1,200 @@
+{
+ "methods": {
+  "bm25": {
+   "queries": 323,
+   "total_results": 32300,
+   "retrieval": {
+    "p50_ms": 0.34074997529387474,
+    "p95_ms": 0.35960417590104043,
+    "mean_ms": 0.31896708994504097
+   },
+   "end_to_end": {
+    "p50_ms": 0.34074997529387474,
+    "p95_ms": 0.35960417590104043,
+    "mean_ms": 0.31896708994504097
+   },
+   "query_embedding": {
+    "p50_ms": 0.0,
+    "p95_ms": 0.0,
+    "mean_ms": 0.0
+   },
+   "mean_eligible_candidates": 3633.0,
+   "candidate_pool_reduction_vs_corpus": 0.0,
+   "mean_candidates_incl_fallback": 3633.0,
+   "fallback_rate": 0.0
+  },
+  "global_dense": {
+   "queries": 323,
+   "total_results": 32300,
+   "retrieval": {
+    "p50_ms": 13.486957992427051,
+    "p95_ms": 15.773341280873865,
+    "mean_ms": 13.937092251209226
+   },
+   "end_to_end": {
+    "p50_ms": 17.053208022844046,
+    "p95_ms": 21.628616622183472,
+    "mean_ms": 21.564059750423493
+   },
+   "query_embedding": {
+    "p50_ms": 3.5029170103371143,
+    "p95_ms": 6.062483595451331,
+    "mean_ms": 7.626967499214268
+   },
+   "stage_seed": {
+    "mean_ms": 0.0,
+    "p95_ms": 0.0
+   },
+   "stage_expand": {
+    "mean_ms": 0.0,
+    "p95_ms": 0.0
+   },
+   "stage_search": {
+    "mean_ms": 13.930614568594406,
+    "p95_ms": 15.763996192254126
+   },
+   "stage_fallback": {
+    "mean_ms": 0.0,
+    "p95_ms": 0.0
+   },
+   "mean_eligible_candidates": 3633.0,
+   "candidate_pool_reduction_vs_corpus": 0.0,
+   "mean_candidates_incl_fallback": 3633.0,
+   "fallback_rate": 0.0
+  },
+  "fixed_graph": {
+   "queries": 323,
+   "total_results": 32300,
+   "retrieval": {
+    "p50_ms": 25.516541965771466,
+    "p95_ms": 39.25051249680109,
+    "mean_ms": 27.663079385058925
+   },
+   "end_to_end": {
+    "p50_ms": 29.092166980262846,
+    "p95_ms": 44.19572468032129,
+    "mean_ms": 35.290046884273195
+   },
+   "query_embedding": {
+    "p50_ms": 3.5029170103371143,
+    "p95_ms": 6.062483595451331,
+    "mean_ms": 7.626967499214268
+   },
+   "stage_seed": {
+    "mean_ms": 0.18729254132678771,
+    "p95_ms": 0.2195743669290095
+   },
+   "stage_expand": {
+    "mean_ms": 0.03877335845063161,
+    "p95_ms": 0.046287826262414455
+   },
+   "stage_search": {
+    "mean_ms": 25.372181211896645,
+    "p95_ms": 27.70212856121361
+   },
+   "stage_fallback": {
+    "mean_ms": 2.048411121124823,
+    "p95_ms": 13.472070771967992
+   },
+   "mean_eligible_candidates": 837.4829721362229,
+   "candidate_pool_reduction_vs_corpus": 0.7694789506919287,
+   "mean_candidates_incl_fallback": 1388.6191950464397,
+   "fallback_rate": 0.15170278637770898,
+   "fallback_ms_mean_when_used": 13.502791675986076
+  },
+  "adaptive_graph": {
+   "queries": 323,
+   "total_results": 32300,
+   "retrieval": {
+    "p50_ms": 25.38687502965331,
+    "p95_ms": 38.83071672171354,
+    "mean_ms": 27.36226998859924
+   },
+   "end_to_end": {
+    "p50_ms": 28.93049898557365,
+    "p95_ms": 43.6146748252213,
+    "mean_ms": 34.98923748781351
+   },
+   "query_embedding": {
+    "p50_ms": 3.5029170103371143,
+    "p95_ms": 6.062483595451331,
+    "mean_ms": 7.626967499214268
+   },
+   "stage_seed": {
+    "mean_ms": 0.18240557839350066,
+    "p95_ms": 0.2004044537898153
+   },
+   "stage_expand": {
+    "mean_ms": 0.03741257362667436,
+    "p95_ms": 0.04447089158929884
+   },
+   "stage_search": {
+    "mean_ms": 25.071910746833858,
+    "p95_ms": 26.094241731334478
+   },
+   "stage_fallback": {
+    "mean_ms": 2.0511677009687865,
+    "p95_ms": 13.257362466538325
+   },
+   "mean_eligible_candidates": 769.015479876161,
+   "candidate_pool_reduction_vs_corpus": 0.7883249436068921,
+   "mean_candidates_incl_fallback": 1331.3993808049536,
+   "fallback_rate": 0.15479876160990713,
+   "fallback_ms_mean_when_used": 13.250543348258361
+  }
+ },
+ "system": {
+  "timings_s": {
+   "corpus_embedding_s": 17.72,
+   "graph_init_s": 0.59,
+   "ingest_s": 1.07,
+   "adaptation_s": 1045.58,
+   "test_evaluation_s": 91.68
+  },
+  "process_rss_mb": 761.9,
+  "graph": {
+   "initial": {
+    "nodes": 42,
+    "edges": 36,
+    "content_modules": 36
+   },
+   "adaptive": {
+    "nodes": 46,
+    "edges": 40,
+    "content_modules": 39,
+    "co_access_edges": 0
+   }
+  },
+  "embedding_cache_mb": 5.3,
+  "qdrant_storage": "in-memory (no on-disk size)",
+  "initial_graph": {
+   "config": {
+    "method": "kmeans",
+    "target_module_size": 100,
+    "min_modules": 8,
+    "min_module_size": 10,
+    "group_policy": "sqrt",
+    "edge_policy": "hierarchy_only",
+    "seed": 13,
+    "n_init": 10
+   },
+   "modules": 36,
+   "groups": 6,
+   "module_size": {
+    "min": 48,
+    "median": 101.5,
+    "max": 153,
+    "mean": 100.91666666666667
+   },
+   "inertia": 2135.36865234375,
+   "initial_edges": 36,
+   "uses_queries_or_qrels": false
+  },
+  "documents": 3633,
+  "live_parity": {
+   "checked": 40,
+   "identical_top10": 37
+  }
+ },
+ "timing_protocol": "time.perf_counter; models, indexes and sandboxes are built before timing; query embedding timed separately (batch 1, warm); one warm-up retrieval per query then the median of N repetitions (BM25: minimum of N); end-to-end = embedding + retrieval; methods run sequentially on one machine; cold-start costs are reported separately under system.timings_s"
+}

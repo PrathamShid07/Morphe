@@ -1,0 +1,66 @@
+# ---------------------------------------------------------------- secrets / local configuration
+.env
+.env.*
+!.env.example
+!.env.template
+*.env.local
+backend/.env
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# ---------------------------------------------------------------- python
+.venv/
+venv/
+ENV/
+/env/
+backend/env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# ---------------------------------------------------------------- local tooling & runtime data
+# (created by scripts/dev_mongo.sh, the app, and the optional server-mode Qdrant used for performance analysis)
+.tools/
+.qdrant-initialized
+data/mongo/
+data/mongo.log
+data/qdrant/
+data/qdrant_perf_server/
+data/runtime/
+data/*.log
+
+# ---------------------------------------------------------------- node / frontend
+node_modules/
+frontend/dist/
+.eslintcache
+.vite/
+*.tsbuildinfo
+frontend/test-results/
+frontend/playwright-report/
+
+# ---------------------------------------------------------------- os / editor
+.DS_Store
+.idea/
+.vscode/
+
+# ---------------------------------------------------------------- BEIR datasets, embedding caches, generated experiment output
+# Downloaded corpora and cached document embeddings are large and reproducible.
+data/beir/
+# Future benchmark / diagnostic output is disposable and ignored by default.
+# EXCEPTION: the frozen baseline results (v1/v2 runs, the phase-2 diagnostic runs cited in docs/) were added to Git explicitly with
+# `git add -f`; tracked files stay tracked regardless of this rule. Verify them with `python3 scripts/verify_baseline_hashes.py`.
+backend/artifacts/
+
+# ---------------------------------------------------------------- local reference material (not part of the project)
+# Third-party UI screenshots and the original specification document supplied as design input; kept on disk, not published.
+UI reference/
+reference document/

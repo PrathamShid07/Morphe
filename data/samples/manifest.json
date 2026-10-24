@@ -1,0 +1,60 @@
+{
+  "sets": {
+    "core": [
+      {"file": "django_routing.md",   "source_name": "django_routing.md",   "metadata": {"topic": "django-routing", "parent_topic": "web-frameworks"}},
+      {"file": "django_orm.md",       "source_name": "django_orm.md",       "metadata": {"topic": "django-orm", "parent_topic": "web-frameworks"}},
+      {"file": "fastapi_guide.md",    "source_name": "fastapi_guide.md",    "metadata": {"topic": "fastapi", "parent_topic": "web-frameworks"}},
+      {"file": "postgresql_basics.md","source_name": "postgresql_basics.md","metadata": {"topic": "postgresql", "parent_topic": "data-stores"}},
+      {"file": "redis_caching.md",    "source_name": "redis_caching.md",    "metadata": {"topic": "redis", "parent_topic": "data-stores"}},
+      {"file": "scikit_learn_basics.md","source_name": "scikit_learn_basics.md","metadata": {"topic": "scikit-learn", "parent_topic": "machine-learning"}},
+      {"file": "docker_basics.md",    "source_name": "docker_basics.md",    "metadata": {"topic": "docker", "parent_topic": "devops"}},
+      {"file": "kubernetes_basics.md","source_name": "kubernetes_basics.md","metadata": {"topic": "kubernetes", "parent_topic": "devops"}},
+      {"file": "git_workflow.md",     "source_name": "git_workflow.md",     "metadata": {"topic": "git", "parent_topic": "devops"}},
+      {"file": "nginx_config.md",     "source_name": "nginx_config.md",     "metadata": {"topic": "nginx", "parent_topic": "devops"}},
+      {"file": "react_hooks.md",      "source_name": "react_hooks.md",      "metadata": {"topic": "react", "parent_topic": "frontend"}},
+      {"file": "typescript_types.md", "source_name": "typescript_types.md", "metadata": {"topic": "typescript", "parent_topic": "frontend"}}
+    ],
+    "merge": [
+      {"file": "postgres_tuning_notes.md", "source_name": "postgres_tuning_notes.md",
+       "metadata": {"topic": "postgres-tuning", "parent_topic": "data-stores", "module_name": "PostgreSQL Tuning Notes"}}
+    ],
+    "mixed": [
+      {"file": "python_web_notes.md",     "source_name": "python_web_notes.md",     "metadata": {"topic": "python", "parent_topic": "languages", "module_name": "Python Notes"}},
+      {"file": "python_data_notes.md",    "source_name": "python_data_notes.md",    "metadata": {"topic": "python", "parent_topic": "languages", "module_name": "Python Notes"}},
+      {"file": "python_tooling_notes.md", "source_name": "python_tooling_notes.md", "metadata": {"topic": "python", "parent_topic": "languages", "module_name": "Python Notes"}}
+    ],
+    "compression": [
+      {"file": "ops_runbook_a.md", "source_name": "ops_runbook_a.md", "metadata": {"topic": "ops-runbook", "parent_topic": "operations", "module_name": "Ops Runbook"}},
+      {"file": "ops_runbook_b.md", "source_name": "ops_runbook_b.md", "metadata": {"topic": "ops-runbook", "parent_topic": "operations", "module_name": "Ops Runbook"}}
+    ]
+  },
+  "scenarios": {
+    "merge": {
+      "title": "Redundant modules (merge)",
+      "description": "Adds a second PostgreSQL module whose notes restate the first one with identical facts. The detector finds the high profile similarity AND the record overlap, checks for conflicting numbers, and proposes a merge that is only committed if retrieval does not regress.",
+      "expected": "Proposal: merge PostgreSQL Tuning Notes into PostgreSQL. Run Adaptation Center → Evaluate → Apply."
+    },
+    "mixed": {
+      "title": "Overloaded mixed-topic module (split)",
+      "description": "Adds three unrelated Python notes (web serving, data analysis, tooling) under one 'Python Notes' module so it grows past the mixed-topic check. KMeans / source boundaries are scored by silhouette before a split is proposed.",
+      "expected": "Proposal: split Python Notes into 3 child modules."
+    },
+    "shortcut": {
+      "title": "Repeated co-access (shortcut edge)",
+      "description": "Replays a fixed, deterministic 50-query sequence in which Django ORM and PostgreSQL (and FastAPI and Redis) are repeatedly needed together. The pair counters reach the threshold and a co_access shortcut edge is proposed.",
+      "expected": "Proposal: add a shortcut edge Django ORM ↔ PostgreSQL."
+    },
+    "compression": {
+      "title": "Budget pressure (normal compression)",
+      "description": "Ingests two overlapping runbooks (exact duplicate sections, near-duplicates, wordy repeated sentences) and lowers the demo token budget so usage is about 80% — above the 75% threshold.",
+      "expected": "Duplicates retired, a summary created with provenance, tokens reclaimed.",
+      "set": "compression"
+    },
+    "emergency": {
+      "title": "Emergency cleanup",
+      "description": "Same overlapping runbooks with a budget set so usage is about 93%, above the 90% emergency threshold. Pinned and critical records are protected.",
+      "expected": "Deduplicate/summarise first, then delete eligible low-value records until the 82% target.",
+      "set": "compression"
+    }
+  }
+}

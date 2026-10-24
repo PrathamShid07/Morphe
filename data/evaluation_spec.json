@@ -1,0 +1,868 @@
+{
+ "name": "MORPHE sample retrieval benchmark",
+ "description": "Human-authored queries; relevance is defined by an evidence snippet that must appear in the labeled chunk. scripts/build_eval_labels.py resolves snippets to stable memory IDs and prints every chunk for manual inspection.",
+ "queries": [
+  {
+   "query": "How does Django decide which view handles a URL?",
+   "split": "dev",
+   "tags": [
+    "django-routing"
+   ],
+   "relevant": [
+    {
+     "source": "django_routing.md",
+     "evidence": "Django checks the patterns in order and stops at the first match"
+    }
+   ],
+   "query_id": "q001"
+  },
+  {
+   "query": "What path converters can I use in a Django route?",
+   "split": "dev",
+   "tags": [
+    "django-routing"
+   ],
+   "relevant": [
+    {
+     "source": "django_routing.md",
+     "evidence": "supports converters such as int, str, slug, uuid and path"
+    }
+   ],
+   "query_id": "q002"
+  },
+  {
+   "query": "How do I avoid hard coding URLs and namespace an app's routes?",
+   "split": "heldout",
+   "tags": [
+    "django-routing"
+   ],
+   "relevant": [
+    {
+     "source": "django_routing.md",
+     "evidence": "reverse(\"blog:detail\", args=[3])"
+    }
+   ],
+   "query_id": "q003"
+  },
+  {
+   "query": "Which middleware is switched on by default in a new Django project?",
+   "split": "dev",
+   "tags": [
+    "django-routing"
+   ],
+   "relevant": [
+    {
+     "source": "django_routing.md",
+     "evidence": "SessionMiddleware, CsrfViewMiddleware and AuthenticationMiddleware"
+    }
+   ],
+   "query_id": "q004"
+  },
+  {
+   "query": "How do I configure Django to use PostgreSQL?",
+   "split": "dev",
+   "tags": [
+    "django-orm"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "For PostgreSQL use ENGINE django.db.backends.postgresql"
+    }
+   ],
+   "query_id": "q005"
+  },
+  {
+   "query": "Why does my Django loop run one database query per row?",
+   "split": "dev",
+   "tags": [
+    "django-orm"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "Without them a loop over related objects issues one extra query per row"
+    }
+   ],
+   "query_id": "q006"
+  },
+  {
+   "query": "How do I make several Django writes succeed or fail together?",
+   "split": "heldout",
+   "tags": [
+    "django-orm"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "Wrap related writes in transaction.atomic()"
+    }
+   ],
+   "query_id": "q007"
+  },
+  {
+   "query": "Are Django QuerySets evaluated immediately?",
+   "split": "dev",
+   "tags": [
+    "django-orm"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "QuerySets are lazy"
+    }
+   ],
+   "query_id": "q008"
+  },
+  {
+   "query": "How does FastAPI validate request bodies?",
+   "split": "dev",
+   "tags": [
+    "fastapi"
+   ],
+   "relevant": [
+    {
+     "source": "fastapi_guide.md",
+     "evidence": "Request bodies are declared as Pydantic models"
+    }
+   ],
+   "query_id": "q009"
+  },
+  {
+   "query": "How do I share a database session between FastAPI endpoints?",
+   "split": "dev",
+   "tags": [
+    "fastapi"
+   ],
+   "relevant": [
+    {
+     "source": "fastapi_guide.md",
+     "evidence": "Depends() shares logic such as database sessions"
+    }
+   ],
+   "query_id": "q010"
+  },
+  {
+   "query": "When should I use async def instead of def in a FastAPI endpoint?",
+   "split": "heldout",
+   "tags": [
+    "fastapi"
+   ],
+   "relevant": [
+    {
+     "source": "fastapi_guide.md",
+     "evidence": "Declare endpoints with async def to await non blocking I/O"
+    }
+   ],
+   "query_id": "q011"
+  },
+  {
+   "query": "How do I open and close clients when a FastAPI app starts and stops?",
+   "split": "dev",
+   "tags": [
+    "fastapi"
+   ],
+   "relevant": [
+    {
+     "source": "fastapi_guide.md",
+     "evidence": "The lifespan context manager opens long lived clients"
+    }
+   ],
+   "query_id": "q012"
+  },
+  {
+   "query": "Which index type should I use for jsonb columns?",
+   "split": "dev",
+   "tags": [
+    "postgresql"
+   ],
+   "relevant": [
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "Use gin for jsonb and full text search"
+    },
+    {
+     "source": "postgres_tuning_notes.md",
+     "evidence": "Choose gin for jsonb and full text search"
+    }
+   ],
+   "query_id": "q013"
+  },
+  {
+   "query": "When does autovacuum start cleaning a table?",
+   "split": "dev",
+   "tags": [
+    "postgresql"
+   ],
+   "relevant": [
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "autovacuum runs it automatically once about 20 percent of a table changed"
+    },
+    {
+     "source": "postgres_tuning_notes.md",
+     "evidence": "Autovacuum cleans them up automatically once roughly 20 percent of a table has changed"
+    }
+   ],
+   "query_id": "q014"
+  },
+  {
+   "query": "How much memory should shared_buffers get?",
+   "split": "heldout",
+   "tags": [
+    "postgresql"
+   ],
+   "relevant": [
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "Set shared_buffers to roughly 25 percent of system RAM"
+    },
+    {
+     "source": "postgres_tuning_notes.md",
+     "evidence": "A reasonable starting value for shared_buffers is about 25 percent"
+    }
+   ],
+   "query_id": "q015"
+  },
+  {
+   "query": "How can thousands of clients share a few PostgreSQL connections?",
+   "split": "dev",
+   "tags": [
+    "postgresql"
+   ],
+   "relevant": [
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "Put pgbouncer in front of the database in transaction pooling mode"
+    },
+    {
+     "source": "postgres_tuning_notes.md",
+     "evidence": "Run pgbouncer in transaction pooling mode in front of PostgreSQL"
+    }
+   ],
+   "query_id": "q016"
+  },
+  {
+   "query": "What happens when Redis reaches maxmemory?",
+   "split": "dev",
+   "tags": [
+    "redis"
+   ],
+   "relevant": [
+    {
+     "source": "redis_caching.md",
+     "evidence": "When maxmemory is reached the eviction policy decides"
+    }
+   ],
+   "query_id": "q017"
+  },
+  {
+   "query": "How much data can I lose with AOF appendfsync everysec?",
+   "split": "dev",
+   "tags": [
+    "redis"
+   ],
+   "relevant": [
+    {
+     "source": "redis_caching.md",
+     "evidence": "loses at most about one second of data"
+    }
+   ],
+   "query_id": "q018"
+  },
+  {
+   "query": "How do I stop all cache keys from expiring at the same moment?",
+   "split": "heldout",
+   "tags": [
+    "redis"
+   ],
+   "relevant": [
+    {
+     "source": "redis_caching.md",
+     "evidence": "add jitter to TTL values to avoid a stampede"
+    }
+   ],
+   "query_id": "q019"
+  },
+  {
+   "query": "How do I build a leaderboard in Redis?",
+   "split": "dev",
+   "tags": [
+    "redis"
+   ],
+   "relevant": [
+    {
+     "source": "redis_caching.md",
+     "evidence": "Sorted sets power leaderboards through ZADD and ZRANGE"
+    }
+   ],
+   "query_id": "q020"
+  },
+  {
+   "query": "How do I keep preprocessing consistent between training and prediction?",
+   "split": "dev",
+   "tags": [
+    "scikit-learn"
+   ],
+   "relevant": [
+    {
+     "source": "scikit_learn_basics.md",
+     "evidence": "A Pipeline chains preprocessing such as StandardScaler"
+    }
+   ],
+   "query_id": "q021"
+  },
+  {
+   "query": "How do I choose the number of clusters for KMeans?",
+   "split": "dev",
+   "tags": [
+    "scikit-learn"
+   ],
+   "relevant": [
+    {
+     "source": "scikit_learn_basics.md",
+     "evidence": "Choose the number of clusters with the elbow method or the silhouette score"
+    }
+   ],
+   "query_id": "q022"
+  },
+  {
+   "query": "Which metrics should I use when classes are imbalanced?",
+   "split": "heldout",
+   "tags": [
+    "scikit-learn"
+   ],
+   "relevant": [
+    {
+     "source": "scikit_learn_basics.md",
+     "evidence": "Accuracy misleads on imbalanced data"
+    }
+   ],
+   "query_id": "q023"
+  },
+  {
+   "query": "How do I split data into training and test sets reproducibly?",
+   "split": "dev",
+   "tags": [
+    "scikit-learn"
+   ],
+   "relevant": [
+    {
+     "source": "scikit_learn_basics.md",
+     "evidence": "Hold out data with train_test_split"
+    }
+   ],
+   "query_id": "q024"
+  },
+  {
+   "query": "Why copy dependency files before the source code in a Dockerfile?",
+   "split": "dev",
+   "tags": [
+    "docker"
+   ],
+   "relevant": [
+    {
+     "source": "docker_basics.md",
+     "evidence": "copy dependency manifests before the source code to keep rebuilds fast"
+    }
+   ],
+   "query_id": "q025"
+  },
+  {
+   "query": "How do I keep container data after the container is removed?",
+   "split": "dev",
+   "tags": [
+    "docker"
+   ],
+   "relevant": [
+    {
+     "source": "docker_basics.md",
+     "evidence": "Named volumes created with docker volume create persist data"
+    }
+   ],
+   "query_id": "q026"
+  },
+  {
+   "query": "How do containers find each other by name?",
+   "split": "heldout",
+   "tags": [
+    "docker"
+   ],
+   "relevant": [
+    {
+     "source": "docker_basics.md",
+     "evidence": "Containers on a user defined bridge network resolve each other by service name"
+    }
+   ],
+   "query_id": "q027"
+  },
+  {
+   "query": "How do I run several containers together from one file?",
+   "split": "dev",
+   "tags": [
+    "docker"
+   ],
+   "relevant": [
+    {
+     "source": "docker_basics.md",
+     "evidence": "A compose.yaml file describes multi container applications"
+    }
+   ],
+   "query_id": "q028"
+  },
+  {
+   "query": "What manages rolling updates of pod replicas?",
+   "split": "dev",
+   "tags": [
+    "kubernetes"
+   ],
+   "relevant": [
+    {
+     "source": "kubernetes_basics.md",
+     "evidence": "A Deployment manages a ReplicaSet"
+    }
+   ],
+   "query_id": "q029"
+  },
+  {
+   "query": "How do I expose pods outside the cluster?",
+   "split": "dev",
+   "tags": [
+    "kubernetes"
+   ],
+   "relevant": [
+    {
+     "source": "kubernetes_basics.md",
+     "evidence": "NodePort opens a port on every node, and LoadBalancer provisions a cloud load balancer"
+    }
+   ],
+   "query_id": "q030"
+  },
+  {
+   "query": "What is the difference between liveness and readiness probes?",
+   "split": "heldout",
+   "tags": [
+    "kubernetes"
+   ],
+   "relevant": [
+    {
+     "source": "kubernetes_basics.md",
+     "evidence": "The liveness probe restarts a container that is stuck"
+    }
+   ],
+   "query_id": "q031"
+  },
+  {
+   "query": "Are Kubernetes Secrets encrypted?",
+   "split": "dev",
+   "tags": [
+    "kubernetes"
+   ],
+   "relevant": [
+    {
+     "source": "kubernetes_basics.md",
+     "evidence": "Secrets are only base64 encoded by default"
+    }
+   ],
+   "query_id": "q032"
+  },
+  {
+   "query": "Should I merge or rebase my feature branch?",
+   "split": "dev",
+   "tags": [
+    "git"
+   ],
+   "relevant": [
+    {
+     "source": "git_workflow.md",
+     "evidence": "git rebase replays commits on top of another base for a linear history"
+    }
+   ],
+   "query_id": "q033"
+  },
+  {
+   "query": "How can I recover a commit after a bad reset?",
+   "split": "dev",
+   "tags": [
+    "git"
+   ],
+   "relevant": [
+    {
+     "source": "git_workflow.md",
+     "evidence": "The reflog records where HEAD pointed"
+    }
+   ],
+   "query_id": "q034"
+  },
+  {
+   "query": "How do I undo a commit on a shared branch safely?",
+   "split": "heldout",
+   "tags": [
+    "git"
+   ],
+   "relevant": [
+    {
+     "source": "git_workflow.md",
+     "evidence": "git revert creates a new commit that undoes an earlier one"
+    }
+   ],
+   "query_id": "q035"
+  },
+  {
+   "query": "How do I find which commit introduced a bug?",
+   "split": "dev",
+   "tags": [
+    "git"
+   ],
+   "relevant": [
+    {
+     "source": "git_workflow.md",
+     "evidence": "git bisect finds the commit that introduced a bug"
+    }
+   ],
+   "query_id": "q036"
+  },
+  {
+   "query": "How do I forward requests to a backend application with NGINX?",
+   "split": "dev",
+   "tags": [
+    "nginx"
+   ],
+   "relevant": [
+    {
+     "source": "nginx_config.md",
+     "evidence": "proxy_pass forwards requests to an upstream application"
+    }
+   ],
+   "query_id": "q037"
+  },
+  {
+   "query": "Which TLS versions should NGINX allow?",
+   "split": "dev",
+   "tags": [
+    "nginx"
+   ],
+   "relevant": [
+    {
+     "source": "nginx_config.md",
+     "evidence": "Allow only TLSv1.2 and TLSv1.3 in ssl_protocols"
+    }
+   ],
+   "query_id": "q038"
+  },
+  {
+   "query": "How do I keep a client on the same backend server every time?",
+   "split": "heldout",
+   "tags": [
+    "nginx"
+   ],
+   "relevant": [
+    {
+     "source": "nginx_config.md",
+     "evidence": "ip_hash keeps a client on the same server"
+    }
+   ],
+   "query_id": "q039"
+  },
+  {
+   "query": "How do I validate an NGINX configuration before reloading?",
+   "split": "dev",
+   "tags": [
+    "nginx"
+   ],
+   "relevant": [
+    {
+     "source": "nginx_config.md",
+     "evidence": "Test changes with nginx -t before reloading"
+    }
+   ],
+   "query_id": "q040"
+  },
+  {
+   "query": "How do I update React state based on the previous value?",
+   "split": "dev",
+   "tags": [
+    "react"
+   ],
+   "relevant": [
+    {
+     "source": "react_hooks.md",
+     "evidence": "use the functional form setCount(c => c + 1)"
+    }
+   ],
+   "query_id": "q041"
+  },
+  {
+   "query": "How do I clean up a subscription in useEffect?",
+   "split": "dev",
+   "tags": [
+    "react"
+   ],
+   "relevant": [
+    {
+     "source": "react_hooks.md",
+     "evidence": "the returned cleanup function runs before the next effect and on unmount"
+    }
+   ],
+   "query_id": "q042"
+  },
+  {
+   "query": "Why shouldn't I use the array index as a list key?",
+   "split": "heldout",
+   "tags": [
+    "react"
+   ],
+   "relevant": [
+    {
+     "source": "react_hooks.md",
+     "evidence": "Using the array index as key breaks state when items are reordered"
+    }
+   ],
+   "query_id": "q043"
+  },
+  {
+   "query": "When do useMemo and useCallback actually help?",
+   "split": "dev",
+   "tags": [
+    "react"
+   ],
+   "relevant": [
+    {
+     "source": "react_hooks.md",
+     "evidence": "They only help when the value is passed to a memoized child"
+    }
+   ],
+   "query_id": "q044"
+  },
+  {
+   "query": "What is the difference between interface and type in TypeScript?",
+   "split": "dev",
+   "tags": [
+    "typescript"
+   ],
+   "relevant": [
+    {
+     "source": "typescript_types.md",
+     "evidence": "Interfaces can be extended and merged"
+    }
+   ],
+   "query_id": "q045"
+  },
+  {
+   "query": "How do I make every property of a type optional?",
+   "split": "dev",
+   "tags": [
+    "typescript"
+   ],
+   "relevant": [
+    {
+     "source": "typescript_types.md",
+     "evidence": "Partial<T> makes every property optional"
+    }
+   ],
+   "query_id": "q046"
+  },
+  {
+   "query": "How do I narrow a union type?",
+   "split": "heldout",
+   "tags": [
+    "typescript"
+   ],
+   "relevant": [
+    {
+     "source": "typescript_types.md",
+     "evidence": "Narrow it with typeof, in checks or a discriminant property"
+    }
+   ],
+   "query_id": "q047"
+  },
+  {
+   "query": "Which compiler option turns on strict null checks?",
+   "split": "dev",
+   "tags": [
+    "typescript"
+   ],
+   "relevant": [
+    {
+     "source": "typescript_types.md",
+     "evidence": "Set strict to true in tsconfig.json"
+    }
+   ],
+   "query_id": "q048"
+  },
+  {
+   "query": "How do I make Django reuse PostgreSQL connections and pool them?",
+   "split": "dev",
+   "tags": [
+    "cross"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "Set CONN_MAX_AGE to 60"
+    },
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "Put pgbouncer in front of the database"
+    }
+   ],
+   "query_id": "q049"
+  },
+  {
+   "query": "Which port does Django use to connect to PostgreSQL and where do I set it?",
+   "split": "dev",
+   "tags": [
+    "cross"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "NAME, USER, PASSWORD, HOST and PORT 5432"
+    },
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "The server listens on port 5432 by default"
+    }
+   ],
+   "query_id": "q050"
+  },
+  {
+   "query": "How do I find slow Django queries and check the PostgreSQL plan?",
+   "split": "heldout",
+   "tags": [
+    "cross"
+   ],
+   "relevant": [
+    {
+     "source": "django_orm.md",
+     "evidence": "Without them a loop over related objects issues one extra query per row"
+    },
+    {
+     "source": "postgresql_basics.md",
+     "evidence": "run EXPLAIN ANALYZE to see whether the planner chooses an index scan"
+    }
+   ],
+   "query_id": "q051"
+  },
+  {
+   "query": "How do I cache FastAPI endpoint results in Redis?",
+   "split": "dev",
+   "tags": [
+    "cross"
+   ],
+   "relevant": [
+    {
+     "source": "fastapi_guide.md",
+     "evidence": "Depends() shares logic such as database sessions"
+    },
+    {
+     "source": "redis_caching.md",
+     "evidence": "Applications read Redis first and load from the database on a miss"
+    }
+   ],
+   "query_id": "q052"
+  },
+  {
+   "query": "How do I put NGINX in front of a FastAPI app running in Docker?",
+   "split": "heldout",
+   "tags": [
+    "cross"
+   ],
+   "relevant": [
+    {
+     "source": "nginx_config.md",
+     "evidence": "proxy_pass forwards requests to an upstream application"
+    },
+    {
+     "source": "docker_basics.md",
+     "evidence": "Containers on a user defined bridge network resolve each other by service name"
+    }
+   ],
+   "query_id": "q053"
+  },
+  {
+   "query": "How many Gunicorn workers should I run?",
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "relevant": [
+    {
+     "source": "python_web_notes.md",
+     "evidence": "two times the CPU cores plus one"
+    }
+   ],
+   "query_id": "q054"
+  },
+  {
+   "query": "Which attributes should session cookies have?",
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "relevant": [
+    {
+     "source": "python_web_notes.md",
+     "evidence": "Set the Secure, HttpOnly and SameSite attributes"
+    }
+   ],
+   "query_id": "q055"
+  },
+  {
+   "query": "How do I handle missing values in a pandas column?",
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "relevant": [
+    {
+     "source": "python_data_notes.md",
+     "evidence": "dropna to remove rows and fillna to substitute"
+    }
+   ],
+   "query_id": "q056"
+  },
+  {
+   "query": "How do I load a CSV that is bigger than memory?",
+   "split": "heldout",
+   "tags": [
+    "python-notes"
+   ],
+   "relevant": [
+    {
+     "source": "python_data_notes.md",
+     "evidence": "read in chunks with the chunksize argument"
+    }
+   ],
+   "query_id": "q057"
+  },
+  {
+   "query": "How do I run the same pytest test with many inputs?",
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "relevant": [
+    {
+     "source": "python_tooling_notes.md",
+     "evidence": "parametrize runs one test with many inputs"
+    }
+   ],
+   "query_id": "q058"
+  },
+  {
+   "query": "How can I speed up pip installs?",
+   "split": "heldout",
+   "tags": [
+    "python-notes"
+   ],
+   "relevant": [
+    {
+     "source": "python_tooling_notes.md",
+     "evidence": "uv resolves and installs packages much faster"
+    }
+   ],
+   "query_id": "q059"
+  }
+ ]
+}

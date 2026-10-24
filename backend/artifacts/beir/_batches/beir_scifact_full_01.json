@@ -1,0 +1,8 @@
+{
+ "run_id": "beir_scifact_full_01",
+ "datasets": [
+  "scifact"
+ ],
+ "finished_at": "2026-10-24T19:36:42.808Z",
+ "failures": 0
+}

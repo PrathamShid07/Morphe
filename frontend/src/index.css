@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Design tokens follow the supplied µGPT references: near-black surfaces with hairline borders, large rounded
+   cards, violet accent + glowing orb (dark), soft grey canvas with white cards and lavender tiles (light). */
+:root {
+  --radius: 1rem;
+  --background: #f5f5f8;
+  --foreground: #14131a;
+  --card: #ffffff;
+  --card-foreground: #14131a;
+  --popover: #ffffff;
+  --popover-foreground: #14131a;
+  --primary: #6d3df2;
+  --primary-foreground: #ffffff;
+  --secondary: #efeef5;
+  --secondary-foreground: #26242f;
+  --muted: #f0eff5;
+  --muted-foreground: #6b6a78;
+  --accent: #f1eaff;
+  --accent-foreground: #4c1fc4;
+  --destructive: #dc2626;
+  --border: #e6e4ee;
+  --input: #dcd9e6;
+  --ring: #8b6cf6;
+  --sidebar: #fbfbfd;
+  --success: #15803d;
+  --success-soft: #dcfce7;
+  --warning: #b45309;
+  --warning-soft: #fef3c7;
+  --info: #0369a1;
+  --info-soft: #e0f2fe;
+  --danger-soft: #fee2e2;
+  --violet-soft: #f1eaff;
+  --chart-1: #7c3aed;
+  --chart-2: #0891b2;
+  --chart-3: #d97706;
+  --chart-4: #059669;
+  --chart-5: #db2777;
+  --glow: rgba(124, 58, 237, 0.12);
+}
+
+.dark {
+  --background: #0c0c10;
+  --foreground: #f1f0f6;
+  --card: #131318;
+  --card-foreground: #f1f0f6;
+  --popover: #17171d;
+  --popover-foreground: #f1f0f6;
+  --primary: #7c5cff;
+  --primary-foreground: #ffffff;
+  --secondary: #1c1c23;
+  --secondary-foreground: #e7e6ee;
+  --muted: #1a1a21;
+  --muted-foreground: #9594a3;
+  --accent: #251d44;
+  --accent-foreground: #c9b8ff;
+  --destructive: #f87171;
+  --border: #25252d;
+  --input: #2d2d37;
+  --ring: #8b6cf6;
+  --sidebar: #0f0f13;
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.12);
+  --warning: #fbbf24;
+  --warning-soft: rgba(251, 191, 36, 0.12);
+  --info: #38bdf8;
+  --info-soft: rgba(56, 189, 248, 0.12);
+  --danger-soft: rgba(248, 113, 113, 0.14);
+  --violet-soft: rgba(139, 108, 246, 0.16);
+  --chart-1: #a78bfa;
+  --chart-2: #22d3ee;
+  --chart-3: #fbbf24;
+  --chart-4: #34d399;
+  --chart-5: #f472b6;
+  --glow: rgba(124, 92, 255, 0.18);
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-violet-soft: var(--violet-soft);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+  }
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+  }
+  button, [role="button"], a { -webkit-tap-highlight-color: transparent; }
+}
+
+@layer components {
+  /* the glowing pearl from the reference screens */
+  .orb {
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at 32% 28%, #f5e9ff 0%, rgba(245, 233, 255, 0) 38%),
+      radial-gradient(circle at 70% 75%, #6d28d9 0%, rgba(109, 40, 217, 0) 60%),
+      linear-gradient(145deg, #c4a5ff 0%, #8b5cf6 55%, #6d28d9 100%);
+    box-shadow: 0 0 60px 8px var(--glow), inset -6px -10px 24px rgba(60, 20, 140, 0.45), inset 6px 8px 18px rgba(255, 255, 255, 0.35);
+  }
+  .orb-sm { box-shadow: 0 0 22px 2px var(--glow), inset -2px -3px 8px rgba(60, 20, 140, 0.45), inset 2px 3px 6px rgba(255, 255, 255, 0.35); }
+  .orb-pulse { animation: orb-pulse 3.2s ease-in-out infinite; }
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.035); }
+  }
+  .ambient {
+    background:
+      radial-gradient(1000px 420px at 85% -10%, var(--glow), transparent 60%),
+      radial-gradient(700px 360px at 5% 110%, color-mix(in oklab, var(--glow) 55%, transparent), transparent 60%);
+  }
+  .surface {
+    @apply rounded-2xl border bg-card text-card-foreground;
+  }
+  .tile-icon {
+    @apply grid size-9 shrink-0 place-items-center rounded-xl bg-violet-soft text-accent-foreground;
+  }
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+  .mono-id { @apply font-mono text-[0.72rem] tracking-tight text-muted-foreground; }
+}
+
+/* React Flow tweaks so the canvas follows the theme */
+.react-flow { --xy-background-color: transparent; }
+.react-flow__attribution { display: none; }
+.dark .react-flow__controls-button { background: var(--card); color: var(--foreground); border-color: var(--border); }
+.dark .react-flow__controls-button svg { fill: var(--foreground); }
+.dark .react-flow__minimap { background: var(--card); }
+
+@media (prefers-reduced-motion: reduce) {
+  .orb-pulse { animation: none; }
+}

@@ -1,0 +1,39 @@
+{
+ "note": "Probes run after the test evaluation on the benchmark context; they use an injected harmful candidate / injected fault and relaxed gating (coaccess thresholds, benefit requirement) ONLY to make a candidate available. Validation, acceptance, commit and recovery are the real code.",
+ "candidate_pairs_available": 130,
+ "harmful_candidate": {
+  "status": "rejected",
+  "rejection_stage": "pre_commit",
+  "decision_reason": "Rejected: ndcg_at_10 changed by -0.4995 (allowed regression 0.020); recall_at_5 changed by -0.5617 (allowed regression 0.020); mrr_at_10 changed by -0.4661 (allowed regression 0.020)",
+  "state_unchanged": true,
+  "version_unchanged": true,
+  "baseline_ndcg_at_10": 0.5948588299450263,
+  "candidate_ndcg_at_10": 0.0953621108365412
+ },
+ "post_commit_fault": {
+  "status": "rolled_back",
+  "recovered": true,
+  "rolled_back_to": "arch_0008",
+  "error": "PostCommitVerificationError: injected post-commit verification failure",
+  "state_restored_exactly": true,
+  "version_pointer_restored": true,
+  "integrity_passed": true,
+  "pair": [
+   "mod_scifact_m002",
+   "mod_scifact_m025"
+  ]
+ },
+ "restoration": {
+  "committed_version": "arch_0009",
+  "restored_to": "arch_0008",
+  "restore_status": "completed",
+  "state_matches_pre_change_snapshot": true,
+  "restored_again": "completed",
+  "state_matches_changed_architecture": true,
+  "integrity_passed": true,
+  "pair": [
+   "mod_scifact_m013",
+   "mod_scifact_m018"
+  ]
+ }
+}

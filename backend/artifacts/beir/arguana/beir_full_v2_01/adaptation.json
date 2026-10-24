@@ -1,0 +1,2927 @@
+{
+ "protocol": {
+  "windows_planned": 5,
+  "workload_queries": 370,
+  "windows": [
+   {
+    "window": 1,
+    "queries": 50,
+    "proposals_detected": 85,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_w8969JYVD_39c84dc18ec6",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w8969JYVD_759610a411b8",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w8969JYVD_8bc2c90681a0",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w8969JYVD_519d56c8dac7",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w8969JYVD_b4a93107f443",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w8969JYVD_564f5f603e7a",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0002",
+    "version_after": "arch_0002",
+    "monitoring": "not_applicable"
+   },
+   {
+    "window": 2,
+    "queries": 50,
+    "proposals_detected": 85,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_w84CBFG2X_6c8dac99ae0e",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w84CBFG2X_36afb3495b98",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w84CBFG2X_5767a372d6a3",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w84CBFG2X_9cdfb6979d26",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w84CBFG2X_dfa4116a58d3",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w84CBFG2X_5d500bd9e330",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0002",
+    "version_after": "arch_0002",
+    "monitoring": "not_applicable"
+   },
+   {
+    "window": 3,
+    "queries": 50,
+    "proposals_detected": 85,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_wSHVPGFC3_e407b4372ad5",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wSHVPGFC3_f63da4040eac",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wSHVPGFC3_dfc9e74544fc",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wSHVPGFC3_c5769c2c6e53",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wSHVPGFC3_3582b2b53cf6",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wSHVPGFC3_27e2ede1ef18",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0002",
+    "version_after": "arch_0002",
+    "monitoring": "not_applicable"
+   },
+   {
+    "window": 4,
+    "queries": 50,
+    "proposals_detected": 85,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_w812M1BQC_39c84dc18ec6",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w812M1BQC_759610a411b8",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w812M1BQC_8bc2c90681a0",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w812M1BQC_519d56c8dac7",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w812M1BQC_b4a93107f443",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w812M1BQC_564f5f603e7a",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0002",
+    "version_after": "arch_0002",
+    "monitoring": "not_applicable"
+   },
+   {
+    "window": 5,
+    "queries": 50,
+    "proposals_detected": 85,
+    "applied": 1,
+    "events": [
+     {
+      "event_id": "adapt_w615R5QT3_6c8dac99ae0e",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w615R5QT3_36afb3495b98",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w615R5QT3_5767a372d6a3",
+      "operation": "split_module",
+      "status": "completed"
+     }
+    ],
+    "version_before": "arch_0002",
+    "version_after": "arch_0003",
+    "monitoring": "ok"
+   }
+  ]
+ },
+ "events": [
+  {
+   "event_id": "adapt_w8969JYVD_39c84dc18ec6",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M000 · law house international' holds 210 records, above the capacity threshold of 147. Proposed children: Icc / International (121), Icc / African (89).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m000"
+   ],
+   "affected_record_count": 210,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Icc / African, Icc / International; 210 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_icc_african",
+    "mod_icc_international"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:51:47.443Z",
+   "duration_ms": 69072.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 54.43116699461825,
+    "p95_latency_ms": 57.1654769097222,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 54.38702102401294,
+    "p95_latency_ms": 57.27590000606142,
+    "mean_candidate_count": 936.0266666666666,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 57.165ms → 57.276ms (+0.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w8969JYVD_759610a411b8",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M001 · access house information' holds 199 records, above the capacity threshold of 147. Proposed children: Internet / People (99), Internet / Google (60), Access / Human (21), Access / Social (19).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m001"
+   ],
+   "affected_record_count": 199,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Access / Human, Access / Social, Internet / Google, Internet / People; 199 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_access_human",
+    "mod_access_social",
+    "mod_internet_google",
+    "mod_internet_people"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:52:56.525Z",
+   "duration_ms": 71890.8,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 55.31320851878263,
+    "p95_latency_ms": 62.45752311369866,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.5466666666666666,
+    "mrr": 0.21044444444444443,
+    "ndcg_at_10": 0.3600146960130885,
+    "mrr_at_10": 0.2381296296296296,
+    "map_at_10": 0.2381296296296296,
+    "precision_at_10": 0.07466666666666667,
+    "recall_at_10": 0.7466666666666667,
+    "guided_recall_at_5": 0.5466666666666666,
+    "guided_mrr": 0.21044444444444443,
+    "p50_latency_ms": 55.211583501659334,
+    "p95_latency_ms": 61.405772875878014,
+    "mean_candidate_count": 942.1866666666666,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0029 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0017 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 62.458ms → 61.406ms (-1.7%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w8969JYVD_8bc2c90681a0",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M002 · europe house believes' holds 187 records, above the capacity threshold of 147. Proposed children: Policy / Foreign (98), European / Europe (72), Integration / Neo-Functionalism (17).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m002"
+   ],
+   "affected_record_count": 187,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): European / Europe, Integration / Neo-Functionalism, Policy / Foreign; 187 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_european_europe",
+    "mod_integration_neo_functionalism",
+    "mod_policy_foreign"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:54:08.422Z",
+   "duration_ms": 73507.8,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 57.76964602409862,
+    "p95_latency_ms": 60.767912640585564,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 57.81087451032363,
+    "p95_latency_ms": 60.88913474231958,
+    "mean_candidate_count": 953.18,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 60.768ms → 60.889ms (+0.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w8969JYVD_519d56c8dac7",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M003 · house believes philosophy' holds 180 records, above the capacity threshold of 147. Proposed children: Speech / Freedom (87), Bbc / People (63), Flag / Burning (15), Spear / Zuma (15).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m003"
+   ],
+   "affected_record_count": 180,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Bbc / People, Flag / Burning, Spear / Zuma, Speech / Freedom; 180 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_bbc_people",
+    "mod_flag_burning",
+    "mod_spear_zuma",
+    "mod_speech_freedom"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:55:21.935Z",
+   "duration_ms": 77275.5,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.01035400549881,
+    "p95_latency_ms": 67.71681437676307,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.5466666666666666,
+    "mrr": 0.2101111111111111,
+    "ndcg_at_10": 0.3574440556342543,
+    "mrr_at_10": 0.23677777777777778,
+    "map_at_10": 0.23677777777777778,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.5466666666666666,
+    "guided_mrr": 0.2101111111111111,
+    "p50_latency_ms": 59.76375000318512,
+    "p95_latency_ms": 67.67824406560975,
+    "mean_candidate_count": 943.6733333333333,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 67.717ms → 67.678ms (-0.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w8969JYVD_b4a93107f443",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M004 · house believes free' holds 180 records, above the capacity threshold of 147. Proposed children: News / Media (156), Wikipedia / Information (24).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m004"
+   ],
+   "affected_record_count": 180,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): News / Media, Wikipedia / Information; 180 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_news_media",
+    "mod_wikipedia_information"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:56:39.215Z",
+   "duration_ms": 75450.1,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.0801670148503,
+    "p95_latency_ms": 69.26462292904026,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 57.894374505849555,
+    "p95_latency_ms": 69.0872252918779,
+    "mean_candidate_count": 958.0133333333333,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 69.265ms → 69.087ms (-0.3%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w8969JYVD_564f5f603e7a",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M005 · religion house ban' holds 175 records, above the capacity threshold of 147. Proposed children: Religious / Religion (73), Religious / Ban (44), State / Religion (35), Schools / Religion (23).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m005"
+   ],
+   "affected_record_count": 175,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Religious / Ban, Religious / Religion, Schools / Religion, State / Religion; 175 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_religious_ban",
+    "mod_religious_religion",
+    "mod_schools_religion",
+    "mod_state_religion"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:57:54.670Z",
+   "duration_ms": 78972.7,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.93995848600753,
+    "p95_latency_ms": 80.92012050910843,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.94412501947954,
+    "p95_latency_ms": 78.9759187551681,
+    "mean_candidate_count": 939.32,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 80.920ms → 78.976ms (-2.4%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w84CBFG2X_6c8dac99ae0e",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M006 · house media television' holds 165 records, above the capacity threshold of 147. Proposed children: Music / Violence (48), Women / Advertising (47), Advertising / People (45), Child / Performers (25).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m006"
+   ],
+   "affected_record_count": 165,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Advertising / People, Child / Performers, Music / Violence, Women / Advertising; 165 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_advertising_people",
+    "mod_child_performers",
+    "mod_music_violence",
+    "mod_women_advertising"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:59:23.054Z",
+   "duration_ms": 78756.3,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.92479150881991,
+    "p95_latency_ms": 76.33720886951777,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.736062481533736,
+    "p95_latency_ms": 75.80376263358626,
+    "mean_candidate_count": 937.58,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 76.337ms → 75.804ms (-0.7%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w84CBFG2X_36afb3495b98",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M008 · law defence house' holds 163 records, above the capacity threshold of 147. Proposed children: Nuclear / Weapons (128), Cluster / Bombs (35).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m008"
+   ],
+   "affected_record_count": 163,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cluster / Bombs, Nuclear / Weapons; 163 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cluster_bombs",
+    "mod_nuclear_weapons"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:00:41.815Z",
+   "duration_ms": 75212.9,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.671187522122636,
+    "p95_latency_ms": 63.93951469217424,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.795854478375986,
+    "p95_latency_ms": 64.28573970915745,
+    "mean_candidate_count": 953.48,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 63.940ms → 64.286ms (+0.5%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w84CBFG2X_5767a372d6a3",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M007 · politics africa believes' holds 163 records, above the capacity threshold of 147. Proposed children: Africa / African (109), Governance / Good (54).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m007"
+   ],
+   "affected_record_count": 163,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Africa / African, Governance / Good; 163 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_africa_african",
+    "mod_governance_good"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:01:57.032Z",
+   "duration_ms": 81562.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.48397897393443,
+    "p95_latency_ms": 79.36110243608707,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.388145997421816,
+    "p95_latency_ms": 84.00463738944374,
+    "mean_candidate_count": 943.72,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 79.361ms → 84.005ms (+5.9%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w84CBFG2X_9cdfb6979d26",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M009 · disease house health' holds 162 records, above the capacity threshold of 147. Proposed children: Drugs / Generic (87), Health / Care (53), Vaccines / Vaccine (22).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m009"
+   ],
+   "affected_record_count": 162,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): Drugs / Generic, Health / Care, Vaccines / Vaccine; 162 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_drugs_generic",
+    "mod_health_care",
+    "mod_vaccines_vaccine"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:03:18.604Z",
+   "duration_ms": 77468.9,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.949583519482985,
+    "p95_latency_ms": 65.84459213190712,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.04197953734547,
+    "p95_latency_ms": 66.2030666018836,
+    "mean_candidate_count": 947.6733333333333,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 65.845ms → 66.203ms (+0.5%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w84CBFG2X_dfa4116a58d3",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M010 · science general animals' holds 159 records, above the capacity threshold of 147. Proposed children: Animals / Human (82), Animal / Science (41), Animals / Species (23), Badgers / Cull (13).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m010"
+   ],
+   "affected_record_count": 159,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Animal / Science, Animals / Human, Animals / Species, Badgers / Cull; 159 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_animal_science",
+    "mod_animals_human",
+    "mod_animals_species",
+    "mod_badgers_cull"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:04:36.078Z",
+   "duration_ms": 75110.3,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.66820800676942,
+    "p95_latency_ms": 60.678189824102446,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.59539601462893,
+    "p95_latency_ms": 60.67165883432608,
+    "mean_candidate_count": 943.3266666666667,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 60.678ms → 60.672ms (-0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w84CBFG2X_5d500bd9e330",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M011 · government privacy digital' holds 156 records, above the capacity threshold of 147. Proposed children: Intelligence / Surveillance (67), Privacy / Government (51), Government / Information (38).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m011"
+   ],
+   "affected_record_count": 156,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): Government / Information, Intelligence / Surveillance, Privacy / Government; 156 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_government_information",
+    "mod_intelligence_surveillance",
+    "mod_privacy_government"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:05:51.193Z",
+   "duration_ms": 76273.3,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.49849996250123,
+    "p95_latency_ms": 67.80355233349836,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.2091111111111111,
+    "ndcg_at_10": 0.3575548003418422,
+    "mrr_at_10": 0.23691534391534388,
+    "map_at_10": 0.23691534391534388,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.2091111111111111,
+    "p50_latency_ms": 59.47274999925867,
+    "p95_latency_ms": 67.38945000106467,
+    "mean_candidate_count": 955.0933333333334,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0005 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 67.804ms → 67.389ms (-0.6%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wSHVPGFC3_e407b4372ad5",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M012 · house policy economic' holds 152 records, above the capacity threshold of 147. Proposed children: Trade / Countries (55), Economic / Trade (53), Imf / Countries (25), Nafta / Mexico (19).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m012"
+   ],
+   "affected_record_count": 152,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Economic / Trade, Imf / Countries, Nafta / Mexico, Trade / Countries; 152 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_economic_trade",
+    "mod_imf_countries",
+    "mod_nafta_mexico",
+    "mod_trade_countries"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:07:16.509Z",
+   "duration_ms": 74762.7,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.786708483239636,
+    "p95_latency_ms": 60.4764607938705,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20544444444444443,
+    "ndcg_at_10": 0.35468305064974226,
+    "mrr_at_10": 0.2331296296296296,
+    "map_at_10": 0.2331296296296296,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20544444444444443,
+    "p50_latency_ms": 58.79360449034721,
+    "p95_latency_ms": 60.50655159924645,
+    "mean_candidate_count": 949.1933333333334,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0025 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0033 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 60.476ms → 60.507ms (+0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wSHVPGFC3_f63da4040eac",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M013 · education university house' holds 149 records, above the capacity threshold of 147. Proposed children: University / Universities (131), Law / Legal (18).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m013"
+   ],
+   "affected_record_count": 149,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Law / Legal, University / Universities; 149 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_law_legal",
+    "mod_university_universities"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:08:31.276Z",
+   "duration_ms": 75308.2,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.57177100935951,
+    "p95_latency_ms": 61.94338734494521,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.4319585361518,
+    "p95_latency_ms": 61.94803777325433,
+    "mean_candidate_count": 963.76,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 61.943ms → 61.948ms (+0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wSHVPGFC3_dfc9e74544fc",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M014 · education house general' (145 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.19). Proposed children: School / Children (128), Military / Schools (17).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m014"
+   ],
+   "affected_record_count": 145,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Military / Schools, School / Children; 145 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_military_schools",
+    "mod_school_children"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:09:46.589Z",
+   "duration_ms": 75621.7,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.645333531079814,
+    "p95_latency_ms": 60.872901894617826,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.55887498566881,
+    "p95_latency_ms": 61.78132691711651,
+    "mean_candidate_count": 961.8066666666666,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 60.873ms → 61.781ms (+1.5%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wSHVPGFC3_c5769c2c6e53",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M015 · digital freedoms house' (144 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.19). Proposed children: Property / Intellectual (60), Work / Copyright (43), Music / Downloading (22), Source / Software (19).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m015"
+   ],
+   "affected_record_count": 144,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Music / Downloading, Property / Intellectual, Source / Software, Work / Copyright; 144 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_music_downloading",
+    "mod_property_intellectual",
+    "mod_source_software",
+    "mod_work_copyright"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:11:02.215Z",
+   "duration_ms": 75902.4,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.00841697095893,
+    "p95_latency_ms": 61.82113318354823,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.5466666666666666,
+    "mrr": 0.21044444444444443,
+    "ndcg_at_10": 0.3600146960130885,
+    "mrr_at_10": 0.2381296296296296,
+    "map_at_10": 0.2381296296296296,
+    "precision_at_10": 0.07466666666666667,
+    "recall_at_10": 0.7466666666666667,
+    "guided_recall_at_5": 0.5466666666666666,
+    "guided_mrr": 0.21044444444444443,
+    "p50_latency_ms": 60.031041502952576,
+    "p95_latency_ms": 61.06322256382555,
+    "mean_candidate_count": 945.92,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0029 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0017 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 61.821ms → 61.063ms (-1.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wSHVPGFC3_3582b2b53cf6",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M016 · government house africa' (142 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.13). Proposed children: War / Africa (113), Morsi / Military (29).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m016"
+   ],
+   "affected_record_count": 142,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Morsi / Military, War / Africa; 142 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_morsi_military",
+    "mod_war_africa"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:12:18.122Z",
+   "duration_ms": 76560.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.54089600709267,
+    "p95_latency_ms": 69.83041221974415,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.49329200666398,
+    "p95_latency_ms": 68.43891277676443,
+    "mean_candidate_count": 956.7866666666666,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 69.830ms → 68.439ms (-2.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wSHVPGFC3_27e2ede1ef18",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M017 · house society immigration' (141 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.14). Proposed children: Migrants / Countries (47), Rights / Migrants (43), Illegal / Immigrants (34), People / Rural (17).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m017"
+   ],
+   "affected_record_count": 141,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Illegal / Immigrants, Migrants / Countries, People / Rural, Rights / Migrants; 141 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_illegal_immigrants",
+    "mod_migrants_countries",
+    "mod_people_rural",
+    "mod_rights_migrants"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:13:34.687Z",
+   "duration_ms": 76376.4,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.02625002292916,
+    "p95_latency_ms": 63.70422327017877,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.974228526698425,
+    "p95_latency_ms": 62.682695520925336,
+    "mean_candidate_count": 939.2133333333334,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 63.704ms → 62.683ms (-1.6%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w812M1BQC_39c84dc18ec6",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M000 · law house international' holds 210 records, above the capacity threshold of 147. Proposed children: Icc / International (121), Icc / African (89).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m000"
+   ],
+   "affected_record_count": 210,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Icc / African, Icc / International; 210 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_icc_african",
+    "mod_icc_international"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:15:00.173Z",
+   "duration_ms": 78844.1,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.086041485192254,
+    "p95_latency_ms": 69.67377701948861,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.08337499224581,
+    "p95_latency_ms": 71.02456698485184,
+    "mean_candidate_count": 936.0266666666666,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 69.674ms → 71.025ms (+1.9%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w812M1BQC_759610a411b8",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M001 · access house information' holds 199 records, above the capacity threshold of 147. Proposed children: Internet / People (99), Internet / Google (60), Access / Human (21), Access / Social (19).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m001"
+   ],
+   "affected_record_count": 199,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Access / Human, Access / Social, Internet / Google, Internet / People; 199 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_access_human",
+    "mod_access_social",
+    "mod_internet_google",
+    "mod_internet_people"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:16:19.022Z",
+   "duration_ms": 81157.4,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.607520514167845,
+    "p95_latency_ms": 79.14950243721249,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.5466666666666666,
+    "mrr": 0.21044444444444443,
+    "ndcg_at_10": 0.3600146960130885,
+    "mrr_at_10": 0.2381296296296296,
+    "map_at_10": 0.2381296296296296,
+    "precision_at_10": 0.07466666666666667,
+    "recall_at_10": 0.7466666666666667,
+    "guided_recall_at_5": 0.5466666666666666,
+    "guided_mrr": 0.21044444444444443,
+    "p50_latency_ms": 60.395541484467685,
+    "p95_latency_ms": 85.08733941125652,
+    "mean_candidate_count": 942.1866666666666,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0029 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0017 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 79.150ms → 85.087ms (+7.5%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w812M1BQC_8bc2c90681a0",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M002 · europe house believes' holds 187 records, above the capacity threshold of 147. Proposed children: Policy / Foreign (98), European / Europe (72), Integration / Neo-Functionalism (17).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m002"
+   ],
+   "affected_record_count": 187,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): European / Europe, Integration / Neo-Functionalism, Policy / Foreign; 187 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_european_europe",
+    "mod_integration_neo_functionalism",
+    "mod_policy_foreign"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:17:40.184Z",
+   "duration_ms": 75933.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.669604011811316,
+    "p95_latency_ms": 63.76141859218477,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 58.668958488851786,
+    "p95_latency_ms": 63.22116439114323,
+    "mean_candidate_count": 953.18,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 63.761ms → 63.221ms (-0.8%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w812M1BQC_519d56c8dac7",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M003 · house believes philosophy' holds 180 records, above the capacity threshold of 147. Proposed children: Speech / Freedom (87), Bbc / People (63), Flag / Burning (15), Spear / Zuma (15).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m003"
+   ],
+   "affected_record_count": 180,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Bbc / People, Flag / Burning, Spear / Zuma, Speech / Freedom; 180 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_bbc_people",
+    "mod_flag_burning",
+    "mod_spear_zuma",
+    "mod_speech_freedom"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:18:56.123Z",
+   "duration_ms": 82733.3,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.54062448674813,
+    "p95_latency_ms": 81.02607714827172,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.5466666666666666,
+    "mrr": 0.2101111111111111,
+    "ndcg_at_10": 0.3574440556342543,
+    "mrr_at_10": 0.23677777777777778,
+    "map_at_10": 0.23677777777777778,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.5466666666666666,
+    "guided_mrr": 0.2101111111111111,
+    "p50_latency_ms": 60.53002047701739,
+    "p95_latency_ms": 87.07672065938814,
+    "mean_candidate_count": 943.6733333333333,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 81.026ms → 87.077ms (+7.5%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w812M1BQC_b4a93107f443",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M004 · house believes free' holds 180 records, above the capacity threshold of 147. Proposed children: News / Media (156), Wikipedia / Information (24).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m004"
+   ],
+   "affected_record_count": 180,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): News / Media, Wikipedia / Information; 180 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_news_media",
+    "mod_wikipedia_information"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:20:18.862Z",
+   "duration_ms": 78197.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.878625004785135,
+    "p95_latency_ms": 66.66080625727773,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.776062524179,
+    "p95_latency_ms": 67.82764009258241,
+    "mean_candidate_count": 958.0133333333333,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 66.661ms → 67.828ms (+1.8%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w812M1BQC_564f5f603e7a",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M005 · religion house ban' holds 175 records, above the capacity threshold of 147. Proposed children: Religious / Religion (73), Religious / Ban (44), State / Religion (35), Schools / Religion (23).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m005"
+   ],
+   "affected_record_count": 175,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Religious / Ban, Religious / Religion, Schools / Religion, State / Religion; 175 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_religious_ban",
+    "mod_religious_religion",
+    "mod_schools_religion",
+    "mod_state_religion"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:21:37.064Z",
+   "duration_ms": 79231.5,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.16412499593571,
+    "p95_latency_ms": 69.64061007020061,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 60.09656249079853,
+    "p95_latency_ms": 68.90947677602523,
+    "mean_candidate_count": 939.32,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 69.641ms → 68.909ms (-1.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w615R5QT3_6c8dac99ae0e",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M006 · house media television' holds 165 records, above the capacity threshold of 147. Proposed children: Music / Violence (48), Women / Advertising (47), Advertising / People (45), Child / Performers (25).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m006"
+   ],
+   "affected_record_count": 165,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Advertising / People, Child / Performers, Music / Violence, Women / Advertising; 165 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_advertising_people",
+    "mod_child_performers",
+    "mod_music_violence",
+    "mod_women_advertising"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:23:05.588Z",
+   "duration_ms": 79227.7,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.86933398526162,
+    "p95_latency_ms": 70.97388588299508,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 59.790333529235795,
+    "p95_latency_ms": 70.9983914566692,
+    "mean_candidate_count": 937.58,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 70.974ms → 70.998ms (+0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w615R5QT3_36afb3495b98",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M008 · law defence house' holds 163 records, above the capacity threshold of 147. Proposed children: Nuclear / Weapons (128), Cluster / Bombs (35).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_arguana_m008"
+   ],
+   "affected_record_count": 163,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cluster / Bombs, Nuclear / Weapons; 163 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cluster_bombs",
+    "mod_nuclear_weapons"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T21:24:24.821Z",
+   "duration_ms": 84263.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 62.44497900479473,
+    "p95_latency_ms": 83.41731439868452,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 62.473020516335964,
+    "p95_latency_ms": 88.51443386520255,
+    "mean_candidate_count": 953.48,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 83.417ms → 88.514ms (+6.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w615R5QT3_5767a372d6a3",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M007 · politics africa believes' holds 163 records, above the capacity threshold of 147. Proposed children: Africa / African (109), Governance / Good (54).",
+   "status": "completed",
+   "affected_modules": [
+    "mod_arguana_m007"
+   ],
+   "affected_record_count": 163,
+   "decision": "accept",
+   "decision_reason": "Accepted: no metric regressed beyond its threshold (p95 latency −5.3%)",
+   "rejection_stage": null,
+   "structural_summary": "+2 module(s): Africa / African, Governance / Good; 163 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_africa_african",
+    "mod_governance_good"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": "arch_0003",
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": {
+    "status": "passed",
+    "live_metrics": {
+     "sample_size": 150,
+     "recall_at_5": 0.54,
+     "mrr": 0.20877777777777778,
+     "ndcg_at_10": 0.3571435189592659,
+     "mrr_at_10": 0.23646296296296293,
+     "map_at_10": 0.23646296296296293,
+     "precision_at_10": 0.07400000000000001,
+     "recall_at_10": 0.74,
+     "guided_recall_at_5": 0.54,
+     "guided_mrr": 0.20877777777777778,
+     "p50_latency_ms": 61.23581252177246,
+     "p95_latency_ms": 67.17223093146457,
+     "mean_candidate_count": 943.72,
+     "fallback_rate": 0.0
+    },
+    "matches_prediction": true
+   },
+   "started_at": "2026-10-24T21:25:49.088Z",
+   "duration_ms": 118809.7,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 61.28552099107765,
+    "p95_latency_ms": 71.41690873249897,
+    "mean_candidate_count": 965.1466666666666,
+    "fallback_rate": 0.0
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.54,
+    "mrr": 0.20877777777777778,
+    "ndcg_at_10": 0.3571435189592659,
+    "mrr_at_10": 0.23646296296296293,
+    "map_at_10": 0.23646296296296293,
+    "precision_at_10": 0.07400000000000001,
+    "recall_at_10": 0.74,
+    "guided_recall_at_5": 0.54,
+    "guided_mrr": 0.20877777777777778,
+    "p50_latency_ms": 61.20858350186609,
+    "p95_latency_ms": 67.59617488423827,
+    "mean_candidate_count": 943.72,
+    "fallback_rate": 0.0
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 71.417ms → 67.596ms (-5.3%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": true,
+     "detail": "benefit: p95 latency −5.3%"
+    }
+   ],
+   "benefit": "benefit: p95 latency −5.3%"
+  }
+ ],
+ "initial_version": "arch_0002",
+ "adaptive_version": "arch_0003",
+ "accepted": 1,
+ "rejected": 26,
+ "failed": 0,
+ "rolled_back": 0,
+ "proposals_evaluated": 27
+}

@@ -1,0 +1,20 @@
+{"t": "2026-10-24T19:20:03.856Z", "elapsed_s": 0.0, "phase": "data", "message": "loading scifact with the official BEIR loader"}
+{"t": "2026-10-24T19:20:03.892Z", "elapsed_s": 0.1, "phase": "data", "message": "corpus=5183 test_queries=300 validation=403 workload=404 official_test=True"}
+{"t": "2026-10-24T19:20:03.893Z", "elapsed_s": 0.1, "phase": "embed", "message": "embeddings cache hit: /Users/ps07/Desktop/VJTI Hack/Morphe/data/beir/embeddings/scifact/d7ec82fa2e76999d/corpus.npy (5183 docs)"}
+{"t": "2026-10-24T19:20:04.902Z", "elapsed_s": 1.1, "phase": "graph", "message": "initial graph: 52 modules, 7 groups, module size {'min': 36, 'median': 97.0, 'max': 172, 'mean': 99.67307692307692}"}
+{"t": "2026-10-24T19:20:06.441Z", "elapsed_s": 2.6, "phase": "ingest", "message": "5183 documents ingested in 0.88s; BEIR id mapping verified; initial version arch_0002"}
+{"t": "2026-10-24T19:21:48.638Z", "elapsed_s": 104.8, "phase": "adaptation", "message": "window 1/6: 36 proposals, 1 applied (100s)", "window": 1, "proposals": 36, "applied": 1}
+{"t": "2026-10-24T19:24:34.149Z", "elapsed_s": 270.3, "phase": "adaptation", "message": "window 2/6: 39 proposals, 1 applied (164s)", "window": 2, "proposals": 39, "applied": 1}
+{"t": "2026-10-24T19:25:52.467Z", "elapsed_s": 348.6, "phase": "adaptation", "message": "window 3/6: 42 proposals, 1 applied (77s)", "window": 3, "proposals": 42, "applied": 1}
+{"t": "2026-10-24T19:27:15.380Z", "elapsed_s": 431.5, "phase": "adaptation", "message": "window 4/6: 42 proposals, 1 applied (81s)", "window": 4, "proposals": 42, "applied": 1}
+{"t": "2026-10-24T19:29:10.043Z", "elapsed_s": 546.2, "phase": "adaptation", "message": "window 5/6: 42 proposals, 1 applied (113s)", "window": 5, "proposals": 42, "applied": 1}
+{"t": "2026-10-24T19:31:31.298Z", "elapsed_s": 687.5, "phase": "adaptation", "message": "window 6/6: 44 proposals, 1 applied (139s)", "window": 6, "proposals": 44, "applied": 1}
+{"t": "2026-10-24T19:31:31.302Z", "elapsed_s": 687.5, "phase": "adaptation", "message": "frozen adaptive architecture arch_0008 after 6 accepted operations"}
+{"t": "2026-10-24T19:31:34.007Z", "elapsed_s": 690.2, "phase": "eval", "message": "BM25"}
+{"t": "2026-10-24T19:31:34.953Z", "elapsed_s": 691.1, "phase": "eval", "message": "global dense"}
+{"t": "2026-10-24T19:31:57.305Z", "elapsed_s": 713.5, "phase": "eval", "message": "fixed graph"}
+{"t": "2026-10-24T19:32:42.605Z", "elapsed_s": 758.8, "phase": "eval", "message": "adaptive graph"}
+{"t": "2026-10-24T19:34:16.617Z", "elapsed_s": 852.8, "phase": "safety", "message": "harmful candidate -> rejected (pre_commit)"}
+{"t": "2026-10-24T19:34:48.968Z", "elapsed_s": 885.1, "phase": "safety", "message": "post-commit fault -> rolled_back"}
+{"t": "2026-10-24T19:36:42.792Z", "elapsed_s": 999.0, "phase": "safety", "message": "restoration -> completed"}
+{"t": "2026-10-24T19:36:42.796Z", "elapsed_s": 999.0, "phase": "done", "message": "scifact finished in 999.0s"}

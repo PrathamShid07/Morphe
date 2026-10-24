@@ -1,0 +1,3068 @@
+{
+ "protocol": {
+  "windows_planned": 5,
+  "workload_queries": 500,
+  "windows": [
+   {
+    "window": 1,
+    "queries": 50,
+    "proposals_detected": 31,
+    "applied": 1,
+    "events": [
+     {
+      "event_id": "adapt_wMA0HNVHS_6f0c34dcc1af",
+      "operation": "split_module",
+      "status": "completed"
+     }
+    ],
+    "version_before": "arch_0002",
+    "version_after": "arch_0003",
+    "monitoring": "ok"
+   },
+   {
+    "window": 2,
+    "queries": 50,
+    "proposals_detected": 32,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_wJS5H4HCW_1ec26dab5502",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wJS5H4HCW_4769fb3862b2",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wJS5H4HCW_e37b966850b6",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wJS5H4HCW_01f10557de81",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wJS5H4HCW_178a2aa0dd98",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wJS5H4HCW_15cc0a878223",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0003",
+    "version_after": "arch_0003",
+    "monitoring": "ok"
+   },
+   {
+    "window": 3,
+    "queries": 50,
+    "proposals_detected": 32,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_wQJ45AANS_9f4b13a6b2f7",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wQJ45AANS_4f5d500a2f39",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wQJ45AANS_9ed931e3e0b2",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wQJ45AANS_e661d4ee318f",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wQJ45AANS_35b858afb8de",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wQJ45AANS_699cf8cf5a40",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0003",
+    "version_after": "arch_0003",
+    "monitoring": "ok"
+   },
+   {
+    "window": 4,
+    "queries": 50,
+    "proposals_detected": 32,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_wY5WH12XM_1c1a8c5ed748",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wY5WH12XM_8b792cbce190",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wY5WH12XM_3da8ae8698c3",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wY5WH12XM_11f83876042a",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wY5WH12XM_3c2035bdc8dd",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_wY5WH12XM_c0a0427f26d0",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0003",
+    "version_after": "arch_0003",
+    "monitoring": "ok"
+   },
+   {
+    "window": 5,
+    "queries": 50,
+    "proposals_detected": 32,
+    "applied": 0,
+    "events": [
+     {
+      "event_id": "adapt_w47X4Z8R2_1ec26dab5502",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w47X4Z8R2_4769fb3862b2",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w47X4Z8R2_e37b966850b6",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w47X4Z8R2_01f10557de81",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w47X4Z8R2_178a2aa0dd98",
+      "operation": "split_module",
+      "status": "rejected"
+     },
+     {
+      "event_id": "adapt_w47X4Z8R2_15cc0a878223",
+      "operation": "split_module",
+      "status": "rejected"
+     }
+    ],
+    "version_before": "arch_0003",
+    "version_after": "arch_0003",
+    "monitoring": "ok"
+   }
+  ]
+ },
+ "events": [
+  {
+   "event_id": "adapt_wMA0HNVHS_6f0c34dcc1af",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M000 · diet health study' holds 153 records, above the capacity threshold of 152. Proposed children: Intake / Diet (70), Meat / Vegetarian (53), Food / Health (18), Diet / Patients (12).",
+   "status": "completed",
+   "affected_modules": [
+    "mod_nfcorpus_m000"
+   ],
+   "affected_record_count": 153,
+   "decision": "accept",
+   "decision_reason": "Accepted: no metric regressed beyond its threshold (mean candidates 1233.1→1165.9 (−5.5%))",
+   "rejection_stage": null,
+   "structural_summary": "+4 module(s): Diet / Patients, Food / Health, Intake / Diet, Meat / Vegetarian; 153 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_diet_patients",
+    "mod_food_health",
+    "mod_intake_diet",
+    "mod_meat_vegetarian"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0002",
+   "new_version": "arch_0003",
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": {
+    "status": "passed",
+    "live_metrics": {
+     "sample_size": 150,
+     "recall_at_5": 0.07921893963933414,
+     "mrr": 0.43288888888888893,
+     "ndcg_at_10": 0.2480726669247507,
+     "mrr_at_10": 0.4437460317460317,
+     "map_at_10": 0.07605137665538932,
+     "precision_at_10": 0.188,
+     "recall_at_10": 0.1086615200618135,
+     "guided_recall_at_5": 0.07689255075044525,
+     "guided_mrr": 0.42288888888888887,
+     "p50_latency_ms": 24.78164600324817,
+     "p95_latency_ms": 37.18723489146213,
+     "mean_candidate_count": 1165.8666666666666,
+     "fallback_rate": 0.10666666666666667
+    },
+    "matches_prediction": true
+   },
+   "started_at": "2026-10-24T20:17:19.065Z",
+   "duration_ms": 49355.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.08076403919516129,
+    "mrr": 0.4395555555555556,
+    "ndcg_at_10": 0.25491176931087445,
+    "mrr_at_10": 0.4515423280423281,
+    "map_at_10": 0.07797188779302625,
+    "precision_at_10": 0.19333333333333333,
+    "recall_at_10": 0.1115065410577064,
+    "guided_recall_at_5": 0.0784376503062724,
+    "guided_mrr": 0.4295555555555556,
+    "p50_latency_ms": 24.9127910064999,
+    "p95_latency_ms": 37.63915608287789,
+    "mean_candidate_count": 1233.14,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.90243801730685,
+    "p95_latency_ms": 37.482656541396864,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0068 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0078 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.639ms → 37.483ms (-0.4%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": true,
+     "detail": "benefit: mean candidates 1233.1→1165.9 (−5.5%)"
+    }
+   ],
+   "benefit": "benefit: mean candidates 1233.1→1165.9 (−5.5%)"
+  },
+  {
+   "event_id": "adapt_wJS5H4HCW_1ec26dab5502",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M001 · cancer human cells' (149 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.11). Proposed children: Cancer / Cells (90), Cells / Cancer (59).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m001"
+   ],
+   "affected_record_count": 149,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cancer / Cells, Cells / Cancer; 149 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cancer_cells",
+    "mod_cells_cancer"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:18:43.568Z",
+   "duration_ms": 48292.5,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.802958505460992,
+    "p95_latency_ms": 37.295052138506435,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.08138857460207256,
+    "mrr": 0.4422222222222222,
+    "ndcg_at_10": 0.24928869317307062,
+    "mrr_at_10": 0.4513015873015873,
+    "map_at_10": 0.07686475176474143,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.10883700507063185,
+    "guided_recall_at_5": 0.07906218571318367,
+    "guided_mrr": 0.4322222222222222,
+    "p50_latency_ms": 24.714853992918506,
+    "p95_latency_ms": 37.31624548090622,
+    "mean_candidate_count": 1132.82,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0022 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0076 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0056 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by +0.0006 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0002 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.295ms → 37.316ms (+0.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wJS5H4HCW_4769fb3862b2",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M003 · chicken aureus methicillin-resistant' (135 records) mixes distinct topics: 3 coherent groups found by kmeans_k3 (silhouette 0.12). Proposed children: Food / Coli (70), Enterocolitica / Hev (37), Mrsa / Aureus (28).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m003"
+   ],
+   "affected_record_count": 135,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): Enterocolitica / Hev, Food / Coli, Mrsa / Aureus; 135 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_enterocolitica_hev",
+    "mod_food_coli",
+    "mod_mrsa_aureus"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:19:31.863Z",
+   "duration_ms": 32679.7,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.057791004655883,
+    "p95_latency_ms": 37.02216714154929,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07890147932187383,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24737013447209188,
+    "mrr_at_10": 0.4446984126984127,
+    "map_at_10": 0.07586170612740206,
+    "precision_at_10": 0.18666666666666668,
+    "recall_at_10": 0.1082753587066599,
+    "guided_recall_at_5": 0.0761306459885405,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.00266651622951,
+    "p95_latency_ms": 36.99563300178852,
+    "mean_candidate_count": 1125.56,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0007 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0010 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0075 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0019 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0068 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.022ms → 36.996ms (-0.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wJS5H4HCW_e37b966850b6",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M004 · cholesterol dietary disease' (134 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.14). Proposed children: Cholesterol / Diet (80), Coronary / Cholesterol (54).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m004"
+   ],
+   "affected_record_count": 134,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cholesterol / Diet, Coronary / Cholesterol; 134 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cholesterol_diet",
+    "mod_coronary_cholesterol"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:20:04.545Z",
+   "duration_ms": 32871.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.160749995848164,
+    "p95_latency_ms": 37.32534529699478,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0795698168323166,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24832172380526904,
+    "mrr_at_10": 0.44382010582010584,
+    "map_at_10": 0.07631404841541671,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.10899947638255317,
+    "guided_recall_at_5": 0.07724342794342771,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.075020996155217,
+    "p95_latency_ms": 37.31666658713948,
+    "mean_candidate_count": 1154.9866666666667,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0002 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0066 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0077 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.325ms → 37.317ms (-0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wJS5H4HCW_01f10557de81",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M007 · diabetes type risk' (123 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.14). Proposed children: Insulin / Glucose (68), Diabetes / Risk (55).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m007"
+   ],
+   "affected_record_count": 123,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Diabetes / Risk, Insulin / Glucose; 123 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_diabetes_risk",
+    "mod_insulin_glucose"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:20:37.419Z",
+   "duration_ms": 32584.1,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.665167002240196,
+    "p95_latency_ms": 37.740110472077504,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0796587057212055,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24919667223083403,
+    "mrr_at_10": 0.44382010582010584,
+    "map_at_10": 0.07632420552891994,
+    "precision_at_10": 0.18933333333333333,
+    "recall_at_10": 0.10832212612241955,
+    "guided_recall_at_5": 0.0773323168323166,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.76964602828957,
+    "p95_latency_ms": 37.41942514607217,
+    "mean_candidate_count": 1155.0666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0011 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0057 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0011 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0077 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.740ms → 37.419ms (-0.8%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wJS5H4HCW_178a2aa0dd98",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M008 · cancer risk study' (122 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.11). Proposed children: Cancer / Risk (74), Meat / Cancer (48).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m008"
+   ],
+   "affected_record_count": 122,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cancer / Risk, Meat / Cancer; 122 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cancer_risk",
+    "mod_meat_cancer"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:21:10.005Z",
+   "duration_ms": 32521.8,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.757770996075124,
+    "p95_latency_ms": 37.07364216388668,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07930655705686171,
+    "mrr": 0.4295555555555556,
+    "ndcg_at_10": 0.2465790435125143,
+    "mrr_at_10": 0.44041269841269837,
+    "map_at_10": 0.07560357010243349,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10834405974435318,
+    "guided_recall_at_5": 0.07698016816797282,
+    "guided_mrr": 0.4195555555555555,
+    "p50_latency_ms": 24.742749490542337,
+    "p95_latency_ms": 37.21645452314988,
+    "mean_candidate_count": 1143.4266666666667,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0033 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0083 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0111 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.074ms → 37.216ms (+0.4%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wJS5H4HCW_15cc0a878223",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M009 · antioxidant healthy consumption' (121 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.19). Proposed children: Antioxidant / Diet (96), Cocoa / Chocolate (25).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m009"
+   ],
+   "affected_record_count": 121,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Antioxidant / Diet, Cocoa / Chocolate; 121 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_antioxidant_diet",
+    "mod_cocoa_chocolate"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:21:42.529Z",
+   "duration_ms": 32801.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.956916488008574,
+    "p95_latency_ms": 37.65955376729834,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07892337313687109,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24761132782704673,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07585666505427377,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10842342482371826,
+    "guided_recall_at_5": 0.07659698424798221,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.952416482847184,
+    "p95_latency_ms": 37.66655828221701,
+    "mean_candidate_count": 1155.4066666666668,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0005 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0073 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0018 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0078 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.660ms → 37.667ms (+0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wQJ45AANS_9f4b13a6b2f7",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M010 · cancer breast risk' (120 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.16). Proposed children: Cancer / Breast (93), Cancer / Breast (27).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m010"
+   ],
+   "affected_record_count": 120,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cancer / Breast, Cancer / Breast; 120 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cancer_breast",
+    "mod_cancer_breast_2"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:22:51.195Z",
+   "duration_ms": 33004.8,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.03662498202175,
+    "p95_latency_ms": 37.6454393932363,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07896267397517374,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24651234151737034,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07557309762447871,
+    "precision_at_10": 0.18666666666666668,
+    "recall_at_10": 0.10805437720467063,
+    "guided_recall_at_5": 0.07663628508628485,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.991812475491315,
+    "p95_latency_ms": 37.72517662146129,
+    "mean_candidate_count": 1150.9266666666667,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0016 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0084 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0018 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0078 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.645ms → 37.725ms (+0.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wQJ45AANS_4f5d500a2f39",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M011 · treatment review systematic' (116 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.12). Proposed children: Patients / Treatment (43), Placebo / Depression (35), Nausea / Treatment (24), Aromatherapy / Anxiety (14).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m011"
+   ],
+   "affected_record_count": 116,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Aromatherapy / Anxiety, Nausea / Treatment, Patients / Treatment, Placebo / Depression; 116 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_aromatherapy_anxiety",
+    "mod_nausea_treatment",
+    "mod_patients_treatment",
+    "mod_placebo_depression"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:23:24.202Z",
+   "duration_ms": 34335.5,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.427083019167185,
+    "p95_latency_ms": 38.14623125945218,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07803472911301836,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24506885915644508,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07418775927861405,
+    "precision_at_10": 0.18466666666666667,
+    "recall_at_10": 0.10670976567584858,
+    "guided_recall_at_5": 0.07467774441092495,
+    "guided_mrr": 0.41288888888888886,
+    "p50_latency_ms": 25.460979028139263,
+    "p95_latency_ms": 38.14974547422025,
+    "mean_candidate_count": 1156.1666666666667,
+    "fallback_rate": 0.11333333333333333
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0030 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0098 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0027 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0078 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.146ms → 38.150ms (+0.0%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wQJ45AANS_9ed931e3e0b2",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M013 · disease arthritis rheumatoid' (111 records) mixes distinct topics: 3 coherent groups found by kmeans_k3 (silhouette 0.13). Proposed children: Disease / Immune (46), Diet / Microbiota (44), Proteus / Rheumatoid (21).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m013"
+   ],
+   "affected_record_count": 111,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): Diet / Microbiota, Disease / Immune, Proteus / Rheumatoid; 111 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_diet_microbiota",
+    "mod_disease_immune",
+    "mod_proteus_rheumatoid"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:23:58.541Z",
+   "duration_ms": 33053.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.202978984452784,
+    "p95_latency_ms": 37.699668426648714,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07935295301672668,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24947654019000273,
+    "mrr_at_10": 0.444579365079365,
+    "map_at_10": 0.07591764280390569,
+    "precision_at_10": 0.19066666666666668,
+    "recall_at_10": 0.10847884925840295,
+    "guided_recall_at_5": 0.07702656412783779,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.155792012810707,
+    "p95_latency_ms": 37.80402721604332,
+    "mean_candidate_count": 1150.5866666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0014 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0008 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0054 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0014 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0070 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.700ms → 37.804ms (+0.3%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wQJ45AANS_e661d4ee318f",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M015 · risk intake diet' (106 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.20). Proposed children: Consumption / Weight (88), Salt / Pressure (18).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m015"
+   ],
+   "affected_record_count": 106,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Consumption / Weight, Salt / Pressure; 106 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_consumption_weight",
+    "mod_salt_pressure"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:24:31.597Z",
+   "duration_ms": 32859.5,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.132561975624412,
+    "p95_latency_ms": 37.41240207455121,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07962401737432202,
+    "mrr": 0.43344444444444447,
+    "ndcg_at_10": 0.2481811037021304,
+    "mrr_at_10": 0.4445343915343915,
+    "map_at_10": 0.07632469086293146,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10860731951980808,
+    "guided_recall_at_5": 0.07729762848543315,
+    "guided_mrr": 0.42344444444444446,
+    "p50_latency_ms": 25.127041502855718,
+    "p95_latency_ms": 37.65337036456913,
+    "mean_candidate_count": 1143.3266666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0008 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0011 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0070 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.412ms → 37.653ms (+0.6%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wQJ45AANS_35b858afb8de",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M016 · obesity insulin fatty' (103 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.19). Proposed children: Insulin / Resistance (49), Mtorc1 / Growth (26), Obesity / Infection (14), Bat / Tissue (14).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m016"
+   ],
+   "affected_record_count": 103,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Bat / Tissue, Insulin / Resistance, Mtorc1 / Growth, Obesity / Infection; 103 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_bat_tissue",
+    "mod_insulin_resistance",
+    "mod_mtorc1_growth",
+    "mod_obesity_infection"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:25:04.459Z",
+   "duration_ms": 33009.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.18445797613822,
+    "p95_latency_ms": 38.29561668098904,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07929363618461893,
+    "mrr": 0.43622222222222223,
+    "ndcg_at_10": 0.2492676244770707,
+    "mrr_at_10": 0.44632010582010584,
+    "map_at_10": 0.077297908074075,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.10773263237770761,
+    "guided_recall_at_5": 0.07918946951795226,
+    "guided_mrr": 0.4295555555555556,
+    "p50_latency_ms": 25.095563003560528,
+    "p95_latency_ms": 37.97474361490458,
+    "mean_candidate_count": 1114.7733333333333,
+    "fallback_rate": 0.1
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0026 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0056 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0052 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.296ms → 37.975ms (-0.8%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wQJ45AANS_699cf8cf5a40",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M017 · potential dietary plant' (102 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.15). Proposed children: Effects / Human (90), Resistance / Bacteria (12).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m017"
+   ],
+   "affected_record_count": 102,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Effects / Human, Resistance / Bacteria; 102 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_effects_human",
+    "mod_resistance_bacteria"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:25:37.470Z",
+   "duration_ms": 33348.2,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.335749989608303,
+    "p95_latency_ms": 38.0869765940588,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07847819889859341,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2471515360415738,
+    "mrr_at_10": 0.4430793650793651,
+    "map_at_10": 0.0757554802606557,
+    "precision_at_10": 0.18666666666666668,
+    "recall_at_10": 0.10759009149038493,
+    "guided_recall_at_5": 0.07615181000970452,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.26445800322108,
+    "p95_latency_ms": 37.65823311696294,
+    "mean_candidate_count": 1139.76,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0009 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0007 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0007 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0078 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0023 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0085 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.087ms → 37.658ms (-1.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wY5WH12XM_1c1a8c5ed748",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M018 · gluten constipation bowel' (101 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.20). Proposed children: Bowel / Patients (42), Gluten / Patients (26), Disease / Diverticular (19), Constipation / Children (14).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m018"
+   ],
+   "affected_record_count": 101,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Bowel / Patients, Constipation / Children, Disease / Diverticular, Gluten / Patients; 101 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_bowel_patients",
+    "mod_constipation_children",
+    "mod_disease_diverticular",
+    "mod_gluten_patients"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:26:46.905Z",
+   "duration_ms": 33879.5,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.39918801630847,
+    "p95_latency_ms": 38.30694372591097,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07627059434226274,
+    "mrr": 0.4295555555555556,
+    "ndcg_at_10": 0.2427507890167636,
+    "mrr_at_10": 0.4393015873015873,
+    "map_at_10": 0.07272295306079832,
+    "precision_at_10": 0.18466666666666667,
+    "recall_at_10": 0.10491842562057993,
+    "guided_recall_at_5": 0.07365435038091009,
+    "guided_mrr": 0.4162222222222222,
+    "p50_latency_ms": 25.41093697072938,
+    "p95_latency_ms": 38.25688912183978,
+    "mean_candidate_count": 1155.2666666666667,
+    "fallback_rate": 0.11333333333333333
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0053 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0029 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0044 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0122 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0045 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0122 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.307ms → 38.257ms (-0.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wY5WH12XM_8b792cbce190",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M019 · food intake obesity' (101 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.12). Proposed children: Food / Children (77), Brain / Food (24).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m019"
+   ],
+   "affected_record_count": 101,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Brain / Food, Food / Children; 101 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_brain_food",
+    "mod_food_children"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:27:20.787Z",
+   "duration_ms": 33595.1,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.46904148766771,
+    "p95_latency_ms": 37.78637691575568,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0789860297784751,
+    "mrr": 0.43177777777777776,
+    "ndcg_at_10": 0.24704472827205887,
+    "mrr_at_10": 0.4426613756613757,
+    "map_at_10": 0.0758435141970669,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.1080554594557529,
+    "guided_recall_at_5": 0.07665964088958623,
+    "guided_mrr": 0.42177777777777775,
+    "p50_latency_ms": 25.410645990632474,
+    "p95_latency_ms": 37.901046057231724,
+    "mean_candidate_count": 1166.42,
+    "fallback_rate": 0.11333333333333333
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0010 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0002 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0011 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0079 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0018 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0089 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.786ms → 37.901ms (+0.3%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wY5WH12XM_3da8ae8698c3",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M020 · fish exposure mercury' (97 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.15). Proposed children: Fish / Consumption (45), Mercury / Fish (28), Fish / Catfish (18), Ciguatera / Fish (6).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m020"
+   ],
+   "affected_record_count": 97,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Ciguatera / Fish, Fish / Catfish, Fish / Consumption, Mercury / Fish; 97 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_ciguatera_fish",
+    "mod_fish_catfish",
+    "mod_fish_consumption",
+    "mod_mercury_fish"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:27:54.385Z",
+   "duration_ms": 33777.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.645854009781033,
+    "p95_latency_ms": 38.17973970726598,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0788680624463517,
+    "mrr": 0.4262222222222222,
+    "ndcg_at_10": 0.2452261524551624,
+    "mrr_at_10": 0.43707936507936507,
+    "map_at_10": 0.07377743858022726,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10889979015565276,
+    "guided_recall_at_5": 0.07698611800190724,
+    "guided_mrr": 0.41844444444444445,
+    "p50_latency_ms": 25.59656248195097,
+    "p95_latency_ms": 38.0234017589828,
+    "mean_candidate_count": 1121.2933333333333,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0028 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0067 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0097 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0019 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0145 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.180ms → 38.023ms (-0.4%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wY5WH12XM_11f83876042a",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M022 · mortality adults study' (96 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.11). Proposed children: Mortality / Risk (57), Risk / Cardiovascular (39).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m022"
+   ],
+   "affected_record_count": 96,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Mortality / Risk, Risk / Cardiovascular; 96 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_mortality_risk",
+    "mod_risk_cardiovascular"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:28:28.164Z",
+   "duration_ms": 34580.3,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.449186970945448,
+    "p95_latency_ms": 39.72037500352599,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2484760117631287,
+    "mrr_at_10": 0.4444867724867725,
+    "map_at_10": 0.07597892040793307,
+    "precision_at_10": 0.18866666666666668,
+    "recall_at_10": 0.10870425510454855,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.47424953081645,
+    "p95_latency_ms": 40.0009749981109,
+    "mean_candidate_count": 1159.22,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0007 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0064 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0071 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 39.720ms → 40.001ms (+0.7%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wY5WH12XM_3c2035bdc8dd",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M021 · dietary protein intake' (96 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.24). Proposed children: Prostate / Cancer (36), Protein / Calcium (33), Intake / Urinary (14), Phosphorus / Additives (13).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m021"
+   ],
+   "affected_record_count": 96,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Intake / Urinary, Phosphorus / Additives, Prostate / Cancer, Protein / Calcium; 96 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_intake_urinary",
+    "mod_phosphorus_additives",
+    "mod_prostate_cancer",
+    "mod_protein_calcium"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:29:02.747Z",
+   "duration_ms": 33332.8,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.32329151290469,
+    "p95_latency_ms": 37.82759970345069,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0803768456911454,
+    "mrr": 0.4295555555555556,
+    "ndcg_at_10": 0.24741165751586636,
+    "mrr_at_10": 0.44041269841269837,
+    "map_at_10": 0.07577455436389434,
+    "precision_at_10": 0.18866666666666668,
+    "recall_at_10": 0.10981942611362475,
+    "guided_recall_at_5": 0.0740504568022565,
+    "guided_mrr": 0.4162222222222222,
+    "p50_latency_ms": 25.356500002089888,
+    "p95_latency_ms": 37.885716860182576,
+    "mean_candidate_count": 1168.3133333333333,
+    "fallback_rate": 0.11333333333333333
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0007 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0033 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0075 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0111 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.828ms → 37.886ms (+0.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_wY5WH12XM_c0a0427f26d0",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M023 · dietary acid fatty' (91 records) mixes distinct topics: 4 coherent groups found by kmeans_k4 (silhouette 0.12). Proposed children: Oil / Acid (34), Oil / Olive (28), Fatty / Acid (17), Flaxseed / Acid (12).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m023"
+   ],
+   "affected_record_count": 91,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+4 module(s): Fatty / Acid, Flaxseed / Acid, Oil / Acid, Oil / Olive; 91 memories reassigned; +4 edge(s)",
+   "created_module_ids": [
+    "mod_fatty_acid",
+    "mod_flaxseed_acid",
+    "mod_oil_acid",
+    "mod_oil_olive"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:29:36.082Z",
+   "duration_ms": 34385.9,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.45695850858465,
+    "p95_latency_ms": 38.287708861753345,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24782164637943646,
+    "mrr_at_10": 0.4432380952380952,
+    "map_at_10": 0.07606674092075359,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10814869954899299,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.39612547843717,
+    "p95_latency_ms": 38.36773908697069,
+    "mean_candidate_count": 1148.44,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0005 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0071 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0083 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.288ms → 38.368ms (+0.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w47X4Z8R2_1ec26dab5502",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M001 · cancer human cells' (149 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.11). Proposed children: Cancer / Cells (90), Cells / Cancer (59).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m001"
+   ],
+   "affected_record_count": 149,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cancer / Cells, Cells / Cancer; 149 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cancer_cells",
+    "mod_cells_cancer"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:30:46.810Z",
+   "duration_ms": 33493.1,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.397583027370274,
+    "p95_latency_ms": 38.38586028141435,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.08138857460207256,
+    "mrr": 0.4422222222222222,
+    "ndcg_at_10": 0.24928869317307062,
+    "mrr_at_10": 0.4513015873015873,
+    "map_at_10": 0.07686475176474143,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.10883700507063185,
+    "guided_recall_at_5": 0.07906218571318367,
+    "guided_mrr": 0.4322222222222222,
+    "p50_latency_ms": 25.331687531434,
+    "p95_latency_ms": 38.215859746560454,
+    "mean_candidate_count": 1132.82,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0022 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0076 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0056 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by +0.0006 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0002 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.386ms → 38.216ms (-0.4%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w47X4Z8R2_4769fb3862b2",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M003 · chicken aureus methicillin-resistant' (135 records) mixes distinct topics: 3 coherent groups found by kmeans_k3 (silhouette 0.12). Proposed children: Food / Coli (70), Enterocolitica / Hev (37), Mrsa / Aureus (28).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m003"
+   ],
+   "affected_record_count": 135,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+3 module(s): Enterocolitica / Hev, Food / Coli, Mrsa / Aureus; 135 memories reassigned; +3 edge(s)",
+   "created_module_ids": [
+    "mod_enterocolitica_hev",
+    "mod_food_coli",
+    "mod_mrsa_aureus"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:31:20.305Z",
+   "duration_ms": 32854.6,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.019729509949684,
+    "p95_latency_ms": 38.20656879397575,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07890147932187383,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24737013447209188,
+    "mrr_at_10": 0.4446984126984127,
+    "map_at_10": 0.07586170612740206,
+    "precision_at_10": 0.18666666666666668,
+    "recall_at_10": 0.1082753587066599,
+    "guided_recall_at_5": 0.0761306459885405,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.949249491328374,
+    "p95_latency_ms": 37.85344201605767,
+    "mean_candidate_count": 1125.56,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0007 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0010 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0075 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0019 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0068 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.207ms → 37.853ms (-0.9%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w47X4Z8R2_e37b966850b6",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M004 · cholesterol dietary disease' (134 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.14). Proposed children: Cholesterol / Diet (80), Coronary / Cholesterol (54).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m004"
+   ],
+   "affected_record_count": 134,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cholesterol / Diet, Coronary / Cholesterol; 134 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cholesterol_diet",
+    "mod_coronary_cholesterol"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:31:53.162Z",
+   "duration_ms": 32428.9,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.61193798808381,
+    "p95_latency_ms": 36.88101237639785,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0795698168323166,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24832172380526904,
+    "mrr_at_10": 0.44382010582010584,
+    "map_at_10": 0.07631404841541671,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.10899947638255317,
+    "guided_recall_at_5": 0.07724342794342771,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 24.582854006439447,
+    "p95_latency_ms": 36.85321251687128,
+    "mean_candidate_count": 1154.9866666666667,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0002 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0066 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0012 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0077 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 36.881ms → 36.853ms (-0.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w47X4Z8R2_01f10557de81",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M007 · diabetes type risk' (123 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.14). Proposed children: Insulin / Glucose (68), Diabetes / Risk (55).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m007"
+   ],
+   "affected_record_count": 123,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Diabetes / Risk, Insulin / Glucose; 123 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_diabetes_risk",
+    "mod_insulin_glucose"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:32:25.593Z",
+   "duration_ms": 35137.9,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.497437483863905,
+    "p95_latency_ms": 38.18309792550281,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.0796587057212055,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24919667223083403,
+    "mrr_at_10": 0.44382010582010584,
+    "map_at_10": 0.07632420552891994,
+    "precision_at_10": 0.18933333333333333,
+    "recall_at_10": 0.10832212612241955,
+    "guided_recall_at_5": 0.0773323168323166,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.375874974997714,
+    "p95_latency_ms": 38.266803964506835,
+    "mean_candidate_count": 1155.0666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by +0.0011 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0004 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0057 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0011 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0077 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.183ms → 38.267ms (+0.2%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w47X4Z8R2_178a2aa0dd98",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M008 · cancer risk study' (122 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.11). Proposed children: Cancer / Risk (74), Meat / Cancer (48).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m008"
+   ],
+   "affected_record_count": 122,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Cancer / Risk, Meat / Cancer; 122 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_cancer_risk",
+    "mod_meat_cancer"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:33:00.735Z",
+   "duration_ms": 33067.2,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.138624478131533,
+    "p95_latency_ms": 37.510035443119705,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07930655705686171,
+    "mrr": 0.4295555555555556,
+    "ndcg_at_10": 0.2465790435125143,
+    "mrr_at_10": 0.44041269841269837,
+    "map_at_10": 0.07560357010243349,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10834405974435318,
+    "guided_recall_at_5": 0.07698016816797282,
+    "guided_mrr": 0.4195555555555555,
+    "p50_latency_ms": 25.174417009111494,
+    "p95_latency_ms": 37.61288967798464,
+    "mean_candidate_count": 1143.4266666666667,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by +0.0001 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by -0.0033 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0083 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0015 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0111 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 37.510ms → 37.613ms (+0.3%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  },
+  {
+   "event_id": "adapt_w47X4Z8R2_15cc0a878223",
+   "operation": "split_module",
+   "trigger": "benchmark_window",
+   "reason": "Module 'M009 · antioxidant healthy consumption' (121 records) mixes distinct topics: 2 coherent groups found by kmeans_k2 (silhouette 0.19). Proposed children: Antioxidant / Diet (96), Cocoa / Chocolate (25).",
+   "status": "rejected",
+   "affected_modules": [
+    "mod_nfcorpus_m009"
+   ],
+   "affected_record_count": 121,
+   "decision": "reject",
+   "decision_reason": "Rejected: the change passed the quality guardrails but provides no meaningful benefit, so the existing architecture is kept.",
+   "rejection_stage": "pre_commit",
+   "structural_summary": "+2 module(s): Antioxidant / Diet, Cocoa / Chocolate; 121 memories reassigned; +2 edge(s)",
+   "created_module_ids": [
+    "mod_antioxidant_diet",
+    "mod_cocoa_chocolate"
+   ],
+   "removed_module_ids": [],
+   "before_version": "arch_0003",
+   "new_version": null,
+   "rolled_back_to": null,
+   "integrity_check": "passed",
+   "post_commit_verification": null,
+   "started_at": "2026-10-24T20:33:33.805Z",
+   "duration_ms": 34231.0,
+   "error": null,
+   "recovered": null,
+   "baseline_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07921893963933414,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.2480726669247507,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07605137665538932,
+    "precision_at_10": 0.188,
+    "recall_at_10": 0.1086615200618135,
+    "guided_recall_at_5": 0.07689255075044525,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.47754195984453,
+    "p95_latency_ms": 38.46087705460377,
+    "mean_candidate_count": 1165.8666666666666,
+    "fallback_rate": 0.10666666666666667
+   },
+   "candidate_metrics": {
+    "sample_size": 150,
+    "recall_at_5": 0.07892337313687109,
+    "mrr": 0.43288888888888893,
+    "ndcg_at_10": 0.24761132782704673,
+    "mrr_at_10": 0.4437460317460317,
+    "map_at_10": 0.07585666505427377,
+    "precision_at_10": 0.18733333333333335,
+    "recall_at_10": 0.10842342482371826,
+    "guided_recall_at_5": 0.07659698424798221,
+    "guided_mrr": 0.42288888888888887,
+    "p50_latency_ms": 25.43347902246751,
+    "p95_latency_ms": 38.41724405356217,
+    "mean_candidate_count": 1155.4066666666668,
+    "fallback_rate": 0.10666666666666667
+   },
+   "checks": [
+    {
+     "name": "same_evaluation_conditions",
+     "passed": true,
+     "detail": "baseline and candidate used the same dataset and queries"
+    },
+    {
+     "name": "sufficient_evaluation_data",
+     "passed": true,
+     "detail": "150 labeled queries evaluated"
+    },
+    {
+     "name": "ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 changed by -0.0005 (allowed regression 0.020)"
+    },
+    {
+     "name": "recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 changed by -0.0003 (allowed regression 0.020)"
+    },
+    {
+     "name": "mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 changed by +0.0000 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_ndcg_at_10",
+     "passed": true,
+     "detail": "ndcg_at_10 vs the INITIAL architecture changed by -0.0073 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_recall_at_5",
+     "passed": true,
+     "detail": "recall_at_5 vs the INITIAL architecture changed by -0.0018 (allowed regression 0.020)"
+    },
+    {
+     "name": "cumulative_mrr_at_10",
+     "passed": true,
+     "detail": "mrr_at_10 vs the INITIAL architecture changed by -0.0078 (allowed regression 0.020)"
+    },
+    {
+     "name": "p95_latency_ms",
+     "passed": true,
+     "detail": "p95 latency 38.461ms → 38.417ms (-0.1%, allowed +10% or 1ms noise floor)"
+    },
+    {
+     "name": "meaningful_benefit",
+     "passed": false,
+     "detail": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+    }
+   ],
+   "benefit": "no meaningful benefit (needs nDCG@10 or Recall@5 ≥ +0.005, candidate pool ≥ −5%, or p95 ≥ −5%)"
+  }
+ ],
+ "initial_version": "arch_0002",
+ "adaptive_version": "arch_0003",
+ "accepted": 1,
+ "rejected": 24,
+ "failed": 0,
+ "rolled_back": 0,
+ "proposals_evaluated": 25
+}

@@ -1,0 +1,47 @@
+{"t": "2026-10-24T20:38:15.084Z", "elapsed_s": 0.0, "phase": "data", "message": "loading arguana with the official BEIR loader"}
+{"t": "2026-10-24T20:38:15.130Z", "elapsed_s": 0.1, "phase": "data", "message": "corpus=8674 test_queries=703 validation=258 workload=370 official_test=False"}
+{"t": "2026-10-24T20:38:15.690Z", "elapsed_s": 0.6, "phase": "embed", "message": "embedding arguana: 128/8674 (1s elapsed)"}
+{"t": "2026-10-24T20:38:19.321Z", "elapsed_s": 4.2, "phase": "embed", "message": "embedding arguana: 768/8674 (4s elapsed)"}
+{"t": "2026-10-24T20:38:22.301Z", "elapsed_s": 7.2, "phase": "embed", "message": "embedding arguana: 1408/8674 (7s elapsed)"}
+{"t": "2026-10-24T20:38:25.011Z", "elapsed_s": 9.9, "phase": "embed", "message": "embedding arguana: 2048/8674 (10s elapsed)"}
+{"t": "2026-10-24T20:38:28.067Z", "elapsed_s": 13.0, "phase": "embed", "message": "embedding arguana: 2688/8674 (13s elapsed)"}
+{"t": "2026-10-24T20:38:30.901Z", "elapsed_s": 15.8, "phase": "embed", "message": "embedding arguana: 3328/8674 (16s elapsed)"}
+{"t": "2026-10-24T20:38:33.487Z", "elapsed_s": 18.4, "phase": "embed", "message": "embedding arguana: 3968/8674 (18s elapsed)"}
+{"t": "2026-10-24T20:38:36.432Z", "elapsed_s": 21.4, "phase": "embed", "message": "embedding arguana: 4608/8674 (21s elapsed)"}
+{"t": "2026-10-24T20:38:39.456Z", "elapsed_s": 24.4, "phase": "embed", "message": "embedding arguana: 5248/8674 (24s elapsed)"}
+{"t": "2026-10-24T20:38:42.600Z", "elapsed_s": 27.5, "phase": "embed", "message": "embedding arguana: 5888/8674 (27s elapsed)"}
+{"t": "2026-10-24T20:38:45.676Z", "elapsed_s": 30.6, "phase": "embed", "message": "embedding arguana: 6528/8674 (31s elapsed)"}
+{"t": "2026-10-24T20:38:48.924Z", "elapsed_s": 33.8, "phase": "embed", "message": "embedding arguana: 7168/8674 (34s elapsed)"}
+{"t": "2026-10-24T20:38:51.645Z", "elapsed_s": 36.6, "phase": "embed", "message": "embedding arguana: 7808/8674 (37s elapsed)"}
+{"t": "2026-10-24T20:38:54.356Z", "elapsed_s": 39.3, "phase": "embed", "message": "embedding arguana: 8448/8674 (39s elapsed)"}
+{"t": "2026-10-24T20:38:55.380Z", "elapsed_s": 40.3, "phase": "embed", "message": "embedded 8674 documents in 40.2s -> /Users/ps07/Desktop/VJTI Hack/Morphe/data/beir/embeddings/arguana/b3ade2bf2b2f2192/corpus.npy"}
+{"t": "2026-10-24T20:38:59.142Z", "elapsed_s": 44.1, "phase": "graph", "message": "initial graph: 87 modules, 9 groups, module size {'min': 22, 'median': 98.0, 'max': 210, 'mean': 99.70114942528735}"}
+{"t": "2026-10-24T20:39:02.190Z", "elapsed_s": 47.1, "phase": "ingest", "message": "8674 documents ingested in 1.92s; BEIR id mapping verified; initial version arch_0002"}
+{"t": "2026-10-24T20:39:59.665Z", "elapsed_s": 104.6, "phase": "sweep", "message": "seeds=3 cap=8: nDCG@10 0.3571, mean candidates 965"}
+{"t": "2026-10-24T20:40:39.521Z", "elapsed_s": 144.4, "phase": "sweep", "message": "seeds=5 cap=12: nDCG@10 0.3635, mean candidates 1382"}
+{"t": "2026-10-24T20:41:21.299Z", "elapsed_s": 186.2, "phase": "sweep", "message": "seeds=8 cap=20: nDCG@10 0.3579, mean candidates 2169"}
+{"t": "2026-10-24T20:42:08.334Z", "elapsed_s": 233.3, "phase": "sweep", "message": "seeds=12 cap=32: nDCG@10 0.3607, mean candidates 3341"}
+{"t": "2026-10-24T20:42:11.082Z", "elapsed_s": 236.0, "phase": "error", "message": "ValidationFailure: query is longer than 2000 characters"}
+{"t": "2026-10-24T20:48:49.043Z", "elapsed_s": 0.0, "phase": "data", "message": "loading arguana with the official BEIR loader"}
+{"t": "2026-10-24T20:48:49.116Z", "elapsed_s": 0.1, "phase": "data", "message": "corpus=8674 test_queries=703 validation=258 workload=370 official_test=False"}
+{"t": "2026-10-24T20:48:49.122Z", "elapsed_s": 0.1, "phase": "embed", "message": "embeddings cache hit: /Users/ps07/Desktop/VJTI Hack/Morphe/data/beir/embeddings/arguana/b3ade2bf2b2f2192/corpus.npy (8674 docs)"}
+{"t": "2026-10-24T20:48:51.405Z", "elapsed_s": 2.4, "phase": "graph", "message": "initial graph: 87 modules, 9 groups, module size {'min': 22, 'median': 98.0, 'max': 210, 'mean': 99.70114942528735}"}
+{"t": "2026-10-24T20:48:53.985Z", "elapsed_s": 5.0, "phase": "ingest", "message": "8674 documents ingested in 1.59s; BEIR id mapping verified; initial version arch_0002"}
+{"t": "2026-10-24T20:49:44.813Z", "elapsed_s": 55.8, "phase": "sweep", "message": "seeds=3 cap=8: nDCG@10 0.3571, mean candidates 965"}
+{"t": "2026-10-24T20:50:18.924Z", "elapsed_s": 89.9, "phase": "sweep", "message": "seeds=5 cap=12: nDCG@10 0.3635, mean candidates 1382"}
+{"t": "2026-10-24T20:50:56.846Z", "elapsed_s": 127.8, "phase": "sweep", "message": "seeds=8 cap=20: nDCG@10 0.3579, mean candidates 2169"}
+{"t": "2026-10-24T20:51:39.718Z", "elapsed_s": 170.7, "phase": "sweep", "message": "seeds=12 cap=32: nDCG@10 0.3607, mean candidates 3341"}
+{"t": "2026-10-24T20:59:13.671Z", "elapsed_s": 624.7, "phase": "adaptation", "message": "window 1/5: 85 proposals, 0 applied (450s)", "window": 1, "proposals": 85, "applied": 0}
+{"t": "2026-10-24T21:07:07.488Z", "elapsed_s": 1098.5, "phase": "adaptation", "message": "window 2/5: 85 proposals, 0 applied (471s)", "window": 2, "proposals": 85, "applied": 0}
+{"t": "2026-10-24T21:14:51.078Z", "elapsed_s": 1562.1, "phase": "adaptation", "message": "window 3/5: 85 proposals, 0 applied (460s)", "window": 3, "proposals": 85, "applied": 0}
+{"t": "2026-10-24T21:22:56.315Z", "elapsed_s": 2047.3, "phase": "adaptation", "message": "window 4/5: 85 proposals, 0 applied (482s)", "window": 4, "proposals": 85, "applied": 0}
+{"t": "2026-10-24T21:29:04.719Z", "elapsed_s": 2415.7, "phase": "adaptation", "message": "window 5/5: 85 proposals, 1 applied (365s)", "window": 5, "proposals": 85, "applied": 1}
+{"t": "2026-10-24T21:29:04.722Z", "elapsed_s": 2415.7, "phase": "adaptation", "message": "frozen adaptive architecture arch_0003 after 1 accepted operations"}
+{"t": "2026-10-24T21:29:11.025Z", "elapsed_s": 2422.0, "phase": "eval", "message": "BM25"}
+{"t": "2026-10-24T21:29:13.405Z", "elapsed_s": 2424.4, "phase": "eval", "message": "global dense"}
+{"t": "2026-10-24T21:30:51.422Z", "elapsed_s": 2522.4, "phase": "eval", "message": "fixed graph"}
+{"t": "2026-10-24T21:33:51.317Z", "elapsed_s": 2702.3, "phase": "eval", "message": "adaptive graph"}
+{"t": "2026-10-24T21:38:17.039Z", "elapsed_s": 2968.0, "phase": "safety", "message": "harmful candidate -> rejected (pre_commit)"}
+{"t": "2026-10-24T21:39:42.999Z", "elapsed_s": 3054.0, "phase": "safety", "message": "post-commit fault -> rolled_back"}
+{"t": "2026-10-24T21:41:45.594Z", "elapsed_s": 3176.6, "phase": "safety", "message": "restoration -> completed"}
+{"t": "2026-10-24T21:41:45.596Z", "elapsed_s": 3176.6, "phase": "done", "message": "arguana finished in 3176.6s"}

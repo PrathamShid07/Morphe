@@ -1,0 +1,856 @@
+{
+ "name": "MORPHE sample retrieval benchmark",
+ "description": "Human-authored queries; relevance is defined by an evidence snippet that must appear in the labeled chunk. scripts/build_eval_labels.py resolves snippets to stable memory IDs and prints every chunk for manual inspection.",
+ "chunker": {
+  "max_tokens": 200,
+  "overlap_tokens": 25,
+  "tokenizer": "sentence-transformers/all-MiniLM-L6-v2"
+ },
+ "label_provenance": "Evidence snippets written by hand; memory IDs resolved mechanically; every label printed to docs/evaluation_label_review.md for manual inspection.",
+ "queries": [
+  {
+   "query_id": "q001",
+   "query": "How does Django decide which view handles a URL?",
+   "relevant_memory_ids": [
+    "mem_6fbced0f9f39_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "django-routing"
+   ],
+   "evidence": [
+    "Django checks the patterns in order and stops at the first match"
+   ]
+  },
+  {
+   "query_id": "q002",
+   "query": "What path converters can I use in a Django route?",
+   "relevant_memory_ids": [
+    "mem_6fbced0f9f39_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "django-routing"
+   ],
+   "evidence": [
+    "supports converters such as int, str, slug, uuid and path"
+   ]
+  },
+  {
+   "query_id": "q003",
+   "query": "How do I avoid hard coding URLs and namespace an app's routes?",
+   "relevant_memory_ids": [
+    "mem_6fbced0f9f39_0002"
+   ],
+   "split": "heldout",
+   "tags": [
+    "django-routing"
+   ],
+   "evidence": [
+    "reverse(\"blog:detail\", args=[3])"
+   ]
+  },
+  {
+   "query_id": "q004",
+   "query": "Which middleware is switched on by default in a new Django project?",
+   "relevant_memory_ids": [
+    "mem_6fbced0f9f39_0004"
+   ],
+   "split": "dev",
+   "tags": [
+    "django-routing"
+   ],
+   "evidence": [
+    "SessionMiddleware, CsrfViewMiddleware and AuthenticationMiddleware"
+   ]
+  },
+  {
+   "query_id": "q005",
+   "query": "How do I configure Django to use PostgreSQL?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "django-orm"
+   ],
+   "evidence": [
+    "For PostgreSQL use ENGINE django.db.backends.postgresql"
+   ]
+  },
+  {
+   "query_id": "q006",
+   "query": "Why does my Django loop run one database query per row?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "django-orm"
+   ],
+   "evidence": [
+    "Without them a loop over related objects issues one extra query per row"
+   ]
+  },
+  {
+   "query_id": "q007",
+   "query": "How do I make several Django writes succeed or fail together?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0004"
+   ],
+   "split": "heldout",
+   "tags": [
+    "django-orm"
+   ],
+   "evidence": [
+    "Wrap related writes in transaction.atomic()"
+   ]
+  },
+  {
+   "query_id": "q008",
+   "query": "Are Django QuerySets evaluated immediately?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "django-orm"
+   ],
+   "evidence": [
+    "QuerySets are lazy"
+   ]
+  },
+  {
+   "query_id": "q009",
+   "query": "How does FastAPI validate request bodies?",
+   "relevant_memory_ids": [
+    "mem_ada8a643fb53_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "fastapi"
+   ],
+   "evidence": [
+    "Request bodies are declared as Pydantic models"
+   ]
+  },
+  {
+   "query_id": "q010",
+   "query": "How do I share a database session between FastAPI endpoints?",
+   "relevant_memory_ids": [
+    "mem_ada8a643fb53_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "fastapi"
+   ],
+   "evidence": [
+    "Depends() shares logic such as database sessions"
+   ]
+  },
+  {
+   "query_id": "q011",
+   "query": "When should I use async def instead of def in a FastAPI endpoint?",
+   "relevant_memory_ids": [
+    "mem_ada8a643fb53_0003"
+   ],
+   "split": "heldout",
+   "tags": [
+    "fastapi"
+   ],
+   "evidence": [
+    "Declare endpoints with async def to await non blocking I/O"
+   ]
+  },
+  {
+   "query_id": "q012",
+   "query": "How do I open and close clients when a FastAPI app starts and stops?",
+   "relevant_memory_ids": [
+    "mem_ada8a643fb53_0004"
+   ],
+   "split": "dev",
+   "tags": [
+    "fastapi"
+   ],
+   "evidence": [
+    "The lifespan context manager opens long lived clients"
+   ]
+  },
+  {
+   "query_id": "q013",
+   "query": "Which index type should I use for jsonb columns?",
+   "relevant_memory_ids": [
+    "mem_dc7168f58104_0000",
+    "mem_ee8822190711_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "postgresql"
+   ],
+   "evidence": [
+    "Use gin for jsonb and full text search",
+    "Choose gin for jsonb and full text search"
+   ]
+  },
+  {
+   "query_id": "q014",
+   "query": "When does autovacuum start cleaning a table?",
+   "relevant_memory_ids": [
+    "mem_dc7168f58104_0001",
+    "mem_ee8822190711_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "postgresql"
+   ],
+   "evidence": [
+    "autovacuum runs it automatically once about 20 percent of a table changed",
+    "Autovacuum cleans them up automatically once roughly 20 percent of a table has changed"
+   ]
+  },
+  {
+   "query_id": "q015",
+   "query": "How much memory should shared_buffers get?",
+   "relevant_memory_ids": [
+    "mem_dc7168f58104_0002",
+    "mem_ee8822190711_0002"
+   ],
+   "split": "heldout",
+   "tags": [
+    "postgresql"
+   ],
+   "evidence": [
+    "Set shared_buffers to roughly 25 percent of system RAM",
+    "A reasonable starting value for shared_buffers is about 25 percent"
+   ]
+  },
+  {
+   "query_id": "q016",
+   "query": "How can thousands of clients share a few PostgreSQL connections?",
+   "relevant_memory_ids": [
+    "mem_dc7168f58104_0003",
+    "mem_ee8822190711_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "postgresql"
+   ],
+   "evidence": [
+    "Put pgbouncer in front of the database in transaction pooling mode",
+    "Run pgbouncer in transaction pooling mode in front of PostgreSQL"
+   ]
+  },
+  {
+   "query_id": "q017",
+   "query": "What happens when Redis reaches maxmemory?",
+   "relevant_memory_ids": [
+    "mem_1c693440df31_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "redis"
+   ],
+   "evidence": [
+    "When maxmemory is reached the eviction policy decides"
+   ]
+  },
+  {
+   "query_id": "q018",
+   "query": "How much data can I lose with AOF appendfsync everysec?",
+   "relevant_memory_ids": [
+    "mem_1c693440df31_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "redis"
+   ],
+   "evidence": [
+    "loses at most about one second of data"
+   ]
+  },
+  {
+   "query_id": "q019",
+   "query": "How do I stop all cache keys from expiring at the same moment?",
+   "relevant_memory_ids": [
+    "mem_1c693440df31_0002"
+   ],
+   "split": "heldout",
+   "tags": [
+    "redis"
+   ],
+   "evidence": [
+    "add jitter to TTL values to avoid a stampede"
+   ]
+  },
+  {
+   "query_id": "q020",
+   "query": "How do I build a leaderboard in Redis?",
+   "relevant_memory_ids": [
+    "mem_1c693440df31_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "redis"
+   ],
+   "evidence": [
+    "Sorted sets power leaderboards through ZADD and ZRANGE"
+   ]
+  },
+  {
+   "query_id": "q021",
+   "query": "How do I keep preprocessing consistent between training and prediction?",
+   "relevant_memory_ids": [
+    "mem_535c2d30b999_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "scikit-learn"
+   ],
+   "evidence": [
+    "A Pipeline chains preprocessing such as StandardScaler"
+   ]
+  },
+  {
+   "query_id": "q022",
+   "query": "How do I choose the number of clusters for KMeans?",
+   "relevant_memory_ids": [
+    "mem_535c2d30b999_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "scikit-learn"
+   ],
+   "evidence": [
+    "Choose the number of clusters with the elbow method or the silhouette score"
+   ]
+  },
+  {
+   "query_id": "q023",
+   "query": "Which metrics should I use when classes are imbalanced?",
+   "relevant_memory_ids": [
+    "mem_535c2d30b999_0004"
+   ],
+   "split": "heldout",
+   "tags": [
+    "scikit-learn"
+   ],
+   "evidence": [
+    "Accuracy misleads on imbalanced data"
+   ]
+  },
+  {
+   "query_id": "q024",
+   "query": "How do I split data into training and test sets reproducibly?",
+   "relevant_memory_ids": [
+    "mem_535c2d30b999_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "scikit-learn"
+   ],
+   "evidence": [
+    "Hold out data with train_test_split"
+   ]
+  },
+  {
+   "query_id": "q025",
+   "query": "Why copy dependency files before the source code in a Dockerfile?",
+   "relevant_memory_ids": [
+    "mem_17a1b0537f49_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "docker"
+   ],
+   "evidence": [
+    "copy dependency manifests before the source code to keep rebuilds fast"
+   ]
+  },
+  {
+   "query_id": "q026",
+   "query": "How do I keep container data after the container is removed?",
+   "relevant_memory_ids": [
+    "mem_17a1b0537f49_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "docker"
+   ],
+   "evidence": [
+    "Named volumes created with docker volume create persist data"
+   ]
+  },
+  {
+   "query_id": "q027",
+   "query": "How do containers find each other by name?",
+   "relevant_memory_ids": [
+    "mem_17a1b0537f49_0004"
+   ],
+   "split": "heldout",
+   "tags": [
+    "docker"
+   ],
+   "evidence": [
+    "Containers on a user defined bridge network resolve each other by service name"
+   ]
+  },
+  {
+   "query_id": "q028",
+   "query": "How do I run several containers together from one file?",
+   "relevant_memory_ids": [
+    "mem_17a1b0537f49_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "docker"
+   ],
+   "evidence": [
+    "A compose.yaml file describes multi container applications"
+   ]
+  },
+  {
+   "query_id": "q029",
+   "query": "What manages rolling updates of pod replicas?",
+   "relevant_memory_ids": [
+    "mem_8788326aef3e_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "kubernetes"
+   ],
+   "evidence": [
+    "A Deployment manages a ReplicaSet"
+   ]
+  },
+  {
+   "query_id": "q030",
+   "query": "How do I expose pods outside the cluster?",
+   "relevant_memory_ids": [
+    "mem_8788326aef3e_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "kubernetes"
+   ],
+   "evidence": [
+    "NodePort opens a port on every node, and LoadBalancer provisions a cloud load balancer"
+   ]
+  },
+  {
+   "query_id": "q031",
+   "query": "What is the difference between liveness and readiness probes?",
+   "relevant_memory_ids": [
+    "mem_8788326aef3e_0003"
+   ],
+   "split": "heldout",
+   "tags": [
+    "kubernetes"
+   ],
+   "evidence": [
+    "The liveness probe restarts a container that is stuck"
+   ]
+  },
+  {
+   "query_id": "q032",
+   "query": "Are Kubernetes Secrets encrypted?",
+   "relevant_memory_ids": [
+    "mem_8788326aef3e_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "kubernetes"
+   ],
+   "evidence": [
+    "Secrets are only base64 encoded by default"
+   ]
+  },
+  {
+   "query_id": "q033",
+   "query": "Should I merge or rebase my feature branch?",
+   "relevant_memory_ids": [
+    "mem_fe4b3065a170_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "git"
+   ],
+   "evidence": [
+    "git rebase replays commits on top of another base for a linear history"
+   ]
+  },
+  {
+   "query_id": "q034",
+   "query": "How can I recover a commit after a bad reset?",
+   "relevant_memory_ids": [
+    "mem_fe4b3065a170_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "git"
+   ],
+   "evidence": [
+    "The reflog records where HEAD pointed"
+   ]
+  },
+  {
+   "query_id": "q035",
+   "query": "How do I undo a commit on a shared branch safely?",
+   "relevant_memory_ids": [
+    "mem_fe4b3065a170_0003"
+   ],
+   "split": "heldout",
+   "tags": [
+    "git"
+   ],
+   "evidence": [
+    "git revert creates a new commit that undoes an earlier one"
+   ]
+  },
+  {
+   "query_id": "q036",
+   "query": "How do I find which commit introduced a bug?",
+   "relevant_memory_ids": [
+    "mem_fe4b3065a170_0004"
+   ],
+   "split": "dev",
+   "tags": [
+    "git"
+   ],
+   "evidence": [
+    "git bisect finds the commit that introduced a bug"
+   ]
+  },
+  {
+   "query_id": "q037",
+   "query": "How do I forward requests to a backend application with NGINX?",
+   "relevant_memory_ids": [
+    "mem_effccd31f446_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "nginx"
+   ],
+   "evidence": [
+    "proxy_pass forwards requests to an upstream application"
+   ]
+  },
+  {
+   "query_id": "q038",
+   "query": "Which TLS versions should NGINX allow?",
+   "relevant_memory_ids": [
+    "mem_effccd31f446_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "nginx"
+   ],
+   "evidence": [
+    "Allow only TLSv1.2 and TLSv1.3 in ssl_protocols"
+   ]
+  },
+  {
+   "query_id": "q039",
+   "query": "How do I keep a client on the same backend server every time?",
+   "relevant_memory_ids": [
+    "mem_effccd31f446_0003"
+   ],
+   "split": "heldout",
+   "tags": [
+    "nginx"
+   ],
+   "evidence": [
+    "ip_hash keeps a client on the same server"
+   ]
+  },
+  {
+   "query_id": "q040",
+   "query": "How do I validate an NGINX configuration before reloading?",
+   "relevant_memory_ids": [
+    "mem_effccd31f446_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "nginx"
+   ],
+   "evidence": [
+    "Test changes with nginx -t before reloading"
+   ]
+  },
+  {
+   "query_id": "q041",
+   "query": "How do I update React state based on the previous value?",
+   "relevant_memory_ids": [
+    "mem_87b399ca3c1d_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "react"
+   ],
+   "evidence": [
+    "use the functional form setCount(c => c + 1)"
+   ]
+  },
+  {
+   "query_id": "q042",
+   "query": "How do I clean up a subscription in useEffect?",
+   "relevant_memory_ids": [
+    "mem_87b399ca3c1d_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "react"
+   ],
+   "evidence": [
+    "the returned cleanup function runs before the next effect and on unmount"
+   ]
+  },
+  {
+   "query_id": "q043",
+   "query": "Why shouldn't I use the array index as a list key?",
+   "relevant_memory_ids": [
+    "mem_87b399ca3c1d_0004"
+   ],
+   "split": "heldout",
+   "tags": [
+    "react"
+   ],
+   "evidence": [
+    "Using the array index as key breaks state when items are reordered"
+   ]
+  },
+  {
+   "query_id": "q044",
+   "query": "When do useMemo and useCallback actually help?",
+   "relevant_memory_ids": [
+    "mem_87b399ca3c1d_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "react"
+   ],
+   "evidence": [
+    "They only help when the value is passed to a memoized child"
+   ]
+  },
+  {
+   "query_id": "q045",
+   "query": "What is the difference between interface and type in TypeScript?",
+   "relevant_memory_ids": [
+    "mem_1d37680e2909_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "typescript"
+   ],
+   "evidence": [
+    "Interfaces can be extended and merged"
+   ]
+  },
+  {
+   "query_id": "q046",
+   "query": "How do I make every property of a type optional?",
+   "relevant_memory_ids": [
+    "mem_1d37680e2909_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "typescript"
+   ],
+   "evidence": [
+    "Partial<T> makes every property optional"
+   ]
+  },
+  {
+   "query_id": "q047",
+   "query": "How do I narrow a union type?",
+   "relevant_memory_ids": [
+    "mem_1d37680e2909_0001"
+   ],
+   "split": "heldout",
+   "tags": [
+    "typescript"
+   ],
+   "evidence": [
+    "Narrow it with typeof, in checks or a discriminant property"
+   ]
+  },
+  {
+   "query_id": "q048",
+   "query": "Which compiler option turns on strict null checks?",
+   "relevant_memory_ids": [
+    "mem_1d37680e2909_0004"
+   ],
+   "split": "dev",
+   "tags": [
+    "typescript"
+   ],
+   "evidence": [
+    "Set strict to true in tsconfig.json"
+   ]
+  },
+  {
+   "query_id": "q049",
+   "query": "How do I make Django reuse PostgreSQL connections and pool them?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0001",
+    "mem_dc7168f58104_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "cross"
+   ],
+   "evidence": [
+    "Set CONN_MAX_AGE to 60",
+    "Put pgbouncer in front of the database"
+   ]
+  },
+  {
+   "query_id": "q050",
+   "query": "Which port does Django use to connect to PostgreSQL and where do I set it?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0001",
+    "mem_dc7168f58104_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "cross"
+   ],
+   "evidence": [
+    "NAME, USER, PASSWORD, HOST and PORT 5432",
+    "The server listens on port 5432 by default"
+   ]
+  },
+  {
+   "query_id": "q051",
+   "query": "How do I find slow Django queries and check the PostgreSQL plan?",
+   "relevant_memory_ids": [
+    "mem_0b50ea253b91_0003",
+    "mem_dc7168f58104_0000"
+   ],
+   "split": "heldout",
+   "tags": [
+    "cross"
+   ],
+   "evidence": [
+    "Without them a loop over related objects issues one extra query per row",
+    "run EXPLAIN ANALYZE to see whether the planner chooses an index scan"
+   ]
+  },
+  {
+   "query_id": "q052",
+   "query": "How do I cache FastAPI endpoint results in Redis?",
+   "relevant_memory_ids": [
+    "mem_ada8a643fb53_0002",
+    "mem_1c693440df31_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "cross"
+   ],
+   "evidence": [
+    "Depends() shares logic such as database sessions",
+    "Applications read Redis first and load from the database on a miss"
+   ]
+  },
+  {
+   "query_id": "q053",
+   "query": "How do I put NGINX in front of a FastAPI app running in Docker?",
+   "relevant_memory_ids": [
+    "mem_effccd31f446_0001",
+    "mem_17a1b0537f49_0004"
+   ],
+   "split": "heldout",
+   "tags": [
+    "cross"
+   ],
+   "evidence": [
+    "proxy_pass forwards requests to an upstream application",
+    "Containers on a user defined bridge network resolve each other by service name"
+   ]
+  },
+  {
+   "query_id": "q054",
+   "query": "How many Gunicorn workers should I run?",
+   "relevant_memory_ids": [
+    "mem_041f559a40b5_0000"
+   ],
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "evidence": [
+    "two times the CPU cores plus one"
+   ]
+  },
+  {
+   "query_id": "q055",
+   "query": "Which attributes should session cookies have?",
+   "relevant_memory_ids": [
+    "mem_041f559a40b5_0003"
+   ],
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "evidence": [
+    "Set the Secure, HttpOnly and SameSite attributes"
+   ]
+  },
+  {
+   "query_id": "q056",
+   "query": "How do I handle missing values in a pandas column?",
+   "relevant_memory_ids": [
+    "mem_df5f3e0387b3_0002"
+   ],
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "evidence": [
+    "dropna to remove rows and fillna to substitute"
+   ]
+  },
+  {
+   "query_id": "q057",
+   "query": "How do I load a CSV that is bigger than memory?",
+   "relevant_memory_ids": [
+    "mem_df5f3e0387b3_0004"
+   ],
+   "split": "heldout",
+   "tags": [
+    "python-notes"
+   ],
+   "evidence": [
+    "read in chunks with the chunksize argument"
+   ]
+  },
+  {
+   "query_id": "q058",
+   "query": "How do I run the same pytest test with many inputs?",
+   "relevant_memory_ids": [
+    "mem_e1288bb55d16_0001"
+   ],
+   "split": "dev",
+   "tags": [
+    "python-notes"
+   ],
+   "evidence": [
+    "parametrize runs one test with many inputs"
+   ]
+  },
+  {
+   "query_id": "q059",
+   "query": "How can I speed up pip installs?",
+   "relevant_memory_ids": [
+    "mem_e1288bb55d16_0005"
+   ],
+   "split": "heldout",
+   "tags": [
+    "python-notes"
+   ],
+   "evidence": [
+    "uv resolves and installs packages much faster"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1023 @@
+[
+ {
+  "comparison": "adaptive_vs_fixed",
+  "baseline": "fixed_graph",
+  "treatment": "adaptive_graph",
+  "queries": 300,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.55072671183401,
+    "treatment": 0.5477772570267748,
+    "diff": -0.0029494548072351856
+   },
+   "map_at_10": {
+    "baseline": 0.5098054232804232,
+    "treatment": 0.5066699735449736,
+    "diff": -0.003135449735449658
+   },
+   "recall_at_5": {
+    "baseline": 0.6214444444444445,
+    "treatment": 0.6172777777777778,
+    "diff": -0.004166666666666652
+   },
+   "recall_at_10": {
+    "baseline": 0.6618333333333334,
+    "treatment": 0.6593333333333333,
+    "diff": -0.0025000000000000577
+   },
+   "recall_at_100": {
+    "baseline": 0.7718333333333334,
+    "treatment": 0.7543333333333334,
+    "diff": -0.01749999999999996
+   },
+   "mrr_at_10": {
+    "baseline": 0.5200634920634921,
+    "treatment": 0.5171428571428571,
+    "diff": -0.00292063492063499
+   },
+   "precision_at_10": {
+    "baseline": 0.075,
+    "treatment": 0.075,
+    "diff": 0.0
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.002949454807235235,
+    "ci95_low": -0.017929580713623845,
+    "ci95_high": 0.01095585337419811,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 8,
+    "queries_regressed": 6,
+    "queries_unchanged": 286,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.004166666666666667,
+    "ci95_low": -0.020833333333333332,
+    "ci95_high": 0.013333333333333334,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 4,
+    "queries_regressed": 5,
+    "queries_unchanged": 291,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "1232",
+    "query": "The minor G allele of FOXO3 is related to more severe symptoms of Crohn's Disease.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "327",
+    "query": "Deletion of αvβ8 does not result in a spontaneous inflammatory phenotype.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "811",
+    "query": "Mutant mice lacking SVCT2 have greatly increased ascorbic acid levels in both brain and adrenals.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "385",
+    "query": "Epigenetic modulating agents (EMAs) modulate antitumor immune response in a cancer model system.",
+    "ndcg_baseline": 0.6934264036172708,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": -0.3065735963827292
+   },
+   {
+    "query_id": "212",
+    "query": "CR is associated with higher methylation age.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": -0.030645620126519446
+   },
+   {
+    "query_id": "619",
+    "query": "Increased vessel density along with a reduction in fibrosis decreases the efficacy of chemotherapy treatments.",
+    "ndcg_baseline": 0.18457569677956817,
+    "ndcg_treatment": 0.17723928678404774,
+    "delta": -0.007336409995520432
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "1216",
+    "query": "The extracellular domain of TMEM27 is cleaved in human beta cells.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1163",
+    "query": "The DdrB protein from Deinococcus radiodurans is an alternative SSB.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1379",
+    "query": "Women with a higher birth weight are more likely to develop breast cancer later in life.",
+    "ndcg_baseline": 0.75369761125927,
+    "ndcg_treatment": 0.9558295932317544,
+    "delta": 0.2021319819724844
+   },
+   {
+    "query_id": "70",
+    "query": "Activation of PPM1D suppresses p53 function.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.17723928678404774,
+    "delta": 0.17723928678404774
+   },
+   {
+    "query_id": "577",
+    "query": "In mice, P. chabaudi parasites are able to proliferate faster early in infection when inoculated at lower numbers than when inoculated at high numbers.",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.030645620126519446
+   },
+   {
+    "query_id": "1221",
+    "query": "The genomic aberrations found in matasteses are very similar to those found in the primary tumor.",
+    "ndcg_baseline": 0.3333333333333333,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.022873853774688868
+   },
+   {
+    "query_id": "133",
+    "query": "Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",
+    "ndcg_baseline": 0.639945385422766,
+    "ndcg_treatment": 0.6548086577531307,
+    "delta": 0.014863272330364663
+   },
+   {
+    "query_id": "1280",
+    "query": "The ureABIEFGH gene cluster encodes urease maturation proteins : UreD/UreH, UreE, UreF, and UreG.",
+    "ndcg_baseline": 0.2890648263178879,
+    "ndcg_treatment": 0.3010299956639812,
+    "delta": 0.011965169346093318
+   }
+  ]
+ },
+ {
+  "comparison": "fixed_vs_global",
+  "baseline": "global_dense",
+  "treatment": "fixed_graph",
+  "queries": 300,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.6450816521455774,
+    "treatment": 0.55072671183401,
+    "diff": -0.09435494031156744
+   },
+   "map_at_10": {
+    "baseline": 0.5959314814814816,
+    "treatment": 0.5098054232804232,
+    "diff": -0.08612605820105834
+   },
+   "recall_at_5": {
+    "baseline": 0.7379444444444444,
+    "treatment": 0.6214444444444445,
+    "diff": -0.11649999999999994
+   },
+   "recall_at_10": {
+    "baseline": 0.7833333333333333,
+    "treatment": 0.6618333333333334,
+    "diff": -0.12149999999999994
+   },
+   "recall_at_100": {
+    "baseline": 0.925,
+    "treatment": 0.7718333333333334,
+    "diff": -0.15316666666666667
+   },
+   "mrr_at_10": {
+    "baseline": 0.6047248677248678,
+    "treatment": 0.5200634920634921,
+    "diff": -0.08466137566137566
+   },
+   "precision_at_10": {
+    "baseline": 0.08833333333333332,
+    "treatment": 0.075,
+    "diff": -0.013333333333333322
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.09435494031156753,
+    "ci95_low": -0.12704273255296883,
+    "ci95_high": -0.0630502508247425,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 14,
+    "queries_regressed": 42,
+    "queries_unchanged": 244,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.1165,
+    "ci95_low": -0.15416666666666667,
+    "ci95_high": -0.07999583333333334,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 2,
+    "queries_regressed": 39,
+    "queries_unchanged": 259,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "1014",
+    "query": "Rapamycin decreases the concentration of triacylglycerols in fruit flies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1140",
+    "query": "Taking 400mg of α-tocopheryl acetate helps to prevent prostate cancer.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1163",
+    "query": "The DdrB protein from Deinococcus radiodurans is an alternative SSB.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1216",
+    "query": "The extracellular domain of TMEM27 is cleaved in human beta cells.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "127",
+    "query": "Arginine 90 in p150n is important for interaction with EB1.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "130",
+    "query": "Articles published in open access format are more likely to be cited than traditional journals.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1303",
+    "query": "Tirasemtiv has no effect on fast-twitch muscle.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "142",
+    "query": "Autologous transplantation of mesenchymal stem cells causes a higher rate of opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "143",
+    "query": "Autologous transplantation of mesenchymal stem cells causes fewer opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "146",
+    "query": "Autologous transplantation of mesenchymal stem cells has lower rates of rejection than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "268",
+    "query": "Cold exposure increases BAT recruitment.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "269",
+    "query": "Cold exposure reduces BAT recruitment.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "362",
+    "query": "During the primary early antibody response activated B cells migrate toward the inner-and outer paracortical areas where oxysterol accumulation is generated by stromal cells.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "439",
+    "query": "Fz/PCP-dependent Pk localizes to the anterior membrane of neuroectoderm cells during zebrafish neuralation",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "478",
+    "query": "Golli-deficient T-cells prefer to differentiate into an anergic phenotype in the adaptive immune response when there are increased levels of Ca2+ in the cytosol.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "513",
+    "query": "High cardiopulmonary fitness causes increased mortality rate.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "913",
+    "query": "PPAR-RXRs are inhibited by PPAR ligands.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.31546487678572877
+   },
+   {
+    "query_id": "554",
+    "query": "Immune complex triggered cell death leads to extracellular release of neutrophil protein HMGB1.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "1280",
+    "query": "The ureABIEFGH gene cluster encodes urease maturation proteins : UreD/UreH, UreE, UreF, and UreG.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "914",
+    "query": "PPAR-RXRs can be activated by PPAR ligands.",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.20025319549806447
+   },
+   {
+    "query_id": "261",
+    "query": "Chronic aerobic exercise alters endothelial function, improving vasodilating mechanisms mediated by NO.",
+    "ndcg_baseline": 0.20438239758848611,
+    "ndcg_treatment": 0.40298313359773236,
+    "delta": 0.19860073600924624
+   },
+   {
+    "query_id": "619",
+    "query": "Increased vessel density along with a reduction in fibrosis decreases the efficacy of chemotherapy treatments.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.18457569677956817,
+    "delta": 0.18457569677956817
+   },
+   {
+    "query_id": "213",
+    "query": "CRP is not predictive of postoperative mortality following Coronary Artery Bypass Graft (CABG) surgery.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.04382375083885143
+   },
+   {
+    "query_id": "1",
+    "query": "0-dimensional biomaterials show inductive properties.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.04382375083885143
+   },
+   {
+    "query_id": "577",
+    "query": "In mice, P. chabaudi parasites are able to proliferate faster early in infection when inoculated at lower numbers than when inoculated at high numbers.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.04074231032229342
+   },
+   {
+    "query_id": "1281",
+    "query": "The ureABIEFGH gene cluster is induced by nickel (II) ion.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.04074231032229342
+   },
+   {
+    "query_id": "212",
+    "query": "CR is associated with higher methylation age.",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.030645620126519446
+   },
+   {
+    "query_id": "674",
+    "query": "LDL cholesterol has no involvement in the development of cardiovascular disease.",
+    "ndcg_baseline": 0.3333333333333333,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.022873853774688868
+   },
+   {
+    "query_id": "1221",
+    "query": "The genomic aberrations found in matasteses are very similar to those found in the primary tumor.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.01786845654760455
+   }
+  ]
+ },
+ {
+  "comparison": "adaptive_vs_global",
+  "baseline": "global_dense",
+  "treatment": "adaptive_graph",
+  "queries": 300,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.6450816521455774,
+    "treatment": 0.5477772570267748,
+    "diff": -0.09730439511880262
+   },
+   "map_at_10": {
+    "baseline": 0.5959314814814816,
+    "treatment": 0.5066699735449736,
+    "diff": -0.089261507936508
+   },
+   "recall_at_5": {
+    "baseline": 0.7379444444444444,
+    "treatment": 0.6172777777777778,
+    "diff": -0.12066666666666659
+   },
+   "recall_at_10": {
+    "baseline": 0.7833333333333333,
+    "treatment": 0.6593333333333333,
+    "diff": -0.124
+   },
+   "recall_at_100": {
+    "baseline": 0.925,
+    "treatment": 0.7543333333333334,
+    "diff": -0.17066666666666663
+   },
+   "mrr_at_10": {
+    "baseline": 0.6047248677248678,
+    "treatment": 0.5171428571428571,
+    "diff": -0.08758201058201065
+   },
+   "precision_at_10": {
+    "baseline": 0.08833333333333332,
+    "treatment": 0.075,
+    "diff": -0.013333333333333322
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.09730439511880278,
+    "ci95_low": -0.13028912227896286,
+    "ci95_high": -0.06565776147623759,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 15,
+    "queries_regressed": 43,
+    "queries_unchanged": 242,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.12066666666666667,
+    "ci95_low": -0.15735000000000002,
+    "ci95_high": -0.08297500000000001,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 2,
+    "queries_regressed": 40,
+    "queries_unchanged": 258,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "1014",
+    "query": "Rapamycin decreases the concentration of triacylglycerols in fruit flies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1140",
+    "query": "Taking 400mg of α-tocopheryl acetate helps to prevent prostate cancer.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1232",
+    "query": "The minor G allele of FOXO3 is related to more severe symptoms of Crohn's Disease.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "127",
+    "query": "Arginine 90 in p150n is important for interaction with EB1.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "130",
+    "query": "Articles published in open access format are more likely to be cited than traditional journals.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1303",
+    "query": "Tirasemtiv has no effect on fast-twitch muscle.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "142",
+    "query": "Autologous transplantation of mesenchymal stem cells causes a higher rate of opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "143",
+    "query": "Autologous transplantation of mesenchymal stem cells causes fewer opportunistic infections than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "146",
+    "query": "Autologous transplantation of mesenchymal stem cells has lower rates of rejection than induction therapy with anti-interleukin-2 receptor antibodies.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "268",
+    "query": "Cold exposure increases BAT recruitment.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "269",
+    "query": "Cold exposure reduces BAT recruitment.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "327",
+    "query": "Deletion of αvβ8 does not result in a spontaneous inflammatory phenotype.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "362",
+    "query": "During the primary early antibody response activated B cells migrate toward the inner-and outer paracortical areas where oxysterol accumulation is generated by stromal cells.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "439",
+    "query": "Fz/PCP-dependent Pk localizes to the anterior membrane of neuroectoderm cells during zebrafish neuralation",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "478",
+    "query": "Golli-deficient T-cells prefer to differentiate into an anergic phenotype in the adaptive immune response when there are increased levels of Ca2+ in the cytosol.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "513",
+    "query": "High cardiopulmonary fitness causes increased mortality rate.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "913",
+    "query": "PPAR-RXRs are inhibited by PPAR ligands.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.31546487678572877
+   },
+   {
+    "query_id": "1280",
+    "query": "The ureABIEFGH gene cluster encodes urease maturation proteins : UreD/UreH, UreE, UreF, and UreG.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.3010299956639812,
+    "delta": 0.3010299956639812
+   },
+   {
+    "query_id": "554",
+    "query": "Immune complex triggered cell death leads to extracellular release of neutrophil protein HMGB1.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "914",
+    "query": "PPAR-RXRs can be activated by PPAR ligands.",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.20025319549806447
+   },
+   {
+    "query_id": "261",
+    "query": "Chronic aerobic exercise alters endothelial function, improving vasodilating mechanisms mediated by NO.",
+    "ndcg_baseline": 0.20438239758848611,
+    "ndcg_treatment": 0.40298313359773236,
+    "delta": 0.19860073600924624
+   },
+   {
+    "query_id": "70",
+    "query": "Activation of PPM1D suppresses p53 function.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.17723928678404774,
+    "delta": 0.17723928678404774
+   },
+   {
+    "query_id": "619",
+    "query": "Increased vessel density along with a reduction in fibrosis decreases the efficacy of chemotherapy treatments.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.17723928678404774,
+    "delta": 0.17723928678404774
+   },
+   {
+    "query_id": "577",
+    "query": "In mice, P. chabaudi parasites are able to proliferate faster early in infection when inoculated at lower numbers than when inoculated at high numbers.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.07138793044881286
+   },
+   {
+    "query_id": "213",
+    "query": "CRP is not predictive of postoperative mortality following Coronary Artery Bypass Graft (CABG) surgery.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.04382375083885143
+   },
+   {
+    "query_id": "1",
+    "query": "0-dimensional biomaterials show inductive properties.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.04382375083885143
+   },
+   {
+    "query_id": "1281",
+    "query": "The ureABIEFGH gene cluster is induced by nickel (II) ion.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.04074231032229342
+   },
+   {
+    "query_id": "1221",
+    "query": "The genomic aberrations found in matasteses are very similar to those found in the primary tumor.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.04074231032229342
+   },
+   {
+    "query_id": "674",
+    "query": "LDL cholesterol has no involvement in the development of cardiovascular disease.",
+    "ndcg_baseline": 0.3333333333333333,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.022873853774688868
+   },
+   {
+    "query_id": "133",
+    "query": "Assembly of invadopodia is triggered by focal generation of phosphatidylinositol-3,4-biphosphate and the activation of the nonreceptor tyrosine kinase Src.",
+    "ndcg_baseline": 0.639945385422766,
+    "ndcg_treatment": 0.6548086577531307,
+    "delta": 0.014863272330364663
+   }
+  ]
+ },
+ {
+  "comparison": "global_dense_vs_bm25",
+  "baseline": "bm25",
+  "treatment": "global_dense",
+  "queries": 300,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.6634477520519497,
+    "treatment": 0.6450816521455774,
+    "diff": -0.01836609990637228
+   },
+   "map_at_10": {
+    "baseline": 0.6180443121693122,
+    "treatment": 0.5959314814814816,
+    "diff": -0.022112830687830654
+   },
+   "recall_at_5": {
+    "baseline": 0.7259444444444444,
+    "treatment": 0.7379444444444444,
+    "diff": 0.01200000000000001
+   },
+   "recall_at_10": {
+    "baseline": 0.7876111111111112,
+    "treatment": 0.7833333333333333,
+    "diff": -0.004277777777777825
+   },
+   "recall_at_100": {
+    "baseline": 0.8825555555555555,
+    "treatment": 0.925,
+    "diff": 0.04244444444444451
+   },
+   "mrr_at_10": {
+    "baseline": 0.6308915343915344,
+    "treatment": 0.6047248677248678,
+    "diff": -0.02616666666666667
+   },
+   "precision_at_10": {
+    "baseline": 0.08699999999999998,
+    "treatment": 0.08833333333333332,
+    "diff": 0.0013333333333333391
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.018366099906372182,
+    "ci95_low": -0.055842608064097334,
+    "ci95_high": 0.02208810356025617,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 66,
+    "queries_regressed": 73,
+    "queries_unchanged": 161,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": 0.012000000000000005,
+    "ci95_low": -0.03491944444444444,
+    "ci95_high": 0.05956388888888888,
+    "n_queries": 300,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 36,
+    "queries_regressed": 29,
+    "queries_unchanged": 235,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "1024",
+    "query": "Recurrent mutations occur frequently within CTCF anchor sites adjacent to oncogenes.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1363",
+    "query": "Venules have a thinner or absent smooth layer compared to arterioles.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "294",
+    "query": "Crossover hot spots are not found within gene promoters in Saccharomyces cerevisiae.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "660",
+    "query": "Ivermectin is used to treat onchocerciasis.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "70",
+    "query": "Activation of PPM1D suppresses p53 function.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "743",
+    "query": "Macrolides protect against myocardial infarction.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "1337",
+    "query": "Ubiquitin ligase UBC13 generates a K63-linked polyubiquitin moiety at PCNA K164.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": -0.7109351736821121
+   },
+   {
+    "query_id": "742",
+    "query": "Macrolides have no protective effect against myocardial infarction.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.3010299956639812,
+    "delta": -0.6989700043360187
+   },
+   {
+    "query_id": "674",
+    "query": "LDL cholesterol has no involvement in the development of cardiovascular disease.",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": -0.6666666666666667
+   },
+   {
+    "query_id": "198",
+    "query": "CCL19 is absent within dLNs.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "303",
+    "query": "DMRT1 is a sex-determining gene that is epigenetically regulated by the MHM region.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "48",
+    "query": "A total of 1,000 people in the UK are asymptomatic carriers of vCJD infection.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "527",
+    "query": "Homozygous deletion of murine Sbds gene from osterix-expressing mesenchymal stem and progenitor cells (MPCs) prevents oxidative stress.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "644",
+    "query": "Insulin increases risk of severe kidney failure.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "785",
+    "query": "Microarray results from culture-amplified mixtures of serotypes correlate poorly with microarray results from uncultured mixtures.",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "514",
+    "query": "High dietary calcium intakes are unnecessary for prevention of secondary hyperparathyroidism in subjects with 25(OH)D levels above 75 nmol/liter.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1382",
+    "query": "aPKCz causes tumour enhancement by affecting glutamine metabolism.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1279",
+    "query": "The treatment of cancer patients with co-IR blockade precipitates adverse autoimmune events.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1278",
+    "query": "The treatment of cancer patients with co-IR blockade does not cause any adverse autoimmune events.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1241",
+    "query": "The myocardial lineage develops from cardiac progenitors of mesodermal origin.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "1088",
+    "query": "Silencing of Bcl2 is important for the maintenance and progression of tumors.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "183",
+    "query": "Bone marrow cells contribute to adult macrophage compartments.",
+    "ndcg_baseline": 0.3010299956639812,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6989700043360187
+   },
+   {
+    "query_id": "1140",
+    "query": "Taking 400mg of α-tocopheryl acetate helps to prevent prostate cancer.",
+    "ndcg_baseline": 0.3010299956639812,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6989700043360187
+   },
+   {
+    "query_id": "72",
+    "query": "Activator-inhibitor pairs are provided dorsally by Admpchordin.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6845351232142712
+   },
+   {
+    "query_id": "54",
+    "query": "AMP-activated protein kinase (AMPK) activation increases inflammation-related fibrosis in the lungs.",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6845351232142712
+   },
+   {
+    "query_id": "800",
+    "query": "Modifying the epigenome in the brain affects the normal human aging process by affecting certain genes related to neurogenesis.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.6309297535714575
+   },
+   {
+    "query_id": "238",
+    "query": "Cells undergoing methionine restriction may activate miRNAs.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.6309297535714575
+   },
+   {
+    "query_id": "1191",
+    "query": "The amount of publicly available DNA data doubles every 10 years.",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.6309297535714575
+   },
+   {
+    "query_id": "1319",
+    "query": "Transplanted human glial cells can differentiate within the host animal.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6131471927654584
+   },
+   {
+    "query_id": "1194",
+    "query": "The arm density of TatAd complexes is due to structural rearrangements within Class1 TatAd complexes such as the 'charge zipper mechanism'.",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6131471927654584
+   }
+  ]
+ }
+]

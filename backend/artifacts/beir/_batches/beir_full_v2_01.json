@@ -1,0 +1,8 @@
+{
+ "run_id": "beir_full_v2_01",
+ "datasets": [
+  "arguana"
+ ],
+ "finished_at": "2026-10-24T21:41:45.617Z",
+ "failures": 0
+}

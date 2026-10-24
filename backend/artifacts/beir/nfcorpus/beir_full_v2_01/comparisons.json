@@ -1,0 +1,1093 @@
+[
+ {
+  "comparison": "adaptive_vs_fixed",
+  "baseline": "fixed_graph",
+  "treatment": "adaptive_graph",
+  "queries": 323,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.27708952754770005,
+    "treatment": 0.2751551398811295,
+    "diff": -0.0019343876665705584
+   },
+   "map_at_10": {
+    "baseline": 0.08996009635519817,
+    "treatment": 0.08915795722021452,
+    "diff": -0.0008021391349836426
+   },
+   "recall_at_5": {
+    "baseline": 0.09781328957282183,
+    "treatment": 0.09736802261644456,
+    "diff": -0.00044526695637726876
+   },
+   "recall_at_10": {
+    "baseline": 0.12118216749101528,
+    "treatment": 0.12093007780100949,
+    "diff": -0.00025208969000578563
+   },
+   "recall_at_100": {
+    "baseline": 0.24898496261398453,
+    "treatment": 0.25170882356118884,
+    "diff": 0.0027238609472043096
+   },
+   "mrr_at_10": {
+    "baseline": 0.48020050125313285,
+    "treatment": 0.4717160548429898,
+    "diff": -0.008484446410143065
+   },
+   "precision_at_10": {
+    "baseline": 0.20773993808049535,
+    "treatment": 0.20804953560371517,
+    "diff": 0.00030959752321982337
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.0019343876665705864,
+    "ci95_low": -0.006125998800446712,
+    "ci95_high": 0.001955132200844647,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 9,
+    "queries_regressed": 14,
+    "queries_unchanged": 300,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.0004452669563772815,
+    "ci95_low": -0.0014366851270991147,
+    "ci95_high": 0.00027669706737458964,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 4,
+    "queries_regressed": 6,
+    "queries_unchanged": 313,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "PLAIN-2970",
+    "query": "Preventing Cataracts with Diet",
+    "ndcg_baseline": 0.497953678815073,
+    "ndcg_treatment": 0.1234749048963142,
+    "delta": -0.37447877391875883
+   },
+   {
+    "query_id": "PLAIN-2470",
+    "query": "Is Milk Good for Our Bones?",
+    "ndcg_baseline": 0.8181216029918411,
+    "ndcg_treatment": 0.546583587185226,
+    "delta": -0.2715380158066151
+   },
+   {
+    "query_id": "PLAIN-850",
+    "query": "cauliflower",
+    "ndcg_baseline": 0.5621931439243354,
+    "ndcg_treatment": 0.36211082347570717,
+    "delta": -0.20008232044862823
+   },
+   {
+    "query_id": "PLAIN-2261",
+    "query": "trans fats",
+    "ndcg_baseline": 0.38363315291837646,
+    "ndcg_treatment": 0.2435522702101235,
+    "delta": -0.14008088270825297
+   },
+   {
+    "query_id": "PLAIN-2354",
+    "query": "walnut oil",
+    "ndcg_baseline": 0.3391602052736161,
+    "ndcg_treatment": 0.21398626473452756,
+    "delta": -0.12517394053908856
+   },
+   {
+    "query_id": "PLAIN-806",
+    "query": "caloric restriction",
+    "ndcg_baseline": 0.2735872697693364,
+    "ndcg_treatment": 0.19518900079066107,
+    "delta": -0.07839826897867533
+   },
+   {
+    "query_id": "PLAIN-3221",
+    "query": "Dietary Theory of Alzheimer's",
+    "ndcg_baseline": 0.07768953695765952,
+    "ndcg_treatment": 0.0,
+    "delta": -0.07768953695765952
+   },
+   {
+    "query_id": "PLAIN-956",
+    "query": "cooking methods",
+    "ndcg_baseline": 0.675416025555764,
+    "ndcg_treatment": 0.6168295842361274,
+    "delta": -0.05858644131963653
+   },
+   {
+    "query_id": "PLAIN-2710",
+    "query": "Artificial Food Colors and ADHD",
+    "ndcg_baseline": 0.6779733527921183,
+    "ndcg_treatment": 0.6263380278851488,
+    "delta": -0.05163532490696954
+   },
+   {
+    "query_id": "PLAIN-1635",
+    "query": "milk",
+    "ndcg_baseline": 0.9305687780632227,
+    "ndcg_treatment": 0.914856882358379,
+    "delta": -0.01571189570484366
+   },
+   {
+    "query_id": "PLAIN-499",
+    "query": "African-American",
+    "ndcg_baseline": 0.09478836436955078,
+    "ndcg_treatment": 0.08514311764162098,
+    "delta": -0.009645246727929796
+   },
+   {
+    "query_id": "PLAIN-1453",
+    "query": "junk food",
+    "ndcg_baseline": 0.34301849170611365,
+    "ndcg_treatment": 0.33480714634441017,
+    "delta": -0.008211345361703482
+   },
+   {
+    "query_id": "PLAIN-1262",
+    "query": "Global Burden of Disease Study",
+    "ndcg_baseline": 0.43735247915031,
+    "ndcg_treatment": 0.43231813227099475,
+    "delta": -0.005034346879315255
+   },
+   {
+    "query_id": "PLAIN-2102",
+    "query": "smoking",
+    "ndcg_baseline": 0.84860265890399,
+    "ndcg_treatment": 0.8454256604216017,
+    "delta": -0.0031769984823882824
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "PLAIN-217",
+    "query": "Plant-Based Diets for Psoriasis",
+    "ndcg_baseline": 0.22009176629808017,
+    "ndcg_treatment": 0.5206178632166882,
+    "delta": 0.3005260969186081
+   },
+   {
+    "query_id": "PLAIN-1909",
+    "query": "pork",
+    "ndcg_baseline": 0.6578986223737446,
+    "ndcg_treatment": 0.8482378089219645,
+    "delta": 0.1903391865482199
+   },
+   {
+    "query_id": "PLAIN-892",
+    "query": "chickpeas",
+    "ndcg_baseline": 0.28371255449703187,
+    "ndcg_treatment": 0.424926013816671,
+    "delta": 0.14121345931963913
+   },
+   {
+    "query_id": "PLAIN-2040",
+    "query": "salmon",
+    "ndcg_baseline": 0.5326208815196265,
+    "ndcg_treatment": 0.5988751049740155,
+    "delta": 0.06625422345438903
+   },
+   {
+    "query_id": "PLAIN-2500",
+    "query": "The Saturated Fat Studies: Buttering Up the Public",
+    "ndcg_baseline": 0.21464128084484937,
+    "ndcg_treatment": 0.25495580365902715,
+    "delta": 0.04031452281417777
+   },
+   {
+    "query_id": "PLAIN-1557",
+    "query": "magnesium",
+    "ndcg_baseline": 0.22009176629808017,
+    "ndcg_treatment": 0.2489083270225946,
+    "delta": 0.02881656072451444
+   },
+   {
+    "query_id": "PLAIN-2770",
+    "query": "Flaxseeds & Breast Cancer Survival: Clinical Evidence",
+    "ndcg_baseline": 0.34299593030029285,
+    "ndcg_treatment": 0.36270578793618496,
+    "delta": 0.019709857635892114
+   },
+   {
+    "query_id": "PLAIN-2760",
+    "query": "Eating Healthy on a Budget",
+    "ndcg_baseline": 0.28259638851158525,
+    "ndcg_treatment": 0.2868816050519222,
+    "delta": 0.0042852165403369225
+   },
+   {
+    "query_id": "PLAIN-3432",
+    "query": "Healthy Chocolate Milkshakes",
+    "ndcg_baseline": 0.2051166673279436,
+    "ndcg_treatment": 0.2082936658103318,
+    "delta": 0.003176998482388199
+   }
+  ]
+ },
+ {
+  "comparison": "fixed_vs_global",
+  "baseline": "global_dense",
+  "treatment": "fixed_graph",
+  "queries": 323,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.31594074924861876,
+    "treatment": 0.27708952754770005,
+    "diff": -0.0388512217009187
+   },
+   "map_at_10": {
+    "baseline": 0.11048378585967285,
+    "treatment": 0.08996009635519817,
+    "diff": -0.020523689504474682
+   },
+   "recall_at_5": {
+    "baseline": 0.11958585040292335,
+    "treatment": 0.09781328957282183,
+    "diff": -0.021772560830101526
+   },
+   "recall_at_10": {
+    "baseline": 0.15498797328057845,
+    "treatment": 0.12118216749101528,
+    "diff": -0.03380580578956317
+   },
+   "recall_at_100": {
+    "baseline": 0.31150992401169303,
+    "treatment": 0.24898496261398453,
+    "diff": -0.0625249613977085
+   },
+   "mrr_at_10": {
+    "baseline": 0.5045579635362917,
+    "treatment": 0.48020050125313285,
+    "diff": -0.024357462283158826
+   },
+   "precision_at_10": {
+    "baseline": 0.24334365325077406,
+    "treatment": 0.20773993808049535,
+    "diff": -0.035603715170278716
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.03885122170091865,
+    "ci95_low": -0.05241576527706809,
+    "ci95_high": -0.02515590729069331,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 42,
+    "queries_regressed": 87,
+    "queries_unchanged": 194,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.02177256083010152,
+    "ci95_low": -0.03339834081407359,
+    "ci95_high": -0.011422884094595805,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 13,
+    "queries_regressed": 48,
+    "queries_unchanged": 262,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "PLAIN-1039",
+    "query": "domoic acid",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "PLAIN-407",
+    "query": "Is annatto food coloring safe?",
+    "ndcg_baseline": 0.6387878864795979,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6387878864795979
+   },
+   {
+    "query_id": "PLAIN-1568",
+    "query": "maple syrup",
+    "ndcg_baseline": 0.9197207891481876,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": -0.5328679819136459
+   },
+   {
+    "query_id": "PLAIN-1419",
+    "query": "insects",
+    "ndcg_baseline": 0.5067837010870873,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5067837010870873
+   },
+   {
+    "query_id": "PLAIN-3342",
+    "query": "Is Coconut Milk Good For You?",
+    "ndcg_baseline": 0.49818925746641285,
+    "ndcg_treatment": 0.0,
+    "delta": -0.49818925746641285
+   },
+   {
+    "query_id": "PLAIN-806",
+    "query": "caloric restriction",
+    "ndcg_baseline": 0.7670273914429264,
+    "ndcg_treatment": 0.2735872697693364,
+    "delta": -0.49344012167359
+   },
+   {
+    "query_id": "PLAIN-593",
+    "query": "apnea",
+    "ndcg_baseline": 0.46927872602275644,
+    "ndcg_treatment": 0.0,
+    "delta": -0.46927872602275644
+   },
+   {
+    "query_id": "PLAIN-1983",
+    "query": "rapamycin",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.5423640154200349,
+    "delta": -0.4576359845799651
+   },
+   {
+    "query_id": "PLAIN-1342",
+    "query": "heme iron",
+    "ndcg_baseline": 0.530263109944618,
+    "ndcg_treatment": 0.11004588314904008,
+    "delta": -0.42021722679557794
+   },
+   {
+    "query_id": "PLAIN-1721",
+    "query": "NIH-AARP study",
+    "ndcg_baseline": 0.5107164012496701,
+    "ndcg_treatment": 0.09478836436955078,
+    "delta": -0.4159280368801193
+   },
+   {
+    "query_id": "PLAIN-2860",
+    "query": "BPA Plastic and Male Sexual Dysfunction",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.6131471927654584,
+    "delta": -0.38685280723454163
+   },
+   {
+    "query_id": "PLAIN-913",
+    "query": "cinnamon",
+    "ndcg_baseline": 0.7849818707050383,
+    "ndcg_treatment": 0.3995688713838975,
+    "delta": -0.3854129993211408
+   },
+   {
+    "query_id": "PLAIN-1940",
+    "query": "prolactin",
+    "ndcg_baseline": 0.3589542101716347,
+    "ndcg_treatment": 0.0,
+    "delta": -0.3589542101716347
+   },
+   {
+    "query_id": "PLAIN-3332",
+    "query": "Alcohol Risks vs. Benefits",
+    "ndcg_baseline": 0.7668468355947187,
+    "ndcg_treatment": 0.4080157475003957,
+    "delta": -0.35883108809432296
+   },
+   {
+    "query_id": "PLAIN-1236",
+    "query": "galactosemia",
+    "ndcg_baseline": 0.3391602052736161,
+    "ndcg_treatment": 0.0,
+    "delta": -0.3391602052736161
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "PLAIN-3026",
+    "query": "Vitamin C-Enriched Bacon",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "PLAIN-1151",
+    "query": "factory farming practices",
+    "ndcg_baseline": 0.28762634971412726,
+    "ndcg_treatment": 0.636658712740428,
+    "delta": 0.3490323630263007
+   },
+   {
+    "query_id": "PLAIN-761",
+    "query": "breast pain",
+    "ndcg_baseline": 0.24738635904833417,
+    "ndcg_treatment": 0.4935232796777481,
+    "delta": 0.24613692062941395
+   },
+   {
+    "query_id": "PLAIN-3201",
+    "query": "Acne & Cancer Connection",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.1042885296931158,
+    "delta": 0.1042885296931158
+   },
+   {
+    "query_id": "PLAIN-2760",
+    "query": "Eating Healthy on a Budget",
+    "ndcg_baseline": 0.17907045092245474,
+    "ndcg_treatment": 0.28259638851158525,
+    "delta": 0.1035259375891305
+   },
+   {
+    "query_id": "PLAIN-2470",
+    "query": "Is Milk Good for Our Bones?",
+    "ndcg_baseline": 0.7205646068602003,
+    "ndcg_treatment": 0.8181216029918411,
+    "delta": 0.09755699613164082
+   },
+   {
+    "query_id": "PLAIN-3372",
+    "query": "The Healthiest Sweetener",
+    "ndcg_baseline": 0.21228563115522306,
+    "ndcg_treatment": 0.30531576591727555,
+    "delta": 0.09303013476205249
+   },
+   {
+    "query_id": "PLAIN-541",
+    "query": "American Dental Association",
+    "ndcg_baseline": 0.10086747116627115,
+    "ndcg_treatment": 0.19092086617893467,
+    "delta": 0.09005339501266352
+   },
+   {
+    "query_id": "PLAIN-1288",
+    "query": "grapes",
+    "ndcg_baseline": 0.12987501165334076,
+    "ndcg_treatment": 0.2180164145324244,
+    "delta": 0.08814140287908365
+   },
+   {
+    "query_id": "PLAIN-2991",
+    "query": "Cholesterol and Lower Back Pain",
+    "ndcg_baseline": 0.3065735963827292,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.08027921085181244
+   },
+   {
+    "query_id": "PLAIN-850",
+    "query": "cauliflower",
+    "ndcg_baseline": 0.4920062203073637,
+    "ndcg_treatment": 0.5621931439243354,
+    "delta": 0.07018692361697171
+   },
+   {
+    "query_id": "PLAIN-827",
+    "query": "carcinogens",
+    "ndcg_baseline": 0.7058075148678526,
+    "ndcg_treatment": 0.77523873680463,
+    "delta": 0.06943122193677731
+   },
+   {
+    "query_id": "PLAIN-1409",
+    "query": "industrial toxins",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.06943122193677727,
+    "delta": 0.06943122193677727
+   },
+   {
+    "query_id": "PLAIN-2690",
+    "query": "Chronic Headaches and Pork Tapeworms",
+    "ndcg_baseline": 0.4268829114252187,
+    "ndcg_treatment": 0.49472563412080184,
+    "delta": 0.06784272269558311
+   },
+   {
+    "query_id": "PLAIN-2680",
+    "query": "Counteracting the Effects of Dioxins Through Diet",
+    "ndcg_baseline": 0.1711653294272351,
+    "ndcg_treatment": 0.237168654490946,
+    "delta": 0.0660033250637109
+   }
+  ]
+ },
+ {
+  "comparison": "adaptive_vs_global",
+  "baseline": "global_dense",
+  "treatment": "adaptive_graph",
+  "queries": 323,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.31594074924861876,
+    "treatment": 0.2751551398811295,
+    "diff": -0.04078560936748926
+   },
+   "map_at_10": {
+    "baseline": 0.11048378585967285,
+    "treatment": 0.08915795722021452,
+    "diff": -0.021325828639458325
+   },
+   "recall_at_5": {
+    "baseline": 0.11958585040292335,
+    "treatment": 0.09736802261644456,
+    "diff": -0.022217827786478794
+   },
+   "recall_at_10": {
+    "baseline": 0.15498797328057845,
+    "treatment": 0.12093007780100949,
+    "diff": -0.03405789547956896
+   },
+   "recall_at_100": {
+    "baseline": 0.31150992401169303,
+    "treatment": 0.25170882356118884,
+    "diff": -0.059801100450504185
+   },
+   "mrr_at_10": {
+    "baseline": 0.5045579635362917,
+    "treatment": 0.4717160548429898,
+    "diff": -0.03284190869330189
+   },
+   "precision_at_10": {
+    "baseline": 0.24334365325077406,
+    "treatment": 0.20804953560371517,
+    "diff": -0.03529411764705889
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.040785609367489234,
+    "ci95_low": -0.054966959857728655,
+    "ci95_high": -0.026717919440144688,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 42,
+    "queries_regressed": 90,
+    "queries_unchanged": 191,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.022217827786478794,
+    "ci95_low": -0.034414978290289056,
+    "ci95_high": -0.011977264907900851,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 13,
+    "queries_regressed": 51,
+    "queries_unchanged": 259,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "PLAIN-1039",
+    "query": "domoic acid",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "PLAIN-407",
+    "query": "Is annatto food coloring safe?",
+    "ndcg_baseline": 0.6387878864795979,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6387878864795979
+   },
+   {
+    "query_id": "PLAIN-806",
+    "query": "caloric restriction",
+    "ndcg_baseline": 0.7670273914429264,
+    "ndcg_treatment": 0.19518900079066107,
+    "delta": -0.5718383906522654
+   },
+   {
+    "query_id": "PLAIN-1568",
+    "query": "maple syrup",
+    "ndcg_baseline": 0.9197207891481876,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": -0.5328679819136459
+   },
+   {
+    "query_id": "PLAIN-1419",
+    "query": "insects",
+    "ndcg_baseline": 0.5067837010870873,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5067837010870873
+   },
+   {
+    "query_id": "PLAIN-3342",
+    "query": "Is Coconut Milk Good For You?",
+    "ndcg_baseline": 0.49818925746641285,
+    "ndcg_treatment": 0.0,
+    "delta": -0.49818925746641285
+   },
+   {
+    "query_id": "PLAIN-593",
+    "query": "apnea",
+    "ndcg_baseline": 0.46927872602275644,
+    "ndcg_treatment": 0.0,
+    "delta": -0.46927872602275644
+   },
+   {
+    "query_id": "PLAIN-1983",
+    "query": "rapamycin",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.5423640154200349,
+    "delta": -0.4576359845799651
+   },
+   {
+    "query_id": "PLAIN-1342",
+    "query": "heme iron",
+    "ndcg_baseline": 0.530263109944618,
+    "ndcg_treatment": 0.11004588314904008,
+    "delta": -0.42021722679557794
+   },
+   {
+    "query_id": "PLAIN-1721",
+    "query": "NIH-AARP study",
+    "ndcg_baseline": 0.5107164012496701,
+    "ndcg_treatment": 0.09478836436955078,
+    "delta": -0.4159280368801193
+   },
+   {
+    "query_id": "PLAIN-2860",
+    "query": "BPA Plastic and Male Sexual Dysfunction",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.6131471927654584,
+    "delta": -0.38685280723454163
+   },
+   {
+    "query_id": "PLAIN-913",
+    "query": "cinnamon",
+    "ndcg_baseline": 0.7849818707050383,
+    "ndcg_treatment": 0.3995688713838975,
+    "delta": -0.3854129993211408
+   },
+   {
+    "query_id": "PLAIN-2970",
+    "query": "Preventing Cataracts with Diet",
+    "ndcg_baseline": 0.497953678815073,
+    "ndcg_treatment": 0.1234749048963142,
+    "delta": -0.37447877391875883
+   },
+   {
+    "query_id": "PLAIN-1940",
+    "query": "prolactin",
+    "ndcg_baseline": 0.3589542101716347,
+    "ndcg_treatment": 0.0,
+    "delta": -0.3589542101716347
+   },
+   {
+    "query_id": "PLAIN-3332",
+    "query": "Alcohol Risks vs. Benefits",
+    "ndcg_baseline": 0.7668468355947187,
+    "ndcg_treatment": 0.4080157475003957,
+    "delta": -0.35883108809432296
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "PLAIN-3026",
+    "query": "Vitamin C-Enriched Bacon",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "PLAIN-1151",
+    "query": "factory farming practices",
+    "ndcg_baseline": 0.28762634971412726,
+    "ndcg_treatment": 0.636658712740428,
+    "delta": 0.3490323630263007
+   },
+   {
+    "query_id": "PLAIN-761",
+    "query": "breast pain",
+    "ndcg_baseline": 0.24738635904833417,
+    "ndcg_treatment": 0.4935232796777481,
+    "delta": 0.24613692062941395
+   },
+   {
+    "query_id": "PLAIN-217",
+    "query": "Plant-Based Diets for Psoriasis",
+    "ndcg_baseline": 0.3164618153841291,
+    "ndcg_treatment": 0.5206178632166882,
+    "delta": 0.20415604783255914
+   },
+   {
+    "query_id": "PLAIN-1909",
+    "query": "pork",
+    "ndcg_baseline": 0.6621137423456802,
+    "ndcg_treatment": 0.8482378089219645,
+    "delta": 0.18612406657628433
+   },
+   {
+    "query_id": "PLAIN-2760",
+    "query": "Eating Healthy on a Budget",
+    "ndcg_baseline": 0.17907045092245474,
+    "ndcg_treatment": 0.2868816050519222,
+    "delta": 0.10781115412946743
+   },
+   {
+    "query_id": "PLAIN-3201",
+    "query": "Acne & Cancer Connection",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.1042885296931158,
+    "delta": 0.1042885296931158
+   },
+   {
+    "query_id": "PLAIN-3372",
+    "query": "The Healthiest Sweetener",
+    "ndcg_baseline": 0.21228563115522306,
+    "ndcg_treatment": 0.30531576591727555,
+    "delta": 0.09303013476205249
+   },
+   {
+    "query_id": "PLAIN-541",
+    "query": "American Dental Association",
+    "ndcg_baseline": 0.10086747116627115,
+    "ndcg_treatment": 0.19092086617893467,
+    "delta": 0.09005339501266352
+   },
+   {
+    "query_id": "PLAIN-1288",
+    "query": "grapes",
+    "ndcg_baseline": 0.12987501165334076,
+    "ndcg_treatment": 0.2180164145324244,
+    "delta": 0.08814140287908365
+   },
+   {
+    "query_id": "PLAIN-2991",
+    "query": "Cholesterol and Lower Back Pain",
+    "ndcg_baseline": 0.3065735963827292,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.08027921085181244
+   },
+   {
+    "query_id": "PLAIN-827",
+    "query": "carcinogens",
+    "ndcg_baseline": 0.7058075148678526,
+    "ndcg_treatment": 0.77523873680463,
+    "delta": 0.06943122193677731
+   },
+   {
+    "query_id": "PLAIN-1409",
+    "query": "industrial toxins",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.06943122193677727,
+    "delta": 0.06943122193677727
+   },
+   {
+    "query_id": "PLAIN-2690",
+    "query": "Chronic Headaches and Pork Tapeworms",
+    "ndcg_baseline": 0.4268829114252187,
+    "ndcg_treatment": 0.49472563412080184,
+    "delta": 0.06784272269558311
+   },
+   {
+    "query_id": "PLAIN-2040",
+    "query": "salmon",
+    "ndcg_baseline": 0.5326208815196265,
+    "ndcg_treatment": 0.5988751049740155,
+    "delta": 0.06625422345438903
+   }
+  ]
+ },
+ {
+  "comparison": "global_dense_vs_bm25",
+  "baseline": "bm25",
+  "treatment": "global_dense",
+  "queries": 323,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.3059477620512138,
+    "treatment": 0.31594074924861876,
+    "diff": 0.009992987197404934
+   },
+   "map_at_10": {
+    "baseline": 0.11746545653881037,
+    "treatment": 0.11048378585967285,
+    "diff": -0.006981670679137519
+   },
+   "recall_at_5": {
+    "baseline": 0.11955184895149074,
+    "treatment": 0.11958585040292335,
+    "diff": 3.4001451432619234e-05
+   },
+   "recall_at_10": {
+    "baseline": 0.14862393869522017,
+    "treatment": 0.15498797328057845,
+    "diff": 0.00636403458535828
+   },
+   "recall_at_100": {
+    "baseline": 0.24940638044181146,
+    "treatment": 0.31150992401169303,
+    "diff": 0.06210354356988157
+   },
+   "mrr_at_10": {
+    "baseline": 0.5146149687945354,
+    "treatment": 0.5045579635362917,
+    "diff": -0.010057005258243712
+   },
+   "precision_at_10": {
+    "baseline": 0.2154798761609907,
+    "treatment": 0.24334365325077406,
+    "diff": 0.027863777089783354
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": 0.009992987197404875,
+    "ci95_low": -0.011659269405763981,
+    "ci95_high": 0.0317869971147064,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 115,
+    "queries_regressed": 96,
+    "queries_unchanged": 112,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": 3.400145143261373e-05,
+    "ci95_low": -0.016065099331803154,
+    "ci95_high": 0.016500679838435145,
+    "n_queries": 323,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 78,
+    "queries_regressed": 63,
+    "queries_unchanged": 182,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "PLAIN-1473",
+    "query": "kohlrabi",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "PLAIN-2081",
+    "query": "shelf life",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "PLAIN-1288",
+    "query": "grapes",
+    "ndcg_baseline": 0.7381919257729245,
+    "ndcg_treatment": 0.12987501165334076,
+    "delta": -0.6083169141195837
+   },
+   {
+    "query_id": "PLAIN-792",
+    "query": "cadaverine",
+    "ndcg_baseline": 0.644824486427155,
+    "ndcg_treatment": 0.10086747116627115,
+    "delta": -0.5439570152608838
+   },
+   {
+    "query_id": "PLAIN-2019",
+    "query": "rickets",
+    "ndcg_baseline": 0.46927872602275644,
+    "ndcg_treatment": 0.0,
+    "delta": -0.46927872602275644
+   },
+   {
+    "query_id": "PLAIN-3452",
+    "query": "Bowel Movement Frequency",
+    "ndcg_baseline": 0.5647652605605432,
+    "ndcg_treatment": 0.10218331334064328,
+    "delta": -0.4625819472198999
+   },
+   {
+    "query_id": "PLAIN-2291",
+    "query": "ultra-processed foods",
+    "ndcg_baseline": 0.45221360703148816,
+    "ndcg_treatment": 0.0,
+    "delta": -0.45221360703148816
+   },
+   {
+    "query_id": "PLAIN-1320",
+    "query": "Harvard Physicians’ Study II",
+    "ndcg_baseline": 0.4500112274528523,
+    "ndcg_treatment": 0.0,
+    "delta": -0.4500112274528523
+   },
+   {
+    "query_id": "PLAIN-741",
+    "query": "BPH",
+    "ndcg_baseline": 0.84860265890399,
+    "ndcg_treatment": 0.43735247915031,
+    "delta": -0.41125017975368
+   },
+   {
+    "query_id": "PLAIN-2490",
+    "query": "The Actual Benefit of Diet vs. Drugs",
+    "ndcg_baseline": 0.5386485824602897,
+    "ndcg_treatment": 0.13347537859706934,
+    "delta": -0.4051732038632203
+   },
+   {
+    "query_id": "PLAIN-1794",
+    "query": "Panama",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.6131471927654584,
+    "delta": -0.38685280723454163
+   },
+   {
+    "query_id": "PLAIN-196",
+    "query": "Should We Avoid Titanium Dioxide?",
+    "ndcg_baseline": 0.6691255538181726,
+    "ndcg_treatment": 0.28952298823485745,
+    "delta": -0.3796025655833152
+   },
+   {
+    "query_id": "PLAIN-902",
+    "query": "chlorophyll",
+    "ndcg_baseline": 0.6366824387328317,
+    "ndcg_treatment": 0.2638647595767405,
+    "delta": -0.3728176791560912
+   },
+   {
+    "query_id": "PLAIN-681",
+    "query": "betel nuts",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": -0.36907024642854247
+   },
+   {
+    "query_id": "PLAIN-771",
+    "query": "bronchiolitis obliterans",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.6364391809889587,
+    "delta": -0.3635608190110413
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "PLAIN-1537",
+    "query": "low-carb diets",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.6618313225363274,
+    "delta": 0.6618313225363274
+   },
+   {
+    "query_id": "PLAIN-3026",
+    "query": "Vitamin C-Enriched Bacon",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.6309297535714575,
+    "delta": 0.6309297535714575
+   },
+   {
+    "query_id": "PLAIN-2470",
+    "query": "Is Milk Good for Our Bones?",
+    "ndcg_baseline": 0.10327064981393906,
+    "ndcg_treatment": 0.7205646068602003,
+    "delta": 0.6172939570462612
+   },
+   {
+    "query_id": "PLAIN-3151",
+    "query": "Too Much Iodine Can Be as Bad as Too Little",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.5605909956039745,
+    "delta": 0.5605909956039745
+   },
+   {
+    "query_id": "PLAIN-924",
+    "query": "cocaine",
+    "ndcg_baseline": 0.22009176629808017,
+    "ndcg_treatment": 0.7778721720600673,
+    "delta": 0.5577804057619872
+   },
+   {
+    "query_id": "PLAIN-307",
+    "query": "Vitamin D: Shedding some light on the new recommendations",
+    "ndcg_baseline": 0.2960819109658652,
+    "ndcg_treatment": 0.8194270280062366,
+    "delta": 0.5233451170403713
+   },
+   {
+    "query_id": "PLAIN-882",
+    "query": "Chernobyl",
+    "ndcg_baseline": 0.3589542101716347,
+    "ndcg_treatment": 0.866947989864271,
+    "delta": 0.5079937796926364
+   },
+   {
+    "query_id": "PLAIN-1635",
+    "query": "milk",
+    "ndcg_baseline": 0.5017100640839688,
+    "ndcg_treatment": 1.0,
+    "delta": 0.4982899359160312
+   },
+   {
+    "query_id": "PLAIN-2970",
+    "query": "Preventing Cataracts with Diet",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.497953678815073,
+    "delta": 0.497953678815073
+   },
+   {
+    "query_id": "PLAIN-153",
+    "query": "How Should I Take Probiotics?",
+    "ndcg_baseline": 0.4777832312377697,
+    "ndcg_treatment": 0.9478557351534421,
+    "delta": 0.4700725039156724
+   },
+   {
+    "query_id": "PLAIN-3332",
+    "query": "Alcohol Risks vs. Benefits",
+    "ndcg_baseline": 0.3089016045071428,
+    "ndcg_treatment": 0.7668468355947187,
+    "delta": 0.45794523108757584
+   },
+   {
+    "query_id": "PLAIN-2730",
+    "query": "Anti-Angiogenesis: Cutting Off Tumor Supply Lines",
+    "ndcg_baseline": 0.2831714503645436,
+    "ndcg_treatment": 0.7387717376033456,
+    "delta": 0.45560028723880197
+   },
+   {
+    "query_id": "PLAIN-2600",
+    "query": "Eggs and Arterial Function",
+    "ndcg_baseline": 0.20596467128527832,
+    "ndcg_treatment": 0.6499590469680815,
+    "delta": 0.4439943756828032
+   },
+   {
+    "query_id": "PLAIN-143",
+    "query": "Are Dental X-Rays Safe?",
+    "ndcg_baseline": 0.3239134396887189,
+    "ndcg_treatment": 0.7455891078255447,
+    "delta": 0.4216756681368258
+   },
+   {
+    "query_id": "PLAIN-1929",
+    "query": "prenatal vitamins",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.40853591842579556,
+    "delta": 0.40853591842579556
+   }
+  ]
+ }
+]

@@ -1,0 +1,959 @@
+[
+ {
+  "comparison": "adaptive_vs_fixed",
+  "baseline": "fixed_graph",
+  "treatment": "adaptive_graph",
+  "queries": 703,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.49674328761306535,
+    "treatment": 0.49565713521586746,
+    "diff": -0.0010861523971978926
+   },
+   "map_at_10": {
+    "baseline": 0.4126171284066021,
+    "treatment": 0.4120481383639279,
+    "diff": -0.000568990042674189
+   },
+   "recall_at_5": {
+    "baseline": 0.615931721194879,
+    "treatment": 0.6145092460881935,
+    "diff": -0.0014224751066855834
+   },
+   "recall_at_10": {
+    "baseline": 0.7667140825035562,
+    "treatment": 0.7638691322901849,
+    "diff": -0.002844950213371278
+   },
+   "recall_at_100": {
+    "baseline": 0.9317211948790897,
+    "treatment": 0.9317211948790897,
+    "diff": 0.0
+   },
+   "mrr_at_10": {
+    "baseline": 0.41656788367314684,
+    "treatment": 0.41599889363047254,
+    "diff": -0.0005689900426743
+   },
+   "precision_at_10": {
+    "baseline": 0.07667140825035561,
+    "treatment": 0.07638691322901847,
+    "diff": -0.0002844950213371361
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.0010861523971979123,
+    "ci95_low": -0.00251073162982086,
+    "ci95_high": -6.233819464985979e-05,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 0,
+    "queries_regressed": 4,
+    "queries_unchanged": 699,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.001422475106685633,
+    "ci95_low": -0.004267425320056899,
+    "ci95_high": 0.0,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": false,
+    "queries_improved": 0,
+    "queries_regressed": 1,
+    "queries_unchanged": 702,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "test-international-segiahbarr-con02a",
+    "query": "Majority of states are still undemocratic  While there is a lot of contention over government type, democracy is seen as an aspiration in Western eyes, and African dictators have a history of running ",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.0,
+    "delta": -0.3562071871080222
+   },
+   {
+    "query_id": "test-international-iiahwagit-pro04a",
+    "query": "Poaching is linked to terrorism  Stronger protection of animals should be implemented to reduce the funding for terrorist groups. Certain terrorist organisations use the illegal ivory and horn trade a",
+    "ndcg_baseline": 0.2890648263178879,
+    "ndcg_treatment": 0.0,
+    "delta": -0.2890648263178879
+   },
+   {
+    "query_id": "test-international-eghrhbeusli-con02a",
+    "query": "Prevents a competitor from building a high tech military  The arms ban is very effective in preventing the Chinese military gaining access to the best modern technologies. A convincing code of conduct",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": -0.07446937096537087
+   },
+   {
+    "query_id": "test-politics-cdfsaphgiap-pro02a",
+    "query": "The people are interested in the health of their leader  The health of the leader of the state is an issue that the people and the media inevitably want to know about. There will always be a lot of in",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": -0.04382375083885143
+   }
+  ],
+  "most_improved": []
+ },
+ {
+  "comparison": "fixed_vs_global",
+  "baseline": "global_dense",
+  "treatment": "fixed_graph",
+  "queries": 703,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.5065753859435244,
+    "treatment": 0.49674328761306535,
+    "diff": -0.009832098330459005
+   },
+   "map_at_10": {
+    "baseline": 0.4205169455169456,
+    "treatment": 0.4126171284066021,
+    "diff": -0.007899817110343488
+   },
+   "recall_at_5": {
+    "baseline": 0.631578947368421,
+    "treatment": 0.615931721194879,
+    "diff": -0.015647226173541973
+   },
+   "recall_at_10": {
+    "baseline": 0.7823613086770982,
+    "treatment": 0.7667140825035562,
+    "diff": -0.015647226173541973
+   },
+   "recall_at_100": {
+    "baseline": 0.9743954480796586,
+    "treatment": 0.9317211948790897,
+    "diff": -0.042674253200568946
+   },
+   "mrr_at_10": {
+    "baseline": 0.42446205604100345,
+    "treatment": 0.41656788367314684,
+    "diff": -0.007894172367856611
+   },
+   "precision_at_10": {
+    "baseline": 0.07823613086770981,
+    "treatment": 0.07667140825035561,
+    "diff": -0.0015647226173542
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.00983209833045903,
+    "ci95_low": -0.018520939764803002,
+    "ci95_high": -0.0023653125360474187,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 22,
+    "queries_regressed": 17,
+    "queries_unchanged": 664,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.015647226173541962,
+    "ci95_low": -0.025604551920341393,
+    "ci95_high": -0.005689900426742532,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 3,
+    "queries_regressed": 14,
+    "queries_unchanged": 686,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "test-free-speech-debate-fsaphgiap-con04a",
+    "query": "Damages diplomacy to be too open  Diplomacy can be very personal; diplomatic initiatives are often the result of a single person, and the individual leader is necessary to conclude negotiations. Trans",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-free-speech-debate-ldhwbmclg-con02a",
+    "query": "A ban will be ineffective  A new legal prohibition on any type of behaviour or conduct can only be set up by investing large amounts of political capital in order to transform vague proposals into a l",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-iwiaghbss-pro03a",
+    "query": "Shared sovereignty  If there are no countries willing to cede complete sovereignty over territory then some kind of shared sovereignty could be considered. “This conferred jurisdiction must include ri",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-law-sdiflhrdffe-con03a",
+    "query": "The offer of amnesty allows home governments to discredit bloggers and paint them as foreign agents of disruption  When Western states and democracies offer amnesty to bloggers under threat from their",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-science-sghwbdgmo-pro02a",
+    "query": "Genetically modified food is a danger to eco-systems.  GM foods also present a danger to the environment. The use of these crops is causing fewer strains to be planted. In a traditional ecosystem base",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-gsciidffe-con01a",
+    "query": "The international system is based on equality and non-interference  Relations between states are based upon “the principle of the sovereign equality of all its Members.” The UN Charter emphasises “Not",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "test-law-ilppppghb-pro01a",
+    "query": "Self-determination is necessary to protect minority cultures.  Many states in the modern world do not respect the rights of minorities or actively seek to dilute and subsume them into the majority cul",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "test-politics-cdmaggpdgdf-pro03a",
+    "query": "Transparency helps reduce international tension  Transparency is necessary in international relations. States need to know what each other are doing to assess their actions. Without any transparency t",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "test-international-iighbopcc-pro01a",
+    "query": "The hard part is the cutting of emissions  The problem with a non-binding agreement, even one where the targets have been submitted by the governments themselves is exactly that it is non-binding. If ",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-law-sdiflhrdffe-con04a",
+    "query": "Democracies should be wary of meddling in the internal affairs of other countries  Authoritarian countries tend to guard their sovereignty jealously and will not take kindly to what they would conside",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-politics-cdfsaphgiap-con04a",
+    "query": "Damages diplomacy to be too open  Diplomacy can be very personal; diplomatic initiatives are often the result of a single person, and the individual leader is necessary to conclude negotiations. Trans",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-politics-epvhbfsmsaop-pro02a",
+    "query": "This is an unjust use of unelected power  Politicians want endorsements because they know it will bring votes; it is estimated that Oprah’s endorsement of Obama in the Democratic Primary of 2008 broug",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-international-gsciidffe-pro03a",
+    "query": "It is domestic not international legitimacy that matters  What matters for a state when it comes to foreign policy, and therefore with helping to circumvent censorship, is whether the policy is consid",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.0,
+    "delta": -0.43067655807339306
+   },
+   {
+    "query_id": "test-environment-aiahwagit-con04a",
+    "query": "Heavy handed approaches do not solve the motivations for poaching  Creating tougher responses to poaching will not deter poachers as they fail to recognise the motivations for illegal hunting. Many hu",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.0,
+    "delta": -0.38685280723454163
+   },
+   {
+    "query_id": "test-health-hpehwadvoee-pro02a",
+    "query": "The guilt may be too heavy a burden for the relative who could have saved a life  It is not fair to ask of a parent to live with the guilt of having been able to save their child and not doing so. Bel",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.0,
+    "delta": -0.3562071871080222
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "test-free-speech-debate-radhbsshr-con04a",
+    "query": "Masculinity  The problem with leaving the painting, the spear, up is that to many young men President Zuma symbolises what excessive wealth can ‘buy’ you. He is the figure head of the nation, the pinn",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6131471927654584
+   },
+   {
+    "query_id": "test-philosophy-pphbclsbs-pro05a",
+    "query": "The argument is about practicality and the balancing of risks.  It would be incredibly disingenuous of the opposition if they did not concede that the dangers are great and that something must be done",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "test-international-miasimyhw-pro01a",
+    "query": "Free movement will provide benefits for productivity.  A free labour market provides a space for sharing (knowledge, ideas, and socio-cultural traditions), competing, and sustaining efficiency in deve",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "test-law-lghwpcctcc-con02a",
+    "query": "Invoking public reaction can damage the lives of those concerned in the court case.  Proposition may well argue that televising court cases gains a sense of ‘sympathy’ and justice for the victims of t",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.3333333333333333
+   },
+   {
+    "query_id": "test-health-hpehwadvoee-pro03a",
+    "query": "The right to individual self determination is a fundamental human right, equal to that of life itself  It is a fundamental principle of the human being is that every human is born autonomous. Therefor",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.3333333333333333
+   },
+   {
+    "query_id": "test-society-epiasghbf-pro02a",
+    "query": "The effects of unemployment  Unemployment has been linked to several health and wellbeing effects. Firstly, the psychological impact of unemployment involve a range of issues - from confidence to ment",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-international-iiahwagit-pro04a",
+    "query": "Poaching is linked to terrorism  Stronger protection of animals should be implemented to reduce the funding for terrorist groups. Certain terrorist organisations use the illegal ivory and horn trade a",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-economy-epiasghbf-pro02a",
+    "query": "The effects of unemployment  Unemployment has been linked to several health and wellbeing effects. Firstly, the psychological impact of unemployment involve a range of issues - from confidence to ment",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-economy-epehwmrbals-pro04a",
+    "query": "Historically the donor of Foreign Aid has always set down pre-requisites  When a donor nation parts with foreign aid for development to a nation, it must always choose who it prefers to give it to as ",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-international-eghrhbeusli-con02a",
+    "query": "Prevents a competitor from building a high tech military  The arms ban is very effective in preventing the Chinese military gaining access to the best modern technologies. A convincing code of conduct",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.11521168128766429
+   },
+   {
+    "query_id": "test-philosophy-elkosmj-pro03a",
+    "query": "Killing one person is the rational choice  The philosopher John Rawls came up with a thought experiment to discover the right way to organize a society. When people talk about how society should be or",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.5,
+    "delta": 0.06932344192660694
+   },
+   {
+    "query_id": "test-free-speech-debate-magghbcrg-pro01a",
+    "query": "Community radio gives voices to the people rather than imposing those of the powerful.  The events of the Arab Spring (and previous events such as the revolutions of 1989) have shown that effective me",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.5,
+    "delta": 0.06932344192660694
+   },
+   {
+    "query_id": "test-international-segiahbarr-con02a",
+    "query": "Majority of states are still undemocratic  While there is a lot of contention over government type, democracy is seen as an aspiration in Western eyes, and African dictators have a history of running ",
+    "ndcg_baseline": 0.3010299956639812,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.055177191444040985
+   },
+   {
+    "query_id": "test-philosophy-pppthbtcb-pro03a",
+    "query": "Terrorism can bring attention  Terrorism can raise the profile of a neglected cause. The hi-jackings of the 1970s and 1980s brought publicity to the Palestinian cause, helping to bring it to the atten",
+    "ndcg_baseline": 0.2890648263178879,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.044268507015445435
+   },
+   {
+    "query_id": "test-politics-cdfsaphgiap-pro02a",
+    "query": "The people are interested in the health of their leader  The health of the leader of the state is an issue that the people and the media inevitably want to know about. There will always be a lot of in",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.04382375083885143
+   }
+  ]
+ },
+ {
+  "comparison": "adaptive_vs_global",
+  "baseline": "global_dense",
+  "treatment": "adaptive_graph",
+  "queries": 703,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.5065753859435244,
+    "treatment": 0.49565713521586746,
+    "diff": -0.010918250727656897
+   },
+   "map_at_10": {
+    "baseline": 0.4205169455169456,
+    "treatment": 0.4120481383639279,
+    "diff": -0.008468807153017677
+   },
+   "recall_at_5": {
+    "baseline": 0.631578947368421,
+    "treatment": 0.6145092460881935,
+    "diff": -0.017069701280227556
+   },
+   "recall_at_10": {
+    "baseline": 0.7823613086770982,
+    "treatment": 0.7638691322901849,
+    "diff": -0.01849217638691325
+   },
+   "recall_at_100": {
+    "baseline": 0.9743954480796586,
+    "treatment": 0.9317211948790897,
+    "diff": -0.042674253200568946
+   },
+   "mrr_at_10": {
+    "baseline": 0.42446205604100345,
+    "treatment": 0.41599889363047254,
+    "diff": -0.008463162410530911
+   },
+   "precision_at_10": {
+    "baseline": 0.07823613086770981,
+    "treatment": 0.07638691322901847,
+    "diff": -0.0018492176386913362
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": -0.010918250727656943,
+    "ci95_low": -0.019538617811123822,
+    "ci95_high": -0.003451481037586037,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 19,
+    "queries_regressed": 18,
+    "queries_unchanged": 666,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": -0.017069701280227598,
+    "ci95_low": -0.02702702702702703,
+    "ci95_high": -0.007112375533428165,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 2,
+    "queries_regressed": 14,
+    "queries_unchanged": 687,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "test-free-speech-debate-fsaphgiap-con04a",
+    "query": "Damages diplomacy to be too open  Diplomacy can be very personal; diplomatic initiatives are often the result of a single person, and the individual leader is necessary to conclude negotiations. Trans",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-free-speech-debate-ldhwbmclg-con02a",
+    "query": "A ban will be ineffective  A new legal prohibition on any type of behaviour or conduct can only be set up by investing large amounts of political capital in order to transform vague proposals into a l",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-iwiaghbss-pro03a",
+    "query": "Shared sovereignty  If there are no countries willing to cede complete sovereignty over territory then some kind of shared sovereignty could be considered. “This conferred jurisdiction must include ri",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-law-sdiflhrdffe-con03a",
+    "query": "The offer of amnesty allows home governments to discredit bloggers and paint them as foreign agents of disruption  When Western states and democracies offer amnesty to bloggers under threat from their",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-science-sghwbdgmo-pro02a",
+    "query": "Genetically modified food is a danger to eco-systems.  GM foods also present a danger to the environment. The use of these crops is causing fewer strains to be planted. In a traditional ecosystem base",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-gsciidffe-con01a",
+    "query": "The international system is based on equality and non-interference  Relations between states are based upon “the principle of the sovereign equality of all its Members.” The UN Charter emphasises “Not",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "test-law-ilppppghb-pro01a",
+    "query": "Self-determination is necessary to protect minority cultures.  Many states in the modern world do not respect the rights of minorities or actively seek to dilute and subsume them into the majority cul",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "test-politics-cdmaggpdgdf-pro03a",
+    "query": "Transparency helps reduce international tension  Transparency is necessary in international relations. States need to know what each other are doing to assess their actions. Without any transparency t",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 0.0,
+    "delta": -0.6309297535714575
+   },
+   {
+    "query_id": "test-international-iighbopcc-pro01a",
+    "query": "The hard part is the cutting of emissions  The problem with a non-binding agreement, even one where the targets have been submitted by the governments themselves is exactly that it is non-binding. If ",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-law-sdiflhrdffe-con04a",
+    "query": "Democracies should be wary of meddling in the internal affairs of other countries  Authoritarian countries tend to guard their sovereignty jealously and will not take kindly to what they would conside",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-politics-cdfsaphgiap-con04a",
+    "query": "Damages diplomacy to be too open  Diplomacy can be very personal; diplomatic initiatives are often the result of a single person, and the individual leader is necessary to conclude negotiations. Trans",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-politics-epvhbfsmsaop-pro02a",
+    "query": "This is an unjust use of unelected power  Politicians want endorsements because they know it will bring votes; it is estimated that Oprah’s endorsement of Obama in the Democratic Primary of 2008 broug",
+    "ndcg_baseline": 0.5,
+    "ndcg_treatment": 0.0,
+    "delta": -0.5
+   },
+   {
+    "query_id": "test-international-gsciidffe-pro03a",
+    "query": "It is domestic not international legitimacy that matters  What matters for a state when it comes to foreign policy, and therefore with helping to circumvent censorship, is whether the policy is consid",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.0,
+    "delta": -0.43067655807339306
+   },
+   {
+    "query_id": "test-environment-aiahwagit-con04a",
+    "query": "Heavy handed approaches do not solve the motivations for poaching  Creating tougher responses to poaching will not deter poachers as they fail to recognise the motivations for illegal hunting. Many hu",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.0,
+    "delta": -0.38685280723454163
+   },
+   {
+    "query_id": "test-health-hpehwadvoee-pro02a",
+    "query": "The guilt may be too heavy a burden for the relative who could have saved a life  It is not fair to ask of a parent to live with the guilt of having been able to save their child and not doing so. Bel",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.0,
+    "delta": -0.3562071871080222
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "test-free-speech-debate-radhbsshr-con04a",
+    "query": "Masculinity  The problem with leaving the painting, the spear, up is that to many young men President Zuma symbolises what excessive wealth can ‘buy’ you. He is the figure head of the nation, the pinn",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 1.0,
+    "delta": 0.6131471927654584
+   },
+   {
+    "query_id": "test-philosophy-pphbclsbs-pro05a",
+    "query": "The argument is about practicality and the balancing of risks.  It would be incredibly disingenuous of the opposition if they did not concede that the dangers are great and that something must be done",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "test-international-miasimyhw-pro01a",
+    "query": "Free movement will provide benefits for productivity.  A free labour market provides a space for sharing (knowledge, ideas, and socio-cultural traditions), competing, and sustaining efficiency in deve",
+    "ndcg_baseline": 0.6309297535714575,
+    "ndcg_treatment": 1.0,
+    "delta": 0.36907024642854247
+   },
+   {
+    "query_id": "test-law-lghwpcctcc-con02a",
+    "query": "Invoking public reaction can damage the lives of those concerned in the court case.  Proposition may well argue that televising court cases gains a sense of ‘sympathy’ and justice for the victims of t",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.3333333333333333
+   },
+   {
+    "query_id": "test-health-hpehwadvoee-pro03a",
+    "query": "The right to individual self determination is a fundamental human right, equal to that of life itself  It is a fundamental principle of the human being is that every human is born autonomous. Therefor",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.3333333333333333
+   },
+   {
+    "query_id": "test-society-epiasghbf-pro02a",
+    "query": "The effects of unemployment  Unemployment has been linked to several health and wellbeing effects. Firstly, the psychological impact of unemployment involve a range of issues - from confidence to ment",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-economy-epiasghbf-pro02a",
+    "query": "The effects of unemployment  Unemployment has been linked to several health and wellbeing effects. Firstly, the psychological impact of unemployment involve a range of issues - from confidence to ment",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-economy-epehwmrbals-pro04a",
+    "query": "Historically the donor of Foreign Aid has always set down pre-requisites  When a donor nation parts with foreign aid for development to a nation, it must always choose who it prefers to give it to as ",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": 0.2890648263178879
+   },
+   {
+    "query_id": "test-philosophy-elkosmj-pro03a",
+    "query": "Killing one person is the rational choice  The philosopher John Rawls came up with a thought experiment to discover the right way to organize a society. When people talk about how society should be or",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.5,
+    "delta": 0.06932344192660694
+   },
+   {
+    "query_id": "test-free-speech-debate-magghbcrg-pro01a",
+    "query": "Community radio gives voices to the people rather than imposing those of the powerful.  The events of the Arab Spring (and previous events such as the revolutions of 1989) have shown that effective me",
+    "ndcg_baseline": 0.43067655807339306,
+    "ndcg_treatment": 0.5,
+    "delta": 0.06932344192660694
+   },
+   {
+    "query_id": "test-philosophy-pppthbtcb-pro03a",
+    "query": "Terrorism can bring attention  Terrorism can raise the profile of a neglected cause. The hi-jackings of the 1970s and 1980s brought publicity to the Palestinian cause, helping to bring it to the atten",
+    "ndcg_baseline": 0.2890648263178879,
+    "ndcg_treatment": 0.3333333333333333,
+    "delta": 0.044268507015445435
+   },
+   {
+    "query_id": "test-economy-thsptr-pro02a",
+    "query": "Those who have more owe more to the state  Wealthier people benefit from the state more than do those who are worse off for two reasons. First, they have more to lose in the absence of the state. With",
+    "ndcg_baseline": 0.38685280723454163,
+    "ndcg_treatment": 0.43067655807339306,
+    "delta": 0.04382375083885143
+   },
+   {
+    "query_id": "test-international-eghrhbeusli-con02a",
+    "query": "Prevents a competitor from building a high tech military  The arms ban is very effective in preventing the Chinese military gaining access to the best modern technologies. A convincing code of conduct",
+    "ndcg_baseline": 0.31546487678572877,
+    "ndcg_treatment": 0.3562071871080222,
+    "delta": 0.04074231032229342
+   },
+   {
+    "query_id": "test-international-iiahwagit-con02a",
+    "query": "Fewer human deaths  Fewer large beasts will lead to fewer deaths in Africa. Some endangered animals are aggressive and will attack humans. Hippopotamuses kill in excess of three hundred humans a year ",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.030645620126519446
+   },
+   {
+    "query_id": "test-international-emephsate-pro01a",
+    "query": "The admission of Turkey will help the economy of the EU develop more dynamically.  Turkey has a booming economy with one of the fastest growing economies of the world [1] . Turkey has a young, skilled",
+    "ndcg_baseline": 0.3562071871080222,
+    "ndcg_treatment": 0.38685280723454163,
+    "delta": 0.030645620126519446
+   }
+  ]
+ },
+ {
+  "comparison": "global_dense_vs_bm25",
+  "baseline": "bm25",
+  "treatment": "global_dense",
+  "queries": 703,
+  "metric_deltas": {
+   "ndcg_at_10": {
+    "baseline": 0.45602969439835106,
+    "treatment": 0.5065753859435244,
+    "diff": 0.0505456915451733
+   },
+   "map_at_10": {
+    "baseline": 0.3696674117726749,
+    "treatment": 0.4205169455169456,
+    "diff": 0.05084953374427065
+   },
+   "recall_at_5": {
+    "baseline": 0.5590327169274538,
+    "treatment": 0.631578947368421,
+    "diff": 0.0725462304409672
+   },
+   "recall_at_10": {
+    "baseline": 0.7354196301564723,
+    "treatment": 0.7823613086770982,
+    "diff": 0.04694167852062592
+   },
+   "recall_at_100": {
+    "baseline": 0.9431009957325747,
+    "treatment": 0.9743954480796586,
+    "diff": 0.031294452347083945
+   },
+   "mrr_at_10": {
+    "baseline": 0.37313667050509153,
+    "treatment": 0.42446205604100345,
+    "diff": 0.05132538553591193
+   },
+   "precision_at_10": {
+    "baseline": 0.07354196301564722,
+    "treatment": 0.07823613086770981,
+    "diff": 0.004694167852062586
+   }
+  },
+  "bootstrap": {
+   "ndcg_at_10": {
+    "mean_diff": 0.05054569154517334,
+    "ci95_low": 0.025173999190055293,
+    "ci95_high": 0.07782635241253098,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 280,
+    "queries_regressed": 198,
+    "queries_unchanged": 225,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   },
+   "recall_at_5": {
+    "mean_diff": 0.07254623044096728,
+    "ci95_low": 0.034139402560455195,
+    "ci95_high": 0.11379800853485064,
+    "n_queries": 703,
+    "resamples": 1000,
+    "seed": 13,
+    "excludes_zero": true,
+    "queries_improved": 128,
+    "queries_regressed": 77,
+    "queries_unchanged": 498,
+    "note": "paired percentile bootstrap, resampling unit = query"
+   }
+  },
+  "most_regressed": [
+   {
+    "query_id": "test-health-hdond-con01a",
+    "query": "The right to access healthcare is absolute  Healthcare is a primary means by which individuals actualize their right to be protected against an untimely death. The ability to access healthcare, to not",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-aahwstdrtfm-pro02a",
+    "query": "Economically beneficial  Switching diplomatic recognition to China can be economically beneficial. A country that changes recognition is both likely to be given a reward for the change and then be muc",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-bldimehbn-pro01a",
+    "query": "Broadcasters almost never show scenes of torture or torment because they know this will cause offence, the same principle should apply here.  Journalists and editors use their judgement all the time o",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-international-miasimyhw-pro03a",
+    "query": "Policies towards a free labour market will create unity.  National borders are a result of Africa’s colonial history. The boundaries constructed do not reflect meaning or unite ethnic groups across th",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-law-hrpepthwuto-pro01a",
+    "query": "In the event of an imminent attack it is only reasonable to use force to find information  If authorities have good reason to believe that there is a realistic threat of a nuclear explosion in downtow",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-philosophy-npppmhwup-con03a",
+    "query": "Affirmative action will not work  The underlying issue which affirmative action tries to gloss over is the embedded social problems which put the poor and ethnic monitories in continual disadvantages ",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-philosophy-pppthbtcb-con01a",
+    "query": "Harm to others is never legitimate  Even in cases of suppression and deprivation of human rights, it is not justified to harm others outside the law. Considering acts of terror, there are three possib",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-politics-dhbanhrnw-con04a",
+    "query": "Possessing nuclear weapons will be counter to the peaceful interests of states  Most states will not benefit at all from possessing nuclear weapons. Developing a nuclear deterrent is seen in the inter",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-society-simhbrasnba-con03a",
+    "query": "We must practice what we preach  Democratic nations preach the language of freedom, human rights and justice. They encourage those who live under oppression to oppose their rulers and work towards the",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.0,
+    "delta": -1.0
+   },
+   {
+    "query_id": "test-philosophy-pppthbtcb-pro03a",
+    "query": "Terrorism can bring attention  Terrorism can raise the profile of a neglected cause. The hi-jackings of the 1970s and 1980s brought publicity to the Palestinian cause, helping to bring it to the atten",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": -0.7109351736821121
+   },
+   {
+    "query_id": "test-politics-oapdhwinkp-con03a",
+    "query": "Ignoring North Korea wont resolve the situation  While the great powers can try to keep on with business as usual how will this be helpful? The situation is unstable and needs to be resolved which is ",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": -0.7109351736821121
+   },
+   {
+    "query_id": "test-politics-ypppdghwid-pro02a",
+    "query": "Imposing democracy can be a way to support individuals unable to fight for democracy themselves.  If the people within a nation want democracy, it is not wrong -- indeed it may even be morally require",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.2890648263178879,
+    "delta": -0.7109351736821121
+   },
+   {
+    "query_id": "test-international-miasimyhw-pro02a",
+    "query": "Migration is 'developmental'.  Recent reports by the HDR (2009) and WDR (2009) have shown migration is a means of development – free movement has the power to alleviate poverty, enable markets, and co",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.3010299956639812,
+    "delta": -0.6989700043360187
+   },
+   {
+    "query_id": "test-law-cppshbcjsfm-pro01a",
+    "query": "Rehabilitation Is A Better General Justifying Aim for Punishment  Rehabilitation is the most valuable ideological justification for imprisonment, for it alone promotes the humanising belief in the not",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.3010299956639812,
+    "delta": -0.6989700043360187
+   },
+   {
+    "query_id": "test-religion-yercfrggms-pro03a",
+    "query": "If there were a God there would be irrefutable evidence of His existence and people would feel compelled to belief by the fact of it:  Many people do not believe in God, and the ranks of atheists are ",
+    "ndcg_baseline": 1.0,
+    "ndcg_treatment": 0.3010299956639812,
+    "delta": -0.6989700043360187
+   }
+  ],
+  "most_improved": [
+   {
+    "query_id": "test-society-mmcpsgfhbf-pro02a",
+    "query": "Porn is inherently dehumanising  Pornography necessarily objectifies people: it presents a sexual desire, an urge, which is immediately attended by another person, often performing acts which we would",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-science-dssghsdmd-pro01a",
+    "query": "As a matter of principle, every country, including the United States, has the right to defend itself to the best of its technological and economic ability  The nation-state is the fundamental building",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-religion-cmrsgfhbr-con03a",
+    "query": "Any body of values that claims to respect the rights of the individual must recognise the right of a woman to choose  Even the doctrines of the Church accepts that pregnancy is not, in and of itself, ",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-politics-glghssi-con03a",
+    "query": "Scotland needs English economic muscle as through the Barnett formula England, especially the Southeast effectively subsidizes the rest of the UK in general and Scotland in particular  The Barnett est",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-international-gmehwasr-con01a",
+    "query": "Sovereignty and non intervention in internal affairs  It is a clear international rule that nations are sovereign and other states are simply not allowed to be making interventions into another countr",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-international-ehbfe-con03a",
+    "query": "The concept of federalism lacks political support  Euroscepticism is highest in Latvia, the United Kingdom, and Hungary, with only 25%–32% viewing membership as a good thing. Belief that the citizen's",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-international-aahwstdrtfm-pro01a",
+    "query": "PRC is clearly the China that matters  The Chinese civil war is over, and it is clear that it is the People’s Republic that has won. The 1992 consensus (though the term was coined later) between Taiwa",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-health-dhpelhbass-con03a",
+    "query": "Only God can give and take away life  Life is Sacred so no one has the right to take a life, this includes ones own. As a result both suicide and assisted suicide are wrong. There are many passages wi",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-free-speech-debate-nshbcsbawc-con02a",
+    "query": "Both employers acted out of concern for the interests of their clients, employees should respect that.  Employers don’t introduce rules because it’s fun but, rather, because they serve a purpose. Ms. ",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-free-speech-debate-magghbcrg-con02a",
+    "query": "Radio is yesterday’s technology.  Proposition is right to point out the role that has traditionally been filled by relatively small scale radio – providing a relatively cheap method of getting in touc",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-environment-chbwtlgcc-pro04a",
+    "query": "Consequences of increased GHGs  Increased GHGs in the atmosphere have numerous significant consequences:  -glaciers, ice sheets, and perma frost will continue to melt. This will increase water levels,",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-economy-eptpghdtre-pro02a",
+    "query": "Historically Democrats have presided over more economic stability whereas the GOP is the party of boom and Bust  During the past 60 years Democrats have been considerably more likely to preside over a",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-economy-eptpghdtre-con02a",
+    "query": "Republicans more enthusiastically support market capitalism  A free market is at the core of many of the other freedoms we enjoy. When government gets too involved in the running of commerce – whether",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-digital-freedoms-aihbiahr-con04a",
+    "query": "Internet access cannot be a human right when it is not available to all.  If human rights are inalienable and inherent in humans then no technology can be a human right as not everyone can ever expect",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   },
+   {
+    "query_id": "test-culture-mmciahbans-con02a",
+    "query": "Prohibition is counterproductive  As tempting as it is to feel that banning is the solution to problems, it doesn’t work. Almost all states prohibits certain drugs, but that does not stop them being u",
+    "ndcg_baseline": 0.0,
+    "ndcg_treatment": 1.0,
+    "delta": 1.0
+   }
+  ]
+ }
+]
