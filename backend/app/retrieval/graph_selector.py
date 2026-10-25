@@ -19,6 +19,7 @@ class Candidate:
     origin: str  # seed | co_access | sibling | hierarchy
     via: str | None = None
     score: float | None = None
+    stage: int | None = None  # progressive expansion: the stage in which the module was searched
 
 
 def _is_content(g: nx.MultiGraph, m: str) -> bool:

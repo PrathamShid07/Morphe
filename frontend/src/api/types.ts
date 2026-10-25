@@ -116,8 +116,11 @@ export interface ModuleInfo {
   last_adapted_at: string | null
   last_change_op: string | null
   profile_status: string
+  capacity_threshold?: number
+  utilization?: number | null
 }
 export interface ModuleDetail extends ModuleInfo {
+  architecture_version?: string | null
   parent: ModuleInfo | null
   neighbors: { module_id: string; name: string | null; relation_type: string; weight: number; co_access_count: number; direction: string; record_count: number }[]
   memories: Memory[]
@@ -129,20 +132,21 @@ export interface GraphNode {
   id: string
   type: string
   position: { x: number; y: number }
-  data: { label: string; recordCount: number; parentId: string | null; isContainer: boolean; lastChangeOp: string | null; lastChangeAt: string | null }
+  data: { label: string; recordCount: number; parentId: string | null; isContainer: boolean; lastChangeOp: string | null; lastChangeAt: string | null; utilization?: number | null }
 }
 export interface GraphEdge {
   id: string
   source: string
   target: string
   label: string
-  data: { relationType: "hierarchy" | "co_access"; weight: number; coAccessCount: number; createdAt: string | null }
+  data: { relationType: "hierarchy" | "co_access"; weight: number; coAccessCount: number; createdAt: string | null; evidence?: Record<string, unknown>; operationId?: string | null }
 }
 export interface GraphData {
   nodes: GraphNode[]
   edges: GraphEdge[]
   architecture_version: string | null
   counts: { nodes: number; edges: number }
+  capacity_threshold?: number
 }
 
 export interface QueryResult {
@@ -154,8 +158,38 @@ export interface QueryResult {
   source_name: string | null
   section?: string | null
 }
+export type QueryMode = "graph" | "global" | "progressive" | "soft"
+export interface ProgressiveStage {
+  stage: number
+  kind: "seed" | "expansion"
+  policy: string
+  modules: { module_id: string; name: string; profile_rank: number; profile_score: number; records: number }[]
+  new_candidates: number
+  cumulative_candidates: number
+  hits_returned: number
+  best_score: number | null
+  kth_score: number | null
+  top_k_changed: boolean | null
+  new_in_top_k: number | null
+  search_ms: number
+  decision: string
+}
+export interface SoftResultTrace {
+  memory_id: string; module_id: string; module_name: string; dense_score: number; dense_rank: number
+  profile_score: number | null; profile_rank: number | null; profile_component: number | null
+  graph_distance: number | null; graph_component: number; prior: number; prior_centered: number; score_shift: number
+  final_score: number; final_rank: number; change: "promoted" | "demoted" | "unchanged"; reason: string
+}
 export interface Trace {
   mode: string
+  strategy?: string
+  embedding_ms?: number | null
+  timings_ms?: Record<string, number>
+  searched_modules?: { module_id: string; name: string; stage: number | null; origin: string; records: number }[]
+  result_modules?: string[]
+  stages?: ProgressiveStage[]
+  progressive?: { stop_reason: string; stop_explanation: string; stages_run: number; modules_searched: number; modules_total: number; policy: string; stability_k: number; patience: number; fallback_on_budget: boolean; unsettled_at_stop: boolean; budget_modules: number; max_steps: number }
+  soft?: { weight: number; graph_share: number; pool_size: number; seed_modules: string[]; graph_depth: number; min_coaccess_observations: number; pool_mean_prior: number; formula: string; promoted: number; demoted: number; unchanged: number; top_k_membership_changed: boolean; full_global_search: boolean; results: SoftResultTrace[] }
   seed_modules: { module_id: string; name: string; score: number }[]
   candidate_modules: { module_id: string; name: string; origin: string; via: string | null; via_name: string | null; record_count: number }[]
   expanded_modules: string[]
@@ -430,6 +464,7 @@ export interface EvalDataset {
   min_eval_queries: number
   thresholds: Record<string, number | boolean>
   meta: { name?: string; label_provenance?: string }
+  sample?: { query_id: string; query: string; split: string; tags: string[]; relevant: number }[]
 }
 export interface EvalRun {
   run_id: string
@@ -567,3 +602,99 @@ export interface BenchmarkResults {
   note?: string
 }
 export interface BenchmarkRunDetail { run_id: string; job: BenchmarkJob | null; manifests: Record<string, BenchmarkManifest> }
+
+// ---------------------------------------------------------------------------------- strategy comparison (live architecture)
+export type StrategyKey = "global" | "graph" | "progressive" | "soft"
+export interface CompareResult { rank: number; memory_id: string; score: number; module_id: string; module_name: string; source_name: string | null; text: string; relevant: boolean | null; dense_score: number | null }
+export interface CompareStrategy {
+  strategy: StrategyKey
+  label: string
+  latency_ms: number
+  embedding_ms: number
+  timings_ms: Record<string, number>
+  candidate_count: number
+  eligible_candidates: number
+  candidate_pool_reduction: number | null
+  fallback_used: boolean
+  fallback_reason: string | null
+  seed_modules: { module_id: string; name: string; score: number }[]
+  searched_modules: { module_id: string; name: string; origin: string; stage: number | null }[]
+  stages: ProgressiveStage[]
+  strategy_details: { progressive?: NonNullable<Trace["progressive"]>; soft?: NonNullable<Trace["soft"]> }
+  results: CompareResult[]
+  result_modules: string[]
+  metrics?: { recall_at_k: number; mrr: number; ndcg_at_10: number; precision_at_k: number; map_at_10: number; k: number }
+  relevant_retrieved?: string[]
+  relevant_missed?: string[]
+  relevant_excluded_by_routing?: { memory_id: string; module_id: string; module_name: string; text_preview: string }[]
+}
+export interface StrategyComparison {
+  query: string
+  query_id: string | null
+  top_k: number
+  labeled: boolean
+  architecture_version: string | null
+  active_records: number
+  strategies: Partial<Record<StrategyKey, CompareStrategy>>
+  relevant_memories: { memory_id: string; module_id: string; module_name: string; text_preview: string }[]
+  notes: string[]
+}
+
+// ----------------------------------------------------------------------------------------- strategy benchmark artifacts
+export type StrategyName = "global_dense" | "fixed_graph" | "progressive" | "soft"
+export type StrategyGroup = "validation" | "test"
+export interface StrategyRunSummary { run_id: string; status: string; created_at: string; finished_at?: string; datasets: string[]; evaluated: Record<string, string[]>; smoke: boolean; frozen: boolean }
+export interface ProgressiveConfig { policy: string; patience: number; step: number; seed_modules: number; max_modules: number; max_steps: number; fallback_on_budget: boolean }
+export interface SoftConfig { weight: number; share: number; candidate_pool: number; seed_modules: number; graph_depth: number }
+export interface StrategyRunDetail {
+  manifest: { run_id: string; status: string; datasets: string[]; seed: number; smoke: boolean; created_at: string; finished_at?: string; architecture: string; frozen_config_sha256?: string
+    environment?: { platform?: string; torch_device?: string; embedding_model?: string; packages?: Record<string, string | null> }
+    dataset_info?: Record<string, { documents: number; modules: number; official_test_split: boolean; split_sizes: Record<string, number> }> }
+  server_latency?: ServerLatency
+  frozen_config?: { frozen_at: string; progressive: ProgressiveConfig; soft: SoftConfig; selected_from: string; selection_rules: Record<string, string>; code_sha256: Record<string, string> }
+  selection?: {
+    progressive: { selected: { policy: string; patience: number; step: number }; note: string; table: { config: { policy: string; patience: number; step: number }; macro_ndcg: number; macro_work_share: number; non_inferior: boolean; ndcg_delta_vs_global: Record<string, number> }[] }
+    soft: { selected: { weight: number; share: number }; reliable_gain: boolean; note: string; table: { config: { weight: number; share: number }; macro_ndcg: number; ndcg_delta_vs_dense: Record<string, number> }[]
+      bootstrap_vs_weight_zero_on_validation: Record<string, Bootstrap> }
+  }
+}
+export interface ServerLatency {
+  deployment: string
+  group: string
+  queries: number
+  repetitions: number
+  datasets: Record<string, { documents: number; queries: number; strategies: Record<StrategyName, { retrieval_p50_ms: number; retrieval_p95_ms: number; retrieval_mean_ms: number; top10_identical_to_local_qdrant: string }> }>
+}
+export interface StrategyLatency {
+  queries: number
+  retrieval: { p50_ms: number; p95_ms: number; mean_ms: number }
+  end_to_end: { p50_ms: number; p95_ms: number; mean_ms: number }
+  query_embedding: { p50_ms: number; p95_ms: number; mean_ms: number }
+  stage_seed?: { mean_ms: number }; stage_expand?: { mean_ms: number }; stage_search?: { mean_ms: number }; stage_rank?: { mean_ms: number }; stage_fallback?: { mean_ms: number }
+  mean_eligible_candidates: number
+  candidate_pool_reduction_vs_corpus: number | null
+  mean_candidates_incl_fallback: number
+  fallback_rate: number
+}
+export interface StrategyDiag {
+  vs_global_dense?: { queries_improved: number; queries_degraded: number; queries_unchanged: number; relevant_top10_lost: number; relevant_top10_gained: number }
+  vs_fixed_graph?: { queries_improved: number; queries_degraded: number; queries_unchanged: number; relevant_top10_lost: number; relevant_top10_gained: number }
+  routing: { relevant_documents_excluded_by_routing: number; queries_with_exclusion: number; queries_degraded_with_exclusion: number }
+  progressive?: { stop_reasons: Record<string, number>; stages_run_distribution: Record<string, number>; queries_with_fallback: number; queries_where_expansion_never_changed_the_top_k: number; mean_useful_expansion_steps: number }
+  soft?: { mean_promoted_in_top_k: number; mean_demoted_in_top_k: number; queries_with_any_reordering: number }
+}
+export interface StrategyGroupResult {
+  run_id: string; dataset_id: string; group: StrategyGroup; queries: number; status: string; smoke: boolean; official_test_split: boolean | null; repetitions: number
+  metrics: Record<StrategyName, QualityMetrics>
+  latency: Record<StrategyName, StrategyLatency>
+  comparisons: (Omit<BenchmarkComparison, "baseline" | "treatment"> & { baseline: string; treatment: string })[]
+  diagnostics: Record<string, StrategyDiag>
+  baseline_context?: { source: string; same_test_group_size: boolean; metrics: Record<string, QualityMetrics> | null } | null
+  frozen_config_sha256: string
+}
+export type StrategyRow = {
+  query_id: string
+  query: string
+  delta_ndcg_at_10: number
+} & Record<StrategyName, QualityMetrics & { e2e_ms: number; retrieval_ms: number; eligible_candidates: number; fallback: number; modules_searched: number | null; excluded_relevant: number; relevant_total: number
+  fallback_reason: string | null; stages_run: number | null; stop_reason: string | null; useful_expansion_steps: number | null; soft_promoted: number | null; soft_demoted: number | null }>

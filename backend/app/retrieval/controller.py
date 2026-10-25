@@ -17,6 +17,7 @@ from .graph_selector import Candidate, expand_candidates
 from .ranker import rank_hits, weak_reason
 
 log = get_logger("retrieval")
+MODES = ("graph", "global", "progressive", "soft")
 
 
 @dataclass
@@ -31,6 +32,8 @@ class RetrievalOutcome:
     fallback_reason: str | None = None
     guided_results: list[Hit] = field(default_factory=list)
     timings: dict[str, float] = field(default_factory=dict)  # ms per stage: seed, expand, search, rank, fallback
+    stages: list[dict[str, Any]] = field(default_factory=list)  # progressive expansion: one entry per stage
+    extra: dict[str, Any] = field(default_factory=dict)  # strategy-specific trace data (progressive / soft)
 
 
 def _graph_total(g) -> int:
@@ -52,11 +55,15 @@ class RetrievalEngine:
 
     def retrieve(self, qvec: np.ndarray, top_k: int, mode: str = "graph", *, seed_count: int | None = None,
                  max_candidates: int | None = None, fallback: bool | None = None,
-                 fallback_k: int | None = None) -> RetrievalOutcome:
+                 fallback_k: int | None = None, explain: bool = False) -> RetrievalOutcome:
         """`top_k` is the ranked-list depth returned; `fallback_k` is the depth the "too few results" fallback test uses
         (defaults to top_k), so routing decisions do not change when a caller merely asks for a deeper list."""
         fallback = self.s.fallback_enabled if fallback is None else fallback
         pc = time.perf_counter
+        if mode in ("progressive", "soft"):  # experimental strategies (retrieval/strategies.py); "global" and "graph" below are unchanged
+            from . import strategies
+            fn = strategies.progressive if mode == "progressive" else strategies.soft
+            return fn(self, qvec, top_k, seed_count=seed_count, max_candidates=max_candidates, fallback=fallback, fallback_k=fallback_k, explain=explain)
         if mode == "global":
             t = pc()
             raw = self.store.search_memories(qvec, None, top_k)
@@ -124,11 +131,13 @@ class RetrievalService:
         top_k = self.s.top_k_default if top_k is None else top_k
         if not 1 <= top_k <= self.s.top_k_max:
             raise ValidationFailure(f"top_k must be between 1 and {self.s.top_k_max}")
-        if mode not in ("graph", "global"):
-            raise ValidationFailure("mode must be 'graph' or 'global'")
+        if mode not in MODES:
+            raise ValidationFailure(f"mode must be one of {', '.join(MODES)}")
+        te = time.perf_counter()
         qvec = self.embedder.encode([text])[0]
+        embed_ms = (time.perf_counter() - te) * 1000
         with self.coordinator.read():
-            outcome = self.engine.retrieve(qvec, top_k, mode)
+            outcome = self.engine.retrieve(qvec, top_k, mode, explain=debug_trace)
         latency_ms = (time.perf_counter() - t0) * 1000
         version = self.version_provider()
         query_id = new_id("qry")
@@ -155,7 +164,7 @@ class RetrievalService:
         response: dict[str, Any] = {"query_id": query_id, "architecture_version": version, "top_k": top_k,
                                     "results": results, "latency_ms": round(latency_ms, 2), "mode": outcome.mode}
         if debug_trace and self.s.debug_trace_enabled:
-            response["trace"] = self._trace(outcome, latency_ms, version)
+            response["trace"] = self._trace(outcome, latency_ms, version, embed_ms)
         log_event(log, "query_completed", query_id=query_id, results=len(results), latency_ms=round(latency_ms, 2),
                   candidate_count=outcome.candidate_count, fallback=outcome.fallback_used)
         if track:
@@ -166,7 +175,7 @@ class RetrievalService:
         g = self.engine.graph_provider()
         return g.nodes[module_id].get("name") if module_id in g else None
 
-    def _trace(self, o: RetrievalOutcome, latency_ms: float, version: str | None) -> dict[str, Any]:
+    def _trace(self, o: RetrievalOutcome, latency_ms: float, version: str | None, embed_ms: float | None = None) -> dict[str, Any]:
         g = self.engine.graph_provider()
         name = lambda m: g.nodes[m].get("name", m) if m in g else m  # noqa: E731
         return {
@@ -183,4 +192,12 @@ class RetrievalService:
             "fallback_used": o.fallback_used, "fallback_reason": o.fallback_reason,
             "guided_result_ids": [h.memory_id for h in o.guided_results],
             "latency_ms": round(latency_ms, 2), "architecture_version": version,
+            # additive fields: what was actually executed (strategy, searched modules, stage timings) so the UI never has to infer a route
+            "strategy": o.mode, "embedding_ms": None if embed_ms is None else round(embed_ms, 3),
+            "timings_ms": {k: round(v, 3) for k, v in o.timings.items()},
+            "searched_modules": [{"module_id": c.module_id, "name": name(c.module_id), "stage": c.stage, "origin": c.origin,
+                                  "records": g.nodes[c.module_id].get("active_record_count", 0) if c.module_id in g else 0} for c in o.candidates]
+                                if o.mode in ("graph", "progressive") else [],
+            "result_modules": sorted({h.module_id for h in o.results}),
+            "stages": o.stages, **o.extra,
         }

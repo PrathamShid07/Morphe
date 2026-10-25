@@ -3,7 +3,8 @@ import { API, api } from "./client"
 import type {
   AdaptationEvent, AdaptationStatus, AppConfig, Candidates, CompressionEvent, CompressionRun, CompressionStatus, EvalDataset,
   EvalRun, GraphData, IngestionResponse, Memory, MetricsHistory, MetricsSummary, ModeComparison, ModuleDetail, ModuleInfo,
-  Page, QueryResponse, RestorePreview, RestoreResult, ScenarioInfo, VersionCompare, VersionDetail, VersionManifest,
+  Page, QueryMode, QueryResponse, RestorePreview, RestoreResult, ScenarioInfo, StrategyComparison, StrategyGroup, StrategyGroupResult,
+  StrategyRow, StrategyRunDetail, StrategyRunSummary, VersionCompare, VersionDetail, VersionManifest,
 } from "./types"
 
 /** Server state is the only source of truth: after any successful mutation everything is refetched. */
@@ -99,7 +100,7 @@ export function useIngestFile() {
 export function useQuery_() {
   const qc = useQueryClient()
   return useMutation({
-    mutationFn: (body: { query: string; top_k: number; debug_trace: boolean; mode: "graph" | "global" }) => api.post<QueryResponse>("/query", body),
+    mutationFn: (body: { query: string; top_k: number; debug_trace: boolean; mode: QueryMode }) => api.post<QueryResponse>("/query", body),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["summary"] })
       qc.invalidateQueries({ queryKey: ["adaptation"] })
@@ -224,3 +225,29 @@ export function useStartBenchmark() {
   })
 }
 export const benchmarkUrl = (path: string) => `${API}/benchmarks${path}`
+
+
+// ------------------------------------------------------------------------------------------ strategy comparison + strategy runs
+export function useCompareStrategies() {
+  return useMutation({
+    mutationFn: (body: { query?: string; query_id?: string; top_k: number; modes?: string[] }) => api.post<StrategyComparison>("/evaluation/compare-strategies", body),
+  })
+}
+export const useStrategyRuns = () =>
+  useQuery({ queryKey: ["strategies", "runs"], queryFn: () => api.get<{ items: StrategyRunSummary[] }>("/benchmarks/strategies/runs"), refetchInterval: 15000 })
+export const useStrategyRun = (runId: string | null) =>
+  useQuery({ queryKey: ["strategies", "run", runId], queryFn: () => api.get<StrategyRunDetail>(`/benchmarks/strategies/runs/${runId}`), enabled: !!runId })
+export const useStrategyGroup = (runId: string | null, dataset: string | null, group: StrategyGroup) =>
+  useQuery({
+    queryKey: ["strategies", "group", runId, dataset, group],
+    queryFn: () => api.get<StrategyGroupResult>(`/benchmarks/strategies/runs/${runId}/${dataset}/${group}`),
+    enabled: !!runId && !!dataset, retry: false,
+  })
+export interface StrategyRowsParams { sort: string; order: "worst" | "best"; only: string; search: string; limit: number; offset: number }
+export const useStrategyRows = (runId: string | null, dataset: string | null, group: StrategyGroup, p: StrategyRowsParams) =>
+  useQuery({
+    queryKey: ["strategies", "rows", runId, dataset, group, p],
+    queryFn: () => api.get<{ total: number; limit: number; offset: number; items: StrategyRow[] }>(`/benchmarks/strategies/runs/${runId}/${dataset}/${group}/rows`, { ...p, search: p.search || undefined }),
+    enabled: !!runId && !!dataset, placeholderData: keepPreviousData, retry: false,
+  })
+export const strategyExportUrl = (runId: string, format: "json" | "csv") => `${API}/benchmarks/strategies/runs/${runId}/export?format=${format}`

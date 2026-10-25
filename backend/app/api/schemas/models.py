@@ -56,7 +56,7 @@ class QueryRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=2000, examples=["How does Django URL routing work?"])
     top_k: int = Field(5, ge=1, le=50)
     debug_trace: bool = False
-    mode: Literal["graph", "global"] = "graph"
+    mode: Literal["graph", "global", "progressive", "soft"] = "graph"
 
 
 class QueryResult(Loose):
@@ -104,9 +104,16 @@ class AdaptationRequest(BaseModel):
 
 # ---------------------------------------------------------------- evaluation
 class EvaluationRunRequest(BaseModel):
-    mode: Literal["graph", "global"] = "graph"
+    mode: Literal["graph", "global", "progressive", "soft"] = "graph"
     version_id: str | None = None
     splits: list[Literal["dev", "heldout"]] | None = None
+
+
+class StrategyCompareRequest(BaseModel):
+    query: str | None = Field(None, max_length=2000)
+    query_id: str | None = Field(None, max_length=120, description="id of a labeled evaluation query (enables quality metrics)")
+    top_k: int = Field(5, ge=1, le=50)
+    modes: list[Literal["global", "graph", "progressive", "soft"]] | None = None
 
 
 class VersionCompareRequest(BaseModel):

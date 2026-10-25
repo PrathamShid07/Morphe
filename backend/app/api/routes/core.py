@@ -82,20 +82,32 @@ def list_sources(limit: int = Query(50, ge=1, le=200), offset: int = Query(0, ge
     return {"items": items, "total": total, "limit": limit, "offset": offset}
 
 
+def _capacity(ctx: AppContext, record_count: int) -> dict[str, Any]:
+    """Utilisation against the split detector's capacity threshold (the point at which a module counts as overloaded)."""
+    cap = int(ctx.settings.split_capacity_threshold)
+    return {"capacity_threshold": cap, "utilization": round(record_count / cap, 4) if cap else None}
+
+
 @router.get("/modules", tags=["graph"])
 def list_modules(ctx: AppContext = Depends(get_ctx)):
-    return {"items": ModuleView(ctx.mongo, ctx.graph).list()}
+    items = ModuleView(ctx.mongo, ctx.graph).list()
+    return {"items": [{**m, **_capacity(ctx, m["record_count"])} for m in items]}
 
 
 @router.get("/modules/{module_id}", tags=["graph"])
 def module_detail(module_id: str, ctx: AppContext = Depends(get_ctx)):
-    return ModuleView(ctx.mongo, ctx.graph).detail(module_id)
+    d = ModuleView(ctx.mongo, ctx.graph).detail(module_id)
+    return {**d, **_capacity(ctx, d["record_count"]), "architecture_version": ctx.versions.active_id()}
 
 
 @router.get("/graph", tags=["graph"])
 def graph(ctx: AppContext = Depends(get_ctx)):
     """React Flow-ready nodes (modules) and typed edges (hierarchy / co_access) of the live architecture."""
     out = ctx.graph.export()
+    cap = int(ctx.settings.split_capacity_threshold)
+    for n in out["nodes"]:  # utilisation of real record counts against the real capacity threshold
+        n["data"]["utilization"] = round(n["data"]["recordCount"] / cap, 4) if cap and not n["data"]["isContainer"] else None
+    out["capacity_threshold"] = cap
     out["architecture_version"] = ctx.versions.active_id()
     out["counts"] = {"nodes": len(out["nodes"]), "edges": len(out["edges"])}
     return out

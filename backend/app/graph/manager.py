@@ -80,7 +80,8 @@ class GraphManager:
             edges.append({"id": d["edge_id"], "source": d.get("source", u), "target": d.get("target", v),
                           "label": key, "type": "default",
                           "data": {"relationType": key, "weight": d.get("weight", 1.0),
-                                   "coAccessCount": d.get("co_access_count", 0), "createdAt": d.get("created_at")}})
+                                   "coAccessCount": d.get("co_access_count", 0), "createdAt": d.get("created_at"),
+                                   "evidence": d.get("evidence") or {}, "operationId": d.get("operation_id")}})
         return {"nodes": nodes, "edges": edges}
 
 

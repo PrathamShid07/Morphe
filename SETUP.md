@@ -192,9 +192,13 @@ cd backend
 # diagnostics added after the first benchmark (analyses, not benchmark runs; output goes to backend/artifacts/beir_phase2/)
 ../.venv/bin/python -m app.evaluation.run_parity --datasets scifact,nfcorpus,arguana --run-id my_parity_01
 ../.venv/bin/python -m app.evaluation.routing_diagnostics --datasets scifact,nfcorpus,arguana --run-id my_diag_01
+
+# retrieval strategies (progressive expansion, soft graph routing): tune on validation -> freeze -> evaluate; shown on Benchmarks -> Retrieval strategies
+../.venv/bin/python -m app.evaluation.run_strategies --datasets scifact,nfcorpus,arguana --run-id my_strat_01 --phase tune
+../.venv/bin/python -m app.evaluation.run_strategies --datasets scifact,nfcorpus,arguana --run-id my_strat_01 --phase evaluate
 ```
 
-A full three-dataset run is slow (the recorded v2 run took about 105 minutes on an Apple-silicon laptop). **Give every run a new `--run-id`** and never run two processes with the same id at once. New output is written under `backend/artifacts/` and is git-ignored; the frozen baseline results already in the repository are read-only evidence and should not be regenerated over.
+A full three-dataset run is slow (the strategy comparison takes about 3 hours) (the recorded v2 run took about 105 minutes on an Apple-silicon laptop). **Give every run a new `--run-id`** and never run two processes with the same id at once. New output is written under `backend/artifacts/` and is git-ignored; the frozen baseline results already in the repository are read-only evidence and should not be regenerated over.
 The Qdrant performance analysis (`python -m app.evaluation.qdrant_perf --server`) additionally needs a Qdrant **server** (official release binary, version 1.20.0) started on port 6343 with its own storage folder; see `docs/BEIR_PERFORMANCE_ANALYSIS.md` for the exact configuration used. The binary is not part of the repository. Example start (macOS/Linux; run it from a scratch directory, because Qdrant writes a `.qdrant-initialized` marker file into its working directory):
 
 ```bash

@@ -10,10 +10,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { EmptyState, ErrorState, LoadingBlock, errorMessage } from "@/components/app/states"
 import { StatusBadge } from "@/components/app/StatusBadge"
 import { MonoId, PageHeader, Section } from "@/components/app/ui-bits"
+import { StrategyBenchmarks } from "@/components/app/StrategyBenchmarks"
 import {
   benchmarkUrl, useBenchmarkCompare, useBenchmarkDatasets, useBenchmarkResults, useBenchmarkRuns, useBenchmarkStatus, useStartBenchmark,
 } from "@/api/hooks"
@@ -347,8 +348,11 @@ export default function Benchmarks() {
   const active = status.data?.active_run?.run_id
   const selected = picked && items.some((r) => r.run_id === picked) ? picked : (active ?? items[0]?.run_id ?? null)
   return (
-    <div className="space-y-6">
-      <PageHeader title="Benchmark & Evaluation" description="BEIR-based comparison of BM25, global dense retrieval, fixed-graph and adaptive-graph MORPHE — quality, latency, candidate pool and the safety of every structural change." />
+    <Tabs defaultValue="beir" className="gap-6">
+      <PageHeader title="Benchmark & Evaluation" description="BEIR-based evaluation: the original comparison of BM25, global dense, fixed-graph and adaptive-graph MORPHE, and the follow-up comparison of the retrieval strategies (progressive expansion and soft graph routing)."
+        actions={<TabsList><TabsTrigger value="beir">BEIR benchmark</TabsTrigger><TabsTrigger value="strategies">Retrieval strategies</TabsTrigger></TabsList>} />
+      <TabsContent value="strategies"><StrategyBenchmarks /></TabsContent>
+      <TabsContent value="beir" className="space-y-6">
       <RunSetup />
       <LiveStatus />
       <section className="space-y-3" aria-label="Benchmark runs">
@@ -371,6 +375,7 @@ export default function Benchmarks() {
           </>
         ) : null}
       </section>
-    </div>
+      </TabsContent>
+    </Tabs>
   )
 }

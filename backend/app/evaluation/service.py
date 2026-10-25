@@ -12,7 +12,7 @@ from ..versioning.snapshots import VersionStore
 from .evaluator import Evaluator
 from .version_comparator import AcceptancePolicy
 
-MODES = ("graph", "global")
+MODES = ("graph", "global", "progressive", "soft")
 
 
 class EvaluationService:

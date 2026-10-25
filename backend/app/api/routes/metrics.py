@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, Query
 
 from ...container import AppContext
 from ..deps import get_ctx
-from ..schemas.models import EvaluationRunRequest, VersionCompareRequest
+from ..schemas.models import EvaluationRunRequest, StrategyCompareRequest, VersionCompareRequest
 
 router = APIRouter(tags=["metrics"])
 
@@ -65,3 +65,10 @@ def compare_modes(ctx: AppContext = Depends(get_ctx)):
 @router.post("/evaluation/compare-versions", tags=["evaluation"])
 def compare_versions(body: VersionCompareRequest, ctx: AppContext = Depends(get_ctx)):
     return ctx.evaluation.compare_versions(body.from_version, body.to_version, body.evaluate)
+
+
+@router.post("/evaluation/compare-strategies", tags=["evaluation"])
+def compare_strategies(body: StrategyCompareRequest, ctx: AppContext = Depends(get_ctx)):
+    """Run one query through global dense, fixed graph, progressive expansion and soft routing on the live architecture (not tracked)."""
+    from ...evaluation.strategy_compare import compare_strategies as run
+    return run(ctx, body.query, body.query_id, body.top_k, body.modes)

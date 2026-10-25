@@ -63,6 +63,23 @@ class Settings(BaseSettings):
     # Phase-2 determinism: complete exact-score tie groups that straddle the vector-search limit (see storage/qdrant_store.py)
     tie_safe_search: bool = True
 
+    # --- experimental strategy: progressive graph expansion (retrieval/strategies.py) ----------------------------
+    progressive_seed_modules: int = 3          # stage 1: top-N modules by profile similarity
+    progressive_step_modules: int = 3          # modules added per expansion step
+    progressive_max_modules: int = 12          # search budget (modules); 0 = no module cap
+    progressive_max_steps: int = 4             # maximum expansion steps after stage 1
+    progressive_policy: Literal["profile", "graph", "blend"] = "profile"  # which unsearched modules come next
+    progressive_graph_bonus: float = 0.05      # blend policy: cosine-units bonus for modules linked to an already searched module
+    progressive_patience: int = 1              # stop after this many consecutive expansion steps leave the top-k membership unchanged
+    progressive_fallback_on_budget: bool = True  # budget exhausted while the top-k was still changing -> global fallback
+
+    # --- experimental strategy: soft graph routing (rerank of a global dense candidate pool) ---------------------
+    soft_candidate_pool: int = 100             # size of the global dense candidate set that is re-ranked
+    soft_weight: float = 0.02                  # lambda: maximum score shift (cosine units) the routing prior can cause; 0 = pure dense ranking
+    soft_graph_share: float = 0.3              # gamma: share of the prior that comes from graph distance (rest: profile similarity)
+    soft_seed_modules: int = 3                 # seeds from which graph distance is measured
+    soft_graph_depth: int = 2                  # edges beyond this distance contribute no graph prior
+
     # --- compression -------------------------------------------------------
     memory_budget_tokens: int = 100_000
     compression_start_pct: float = 75
@@ -128,6 +145,7 @@ class Settings(BaseSettings):
     # --- BEIR benchmark ----------------------------------------------------
     beir_data_dir: str = str(REPO_ROOT / "data" / "beir")
     beir_artifacts_dir: str = str(BACKEND_DIR / "artifacts" / "beir")
+    beir_strategies_dir: str = str(BACKEND_DIR / "artifacts" / "beir_strategies")  # retrieval-strategy comparison runs (evaluation/run_strategies.py)
 
     # --- demo --------------------------------------------------------------
     samples_dir: str = str(REPO_ROOT / "data" / "samples")

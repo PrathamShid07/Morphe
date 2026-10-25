@@ -217,3 +217,10 @@ Three statements above are qualified by later investigation. The baseline artifa
 3. **Why quality drops.** `BEIR_ROUTING_FAILURE_ANALYSIS.md` (validation group, diagnostic): relevant documents are excluded because the module closest to the query is often not the module that holds the answer, and hierarchy expansion adds little beyond the seed modules. No retrieval strategy has been changed or evaluated yet, and no new test-split results exist.
 
 Diagnostic runs (`diag_03`, `perf_01`, `parity_04`) are analyses, not benchmark runs, and use the validation group or query text only.
+
+### Addendum 2 — retrieval strategies (run `strat_01`, 2026-10-25)
+
+Two alternative strategies were implemented and evaluated against these same controls in a separate run with its own protocol and artifacts: **progressive graph expansion** and **soft graph routing** (`BEIR_RETRIEVAL_ABLATIONS.md`). The tables above are unchanged and the controls reproduce them exactly (SciFact, NFCorpus; ArguAna differs only because the new run excludes three queries whose judged documents are absent from the corpus).
+
+Test-group nDCG@10 (SciFact exploratory, NFCorpus confirmatory, ArguAna internal partition): global dense 0.6451 / 0.3159 / 0.5088; fixed graph 0.5507 / 0.2771 / 0.4989; progressive expansion 0.6324 / 0.3143 / 0.5081; soft routing 0.6429 / 0.3151 / 0.5093.
+Progressive expansion is far better than the fixed graph but still a reliable loss against global dense on SciFact, mostly by falling back to a full global search; soft routing is statistically indistinguishable from dense. Neither is faster than global search (local or indexed Qdrant). The conclusion above stands: these results do not support a retrieval-quality or latency advantage for graph routing.

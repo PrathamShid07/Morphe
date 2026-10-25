@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from "react"
-import { useSearchParams } from "react-router-dom"
-import { ArrowRight, Loader2, Send, Zap } from "lucide-react"
+import { useNavigate, useSearchParams } from "react-router-dom"
+import { ArrowRight, Loader2, Network, Send, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
@@ -8,19 +8,20 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Progress } from "@/components/ui/progress"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { EmptyState, ErrorState } from "@/components/app/states"
 import { MonoId, PageHeader, Section } from "@/components/app/ui-bits"
+import { GlobalTrace, SoftBreakdown, StageProgression, TimingBar } from "@/components/app/TraceViews"
+import { StrategyCompare } from "@/components/app/StrategyCompare"
 import { useQuery_ } from "@/api/hooks"
-import type { QueryResponse, Trace } from "@/api/types"
+import type { QueryMode, QueryResponse, Trace } from "@/api/types"
+import { DEMO_QUERIES } from "@/lib/examples"
+import { routeFromResponse, setRoute } from "@/lib/route-store"
+import { MODE_ORDER, STRATEGY_HINT, STRATEGY_LABEL } from "@/lib/strategies"
 import { ms } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
-const SUGGESTIONS = [
-  "How do I make Django reuse PostgreSQL connections and pool them?",
-  "What happens when Redis reaches maxmemory?",
-  "How do I narrow a union type?",
-  "How do I put NGINX in front of a FastAPI app running in Docker?",
-]
+const SUGGESTIONS = DEMO_QUERIES
 
 const ORIGIN: Record<string, { label: string; cls: string }> = {
   seed: { label: "seed (profile match)", cls: "border-primary/50 bg-violet-soft text-accent-foreground" },
@@ -79,20 +80,23 @@ export default function QueryPlayground() {
   const [text, setText] = useState(params.get("q") ?? "")
   const [topK, setTopK] = useState("5")
   const [debug, setDebug] = useState(true)
-  const [mode, setMode] = useState<"graph" | "global">("graph")
+  const [mode, setMode] = useState<QueryMode>("graph")
+  const [tab, setTab] = useState("single")
+  const nav = useNavigate()
   const m = useQuery_()
   const ran = useRef(false)
 
   const run = (q = text) => {
     if (!q.trim() || m.isPending) return
-    m.mutate({ query: q.trim(), top_k: Number(topK), debug_trace: debug, mode })
+    const body = { query: q.trim(), top_k: Number(topK), debug_trace: debug, mode }
+    m.mutate(body, { onSuccess: (r) => setRoute(routeFromResponse(body.query, body.mode, r)) })  // the Graph Explorer can highlight this exact route
   }
   useEffect(() => {
     const q = params.get("q")
     if (q && !ran.current) {
       ran.current = true
       setText(q)
-      m.mutate({ query: q, top_k: 5, debug_trace: true, mode: "graph" })
+      m.mutate({ query: q, top_k: 5, debug_trace: true, mode: "graph" }, { onSuccess: (r) => setRoute(routeFromResponse(q, "graph", r)) })
       setParams({}, { replace: true })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,11 +121,10 @@ export default function QueryPlayground() {
           </div>
           <div className="flex items-center gap-2">
             <Label htmlFor="mode" className="text-xs text-muted-foreground">retrieval</Label>
-            <Select value={mode} onValueChange={(v) => setMode(v as "graph" | "global")}>
-              <SelectTrigger id="mode" className="h-9 w-40 rounded-full" aria-label="retrieval mode"><SelectValue /></SelectTrigger>
+            <Select value={mode} onValueChange={(v) => setMode(v as QueryMode)}>
+              <SelectTrigger id="mode" className="h-9 w-52 rounded-full" aria-label="retrieval mode"><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="graph">Graph-guided</SelectItem>
-                <SelectItem value="global">Global vector search</SelectItem>
+                {MODE_ORDER.map((k) => <SelectItem key={k} value={k}>{STRATEGY_LABEL[k]}</SelectItem>)}
               </SelectContent>
             </Select>
           </div>
@@ -130,7 +133,12 @@ export default function QueryPlayground() {
             {m.isPending ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />} Run query
           </Button>
         </div>
+        <p className="text-xs text-muted-foreground" data-testid="mode-hint"><b className="text-foreground">{STRATEGY_LABEL[mode]}:</b> {STRATEGY_HINT[mode]}</p>
       </form>
+      <Tabs value={tab} onValueChange={setTab} className="gap-5">
+        <TabsList className="max-w-full justify-start overflow-x-auto"><TabsTrigger value="single">Single run</TabsTrigger><TabsTrigger value="compare">Compare all four</TabsTrigger></TabsList>
+        <TabsContent value="compare"><StrategyCompare text={text} topK={Number(topK)} /></TabsContent>
+        <TabsContent value="single" className="space-y-6">
 
       {!data && !m.isPending && !m.isError && (
         <div className="grid gap-3 sm:grid-cols-2">
@@ -149,9 +157,21 @@ export default function QueryPlayground() {
             <span>Results <b className="text-foreground">{data.results.length}</b></span>
             <span className="flex items-center gap-1">Query <MonoId id={data.query_id} short={14} /></span>
             <span className="flex items-center gap-1">Architecture <MonoId id={data.architecture_version} short={14} /></span>
-            <Badge variant="outline">{data.mode === "graph" ? "graph-guided" : "global"}</Badge>
+            <Badge variant="outline" data-testid="active-strategy">{STRATEGY_LABEL[data.mode as QueryMode] ?? data.mode}</Badge>
           </div>
-          {data.trace && <Section title="How the graph shaped this search"><RoutingTrace trace={data.trace} results={data.results} /></Section>}
+          {data.trace && (
+            <Section
+              title={{ graph: "How the graph shaped this search", global: "Global dense search", progressive: "Progressive expansion, stage by stage", soft: "Soft routing: how module information changed the ranking" }[data.mode] ?? "Retrieval trace"}
+              actions={<Button size="sm" variant="outline" className="h-9 gap-1.5" onClick={() => nav("/graph")}><Network className="size-3.5" />Show route on graph</Button>}>
+              <div className="space-y-4">
+                {data.mode === "graph" && <RoutingTrace trace={data.trace} results={data.results} />}
+                {data.mode === "global" && <GlobalTrace trace={data.trace} />}
+                {data.mode === "progressive" && <StageProgression trace={data.trace} />}
+                {data.mode === "soft" && <SoftBreakdown trace={data.trace} />}
+                <TimingBar trace={data.trace} totalMs={data.latency_ms} />
+              </div>
+            </Section>
+          )}
           {data.results.length === 0 ? (
             <EmptyState title="No memories matched" description="Ingest content first, or rephrase the question." />
           ) : (
@@ -172,6 +192,8 @@ export default function QueryPlayground() {
           )}
         </div>
       )}
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

@@ -10,6 +10,9 @@ from pydantic import BaseModel, Field
 
 from ...benchmark.runner import ALL_METHODS
 from ...benchmark.service import BenchmarkService
+from ...benchmark.strategies_service import StrategyRuns
+from ...container import AppContext
+from ..deps import get_ctx
 from ...common import MorpheError
 
 router = APIRouter(prefix="/benchmarks", tags=["benchmarks"])
@@ -93,3 +96,42 @@ def artifact(run_id: str, dataset: str, name: str, svc: BenchmarkService = Depen
     """Download a saved manifest / metrics file / TREC run file (allow-listed names, path traversal impossible)."""
     p = svc.artifact_path(run_id, dataset, name)
     return FileResponse(p, filename=f"{dataset}_{run_id}_{name}")
+
+
+# ------------------------------------------------------------------------------------------ retrieval-strategy comparison runs
+def strategy_runs(ctx: AppContext = Depends(get_ctx)) -> StrategyRuns:
+    return StrategyRuns(ctx.settings.beir_strategies_dir)
+
+
+@router.get("/strategies/runs", tags=["benchmarks"])
+def list_strategy_runs(svc: StrategyRuns = Depends(strategy_runs)):
+    """Saved comparisons of global dense / fixed graph / progressive expansion / soft routing (evaluation/run_strategies.py)."""
+    return {"items": svc.list_runs()}
+
+
+@router.get("/strategies/runs/{run_id}", tags=["benchmarks"])
+def get_strategy_run(run_id: str, svc: StrategyRuns = Depends(strategy_runs)):
+    """Manifest, frozen configuration and the validation-only selection evidence."""
+    return svc.get_run(run_id)
+
+
+@router.get("/strategies/runs/{run_id}/export", tags=["benchmarks"])
+def export_strategy_run(run_id: str, format: Literal["json", "csv"] = "json", svc: StrategyRuns = Depends(strategy_runs)):
+    body, media = svc.export(run_id, format)
+    return Response(body, media_type=media, headers={"Content-Disposition": f'attachment; filename="{run_id}_strategies.{format}"'})
+
+
+@router.get("/strategies/runs/{run_id}/{dataset}/{group}", tags=["benchmarks"])
+def strategy_group(run_id: str, dataset: str, group: Literal["validation", "test"], svc: StrategyRuns = Depends(strategy_runs)):
+    """Metrics, latency, paired comparisons and routing diagnostics for one dataset and group (per-query rows are served by /rows)."""
+    return svc.group(run_id, dataset, group)
+
+
+@router.get("/strategies/runs/{run_id}/{dataset}/{group}/rows", tags=["benchmarks"])
+def strategy_rows(run_id: str, dataset: str, group: Literal["validation", "test"],
+                  sort: str = Query("progressive_vs_global_dense", pattern="^(fixed_graph|progressive|soft)_vs_(global_dense|fixed_graph)$"),
+                  order: Literal["worst", "best"] = "worst", search: str | None = Query(None, max_length=100),
+                  only: Literal["all", "degraded", "improved", "excluded"] = "all", limit: int = Query(25, ge=1, le=200), offset: int = Query(0, ge=0),
+                  svc: StrategyRuns = Depends(strategy_runs)):
+    """Per-query inspector rows (nDCG@10 and routing facts per strategy), sortable by the change against a control."""
+    return svc.rows(run_id, dataset, group, sort=sort, order=order, search=search, only=only, limit=limit, offset=offset)

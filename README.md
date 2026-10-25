@@ -27,19 +27,20 @@ summaries are deterministic extractive text selection. Nothing leaves your machi
 * **Why (diagnostic analysis, not a fix):** the module whose centroid is closest to a query often is not the module holding the answer, and hierarchy expansion adds little ([`docs/BEIR_ROUTING_FAILURE_ANALYSIS.md`](docs/BEIR_ROUTING_FAILURE_ANALYSIS.md));
   the extra latency comes from Qdrant's local filtered-search implementation, not from the graph logic ([`docs/BEIR_PERFORMANCE_ANALYSIS.md`](docs/BEIR_PERFORMANCE_ANALYSIS.md));
   an apparent live-versus-sandbox mismatch was a defect in the parity check, with a separate tie-handling determinism gap found and fixed ([`docs/BEIR_PARITY_INVESTIGATION.md`](docs/BEIR_PARITY_INVESTIGATION.md)).
-* **Not implemented:** the alternative retrieval strategies (soft graph routing, progressive expansion, hybrid graph-plus-global), their ablations, a revised adaptation acceptance policy, controlled all-operation BEIR workloads, and the matching dashboard views. They have not been started.
+* **Alternative retrieval strategies (implemented, evaluated, no reliable benefit):** *progressive graph expansion* (search a few modules, widen only while the top results keep changing, global fallback when unsettled) and *soft graph routing* (global dense search re-ranked by a small bounded module/graph prior), selectable in the Query Playground and comparable side by side. On SciFact, NFCorpus and ArguAna neither beat global dense retrieval in quality or latency, on local or indexed Qdrant; progressive expansion recovers most of the fixed graph's loss mainly by falling back to global search, and soft routing is statistically indistinguishable from dense. Results, protocol and caveats: [`docs/BEIR_RETRIEVAL_ABLATIONS.md`](docs/BEIR_RETRIEVAL_ABLATIONS.md). **Recommendation:** do not claim a retrieval-quality or latency advantage for graph routing.
+* **Not done:** combining these strategies with adapted architectures, tuning them beyond the small pre-declared grids, and testing at much larger corpus sizes.
 
 ## What is in the box
 
 | Area | What it does |
 |---|---|
 | Ingestion | normalise → structure-aware chunking → batched local embeddings → module assignment → staged (`pending`) write → activation; identical content is detected; failures leave nothing active |
-| Retrieval | module-profile seeds → NetworkX expansion (co-access shortcuts first, then hierarchy siblings) → module-filtered Qdrant search → ranking → global fallback; full debug trace |
+| Retrieval | four selectable strategies: global dense; fixed graph (module-profile seeds → NetworkX expansion → module-filtered Qdrant search → ranking → global fallback); progressive expansion; soft graph routing. Every query can return a full debug trace |
 | Structural adaptation | split overloaded/mixed modules (source/section/KMeans, silhouette-checked), merge truly redundant modules (overlap + conflict checks), add co-access shortcut edges (count thresholds, edge budget) |
 | Validation | candidate architecture evaluated in an isolated in-memory sandbox with the **real** routing code on a labeled dataset; Recall@5, MRR, p95 latency, candidate count, fallback rate; configurable accept/reject thresholds |
 | Versioning & rollback | checksummed architecture snapshots; one idempotent "converge stores to target state" routine used for apply, recovery and restore across Qdrant payloads + profile vectors, MongoDB documents, and the live graph |
 | Compression | token-budget thresholds (75 % / 90 %), exact + near-duplicate removal, extractive summaries with provenance, safe write-verify-retire replacement, protected pinned/critical records, emergency cleanup |
-| Dashboard | React + shadcn/ui: Overview, Query Playground (routing trace), Memory Explorer, Graph Explorer (React Flow), Compression Center, Adaptation Center, Metrics & Evaluation, Architecture Versions; dark/light; responsive from 320 px |
+| Dashboard | React + shadcn/ui: Overview, Query Playground (four retrieval strategies with per-strategy traces and a side-by-side comparison), Memory Explorer, Graph Explorer (deterministic hierarchy layout, search and filters, module/edge details with capacity and evidence, real query-route highlighting, module list), Compression Center, Adaptation Center, Metrics & Evaluation, Architecture Versions, Benchmarks (BEIR results and the retrieval-strategy comparison); dark/light; responsive from 320 px |
 
 ## Requirements
 
@@ -148,6 +149,8 @@ cd backend      # needs MongoDB running (scripts/dev_mongo.sh); first run downlo
 # follow-up diagnostics (analyses written to backend/artifacts/beir_phase2/; use a fresh --run-id every time)
 ../.venv/bin/python -m app.evaluation.run_parity --datasets scifact,nfcorpus,arguana --run-id my_parity_01      # live vs sandbox engine, per query
 ../.venv/bin/python -m app.evaluation.routing_diagnostics --datasets scifact,nfcorpus,arguana --run-id my_diag_01   # why routing loses documents (validation group only)
+../.venv/bin/python -m app.evaluation.run_strategies --datasets scifact,nfcorpus,arguana --run-id my_strat_01 --phase tune      # progressive expansion + soft routing: tune on validation, freeze,
+../.venv/bin/python -m app.evaluation.run_strategies --datasets scifact,nfcorpus,arguana --run-id my_strat_01 --phase evaluate  # ...then evaluate (refuses without an intact frozen config)
 python3 ../scripts/verify_baseline_hashes.py                                    # check the frozen baselines in the repository are untouched
 ```
 Results are saved under `backend/artifacts/beir/<dataset>/<run_id>/` (manifest, metrics, per-query metrics, latency, comparisons, adaptation events, safety probes, TREC run files) and shown on the dashboard page **Benchmarks**
@@ -158,11 +161,12 @@ internal split. Methodology: `docs/BEIR_BENCHMARK_METHODOLOGY.md`; plan and prot
 ## Tests
 
 ```bash
-cd backend  && ../.venv/bin/python -m pytest                    # 150 backend tests (real algorithms; fake embedder, mongomock, in-memory Qdrant)
-cd frontend && npm test && npm run lint && npm run typecheck    # 35 component/interaction tests, ESLint, strict TypeScript
-cd frontend && npm run e2e                                      # 43 Playwright tests against the RUNNING real stack (last full pass before the diagnostics work; not re-run since)
+cd backend  && ../.venv/bin/python -m pytest                    # 186 backend tests (real algorithms; fake embedder, mongomock, in-memory Qdrant)
+cd frontend && npm test && npm run lint && npm run typecheck    # 70 component/interaction tests, ESLint, strict TypeScript
+cd frontend && npm run e2e                                      # 60 Playwright tests against the RUNNING real stack
                                                                 # (needs MongoDB + API on :8000; resets and re-seeds the demo data)
 ```
+Demo helpers: `python backend/scripts/demo.py strategies` runs all four strategies over every labeled query on the live architecture and lists the instructive ones; the complete live walkthrough is in [`docs/DEMO_RUNBOOK.md`](docs/DEMO_RUNBOOK.md).
 Optionally verify the evaluation labels still match the sample files: `.venv/bin/python backend/scripts/build_eval_labels.py --check`.
 
 ## Repository layout
@@ -171,16 +175,18 @@ Optionally verify the evaluation labels still match the sample files: `.venv/bin
 backend/app/        FastAPI app (api/ ingestion/ retrieval/ graph/ adaptation/ evaluation/ versioning/ compression/
                     memory/ storage/ monitoring/), coordinator.py (shared mutation coordinator), reconcile.py (startup repair)
 backend/tests/      pytest suites          backend/scripts/   demo CLI, label builder
-backend/app/benchmark/   BEIR harness (datasets, splits, BM25, methods, runner, report, API service)
+backend/app/benchmark/   BEIR harness (datasets, splits, BM25, methods, runner, report, API services)
+backend/app/retrieval/   engine, graph selector, ranker and strategies.py (progressive expansion, soft graph routing)
 backend/app/evaluation/  evaluator, acceptance policy, BEIR CLIs, parity / routing-diagnostic / Qdrant-performance tools
 backend/_baseline_src_v2/  read-only snapshot of the source that produced the frozen v1/v2 results (do not edit)
 backend/artifacts/beir*/   frozen baseline results (committed); new runs are written here and ignored
+backend/artifacts/beir_strategies/<run>/   retrieval-strategy comparison (frozen config, validation sweeps, validation + test results)
 frontend/src/       pages/ components/(ui = shadcn, app = MORPHE) api/ hooks/ layouts/ test/      frontend/e2e/  Playwright
 data/samples/       12 core + merge/mixed/compression documents and manifest.json
 data/evaluation_queries.json   59 labeled queries (+ evaluation_spec.json source, demo_replay_queries.json)
 docs/               ARCHITECTURE · API · ADAPTATION_RULES · EVALUATION_AND_ROLLBACK · IMPLEMENTATION_DECISIONS
                     BEIR_BENCHMARK_PLAN · BEIR_BENCHMARK_METHODOLOGY · BEIR_RESULTS · BEIR_PARITY_INVESTIGATION
-                    BEIR_ROUTING_FAILURE_ANALYSIS · BEIR_PERFORMANCE_ANALYSIS · baselines/ (freeze manifest)
+                    BEIR_ROUTING_FAILURE_ANALYSIS · BEIR_PERFORMANCE_ANALYSIS · BEIR_RETRIEVAL_ABLATIONS · DEMO_RUNBOOK · baselines/ (freeze manifest)
 scripts/            dev_mongo.sh (project-local MongoDB) · verify_baseline_hashes.py
 SETUP.md            installation, activation, configuration, running, testing, troubleshooting
 ```
