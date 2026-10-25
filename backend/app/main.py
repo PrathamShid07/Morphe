@@ -16,14 +16,25 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from .api.deps import SAFE_METHODS, get_ctx, require_admin, try_admin
-from .api.routes import adaptation, admin, auth as auth_routes, benchmarks, compression, core, metrics, public, versions
-from .auth.service import AuthService
+from .api.routes import adaptation, admin, admin_users, auth as auth_routes, benchmarks, compression, core, me, metrics, versions
+from .auth.service import ADMIN_COOKIE, AuthService
 from .common import (DependencyUnavailable, MorpheError, configure_logging, get_logger, log_event, request_id_var)
 from .config import Settings, get_settings
 from .benchmark.service import BenchmarkService
 from .container import AppContext, build_context
 
 log = get_logger("api")
+
+# Friendly audit names for the administrator operations that matter most; any other administrator write is logged as `admin.<verb>` with its route.
+ADMIN_ACTIONS = {
+    "POST /ingestion": "ingestion.created", "POST /ingestion/file": "ingestion.created", "DELETE /memories/{memory_id}": "memory.deleted",
+    "PATCH /memories/{memory_id}": "memory.updated", "POST /sources/{source_id}/visibility": "source.visibility_changed",
+    "POST /compression/run": "compression.run", "PUT /compression/budget": "compression.budget_changed", "POST /adaptation/evaluate": "adaptation.evaluated",
+    "POST /adaptation/apply": "adaptation.applied", "POST /adaptation/events/{event_id}/apply": "adaptation.applied",
+    "POST /adaptation/run-window": "adaptation.run", "POST /versions/checkpoint": "version.checkpoint", "POST /versions/{version_id}/restore": "version.restored",
+    "POST /benchmarks/run": "benchmark.started", "POST /admin/reset": "admin.demo_reset", "POST /admin/demo/seed": "admin.demo_seed",
+    "POST /admin/demo/scenario/{name}": "admin.demo_scenario",
+}
 
 
 def _error(status: int, code: str, message: str, details: Any = None) -> JSONResponse:
@@ -82,12 +93,29 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
             t0 = time.perf_counter()
             response = await call_next(request)
             response.headers["X-Request-ID"] = rid
+            _audit_admin_write(request, response.status_code)
             if not request.url.path.endswith(("/health", "/status")):
                 log_event(log, "request", method=request.method, path=request.url.path, status=response.status_code,
                           duration_ms=round((time.perf_counter() - t0) * 1000, 1))
             return response
         finally:
             request_id_var.reset(token)
+
+    def _audit_admin_write(request: Request, status_code: int) -> None:
+        """Every state-changing request made with an administrator session is recorded (who, which operation, and whether it worked)."""
+        path = request.url.path
+        if request.method in SAFE_METHODS or not request.cookies.get(ADMIN_COOKIE) or "/auth/" in path or "/admin/users" in path:
+            return  # sign-in/out and user-management have their own, more specific audit events
+        c = getattr(app.state, "ctx", None)
+        ident = try_admin(request)
+        if c is None or ident is None:
+            return
+        route = request.scope.get("route")
+        tmpl = (getattr(route, "path", None) or path).removeprefix(settings.api_prefix) or path
+        status = "success" if status_code < 400 else "denied" if status_code in (401, 403) else "failure"
+        c.audit.record(ADMIN_ACTIONS.get(f"{request.method} {tmpl}", f"admin.{request.method.lower()}"), status=status, actor_role="admin",
+                       actor_label=ident.username, target_type="endpoint", target_id=tmpl,
+                       metadata={"status_code": status_code, "path_params": request.scope.get("path_params") or {}})
 
     @app.exception_handler(MorpheError)
     async def morphe_error(request: Request, exc: MorpheError):
@@ -134,8 +162,8 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
         return JSONResponse(status_code=200 if ok else 503, content=body)
 
     prefix = settings.api_prefix
-    for r in (auth_routes.router, public.router, core.router, compression.router, adaptation.router, metrics.router,
-              versions.router, benchmarks.router, admin.router):
+    for r in (auth_routes.router, me.router, core.router, compression.router, adaptation.router, metrics.router,
+              versions.router, benchmarks.router, admin.router, admin_users.router):
         app.include_router(r, prefix=prefix)
 
     @app.get(f"{prefix}/integrity", tags=["health"], dependencies=[Depends(require_admin)])

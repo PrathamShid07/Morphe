@@ -21,21 +21,54 @@ All bodies are JSON and validated by Pydantic. A single body limit applies (`MAX
 
 ## Authentication and roles
 
-Full description in [`ACCESS_CONTROL.md`](ACCESS_CONTROL.md). Everything below is **administrator-only** (`401` without a session, `403` for an ordinary visitor, `403 csrf_failed` for a cookie-authenticated write without `X-CSRF-Token`) except the endpoints in this table.
+Details in [`ACCESS_CONTROL.md`](ACCESS_CONTROL.md) and [`USER_ACCOUNTS.md`](USER_ACCOUNTS.md). Sessions are `HttpOnly` cookies; state-changing requests also send `X-CSRF-Token` (returned by sign-in and `GET /auth/me`). `401` = no/expired/revoked/invalid session; `403` = authenticated but not allowed (`admin_required`, `user_account_required`, `account_disabled`, `csrf_failed`); objects outside the caller's scope are `404`.
 
-| Method & path | Who | Purpose |
+| Method & path | Who | Request → response |
 |---|---|---|
-| `POST /auth/login` | anyone | `{username, password}` → `{authenticated, role, username, expires_at, csrf_token}` and the HttpOnly `morphe_admin` cookie; `401 invalid_credentials`, `429 too_many_attempts`, `503 admin_not_configured` |
-| `GET /auth/session` | anyone | current role (`admin`/`user`), `csrf_token` for an administrator, `admin_configured` |
-| `POST /auth/logout` | admin | revokes the session server-side |
-| `POST /query` | anyone | role-aware: visitors receive a sanitised response (no `access_count`, `source_id`, `architecture_version`, `guided_result_ids`), `top_k` ≤ `USER_TOP_K_MAX`; the result is stored against the caller's session |
-| `GET /me/queries`, `GET /me/queries/{id}` | anyone | the caller's own previous queries (other sessions' ids → 404) |
-| `GET /explore/graph`, `/explore/modules`, `/explore/modules/{id}` | anyone | sanitised read-only graph |
+| `POST /auth/register` | anyone | `{full_name, email, password, confirm_password}` (unknown fields such as `role` → 422) → `201` session body; always a regular `user`. `409 email_taken`, `422 invalid_email / invalid_name / weak_password / password_mismatch`, `403 registration_disabled`, `429` |
+| `POST /auth/login` | anyone | `{email, password}` → session body + `morphe_user` cookie. `401 invalid_credentials` (identical for unknown email and wrong password), `403 account_disabled`, `429 too_many_attempts` |
+| `POST /auth/admin/login` | anyone | `{username, password}` → session body + `morphe_admin` cookie. `401`, `429`, `503 admin_not_configured` |
+| `GET /auth/me` | anyone | `{authenticated, role: "admin"\|"user"\|null, user?, username?, expires_at, csrf_token, admin_configured, registration_enabled, account_disabled?}` |
+| `POST /auth/logout` | session holder | revokes the session server-side, clears cookies; idempotent |
 | `GET /health` | anyone (detail: admin) | non-administrators receive `{status, ready}` only |
+
+The `user` object is `{user_id, full_name, email, role:"user", status, created_at, last_login_at, last_activity_at}` (never a hash).
+
+## Personal memory (`/me/*`, signed-in user only)
+
+The owner is always the session's user. Bodies forbid unknown fields, so an `owner_user_id`, `visibility` or `role` is a 422.
+
+| Method & path | Purpose |
+|---|---|
+| `POST /me/memories` | `{text, title?, topic?, group?, tags?}` → `201 {source_id, status: completed\|duplicate, chunks_created, memory_ids, module_ids, new_module_ids, tokens_added, message}`. Stored as **private**; on failure nothing stays active (`500 save_failed`), `413/422` for size/empty, `409 memory_quota_exceeded` |
+| `GET /me/memories?module_id&search&limit&offset` | the caller's own memories (metadata + `text_preview`) |
+| `DELETE /me/memories/{id}` | delete one of the caller's memories (404 if absent **or not theirs**) |
+| `POST /me/query` | `{query, top_k (≤ 20), mode: graph\|global\|progressive\|soft, debug_trace}` → `{query_id, results[{memory_id,text,score,module_id,module_name,source_name,section,scope:"personal"\|"shared"}], latency_ms, mode, fallback_used, memory_scope{personal_records,shared_records,empty}, trace?}`. Searches only the caller's memories + published shared knowledge, in every strategy and fallback |
+| `GET /me/queries`, `GET /me/queries/{id}` | own history (another user's id → 404) |
+| `GET /me/graph` | the caller's graph + published shared modules; nodes carry `scope`; read-only, no operational fields |
+| `GET /me/modules`, `GET /me/modules/{id}` | module list / detail within the same scope (no memory text) |
+| `GET /me/summary` | `{memories, modules, sources, tokens, shared_records}` |
+
+## Administrator: users and activity
+
+| Method & path | Purpose |
+|---|---|
+| `GET /admin/users?search&status&active_after&active_before&limit&offset` | accounts with `stats{private_memories, personal_modules, sources, queries_submitted/succeeded/failed, memory_saves, memory_save_failures, memory_deletions, failed_operations, failed_logins}` |
+| `GET /admin/users/{id}` | one account + 10 most recent activity events |
+| `GET /admin/users/{id}/activity?action&status&since&until` | the account's audit events |
+| `GET /admin/users/{id}/queries`, `…/queries/{query_id}` | questions asked + result **metadata** (never the retrieved text) |
+| `POST /admin/users/{id}/status` | `{status: active\|disabled, reason?}`; disabling revokes sessions at once (`409` if unchanged) |
+| `GET /admin/users/{id}/memories?reason=` | support access to memory **content**; `reason` ≥ 8 chars; audited as `admin.user_memories_accessed` |
+| `DELETE /admin/users/{id}?confirm=DELETE` | permanently delete the account and its personal data (audit trail kept) |
+| `GET /admin/activity?user_id&action&status&target_type&role&since&until&search&limit&offset` | the audit log, newest first (`action` may be a family such as `query`) |
+| `GET /admin/activity/actions`, `GET /admin/activity/{event_id}` | distinct actions; one event |
+| `POST /sources/{source_id}/visibility` | `{visibility: shared\|restricted}` publish / withdraw shared-plane content |
+
+Audit event: `{event_id, actor_user_id, actor_role, actor_label, subject_user_id, action, target_type, target_id, timestamp, status: success\|failure\|denied, request_id, metadata}`.
 
 ## Core
 
-(`POST /query` is documented here but is open to visitors as described above; every other row in this section, and all later sections, is administrator-only.)
+Every route in this section and all later sections is **administrator-only**. `POST /query` is the administrator playground on the shared architecture; ordinary users use `POST /me/query`. `POST /ingestion` accepts `visibility: "shared"\|"restricted"` (default `restricted` = administrators only).
 
 | Method & path | Purpose |
 |---|---|

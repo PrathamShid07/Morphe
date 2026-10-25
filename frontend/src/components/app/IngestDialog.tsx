@@ -42,6 +42,7 @@ export function IngestDialog({ open, onOpenChange }: { open: boolean; onOpenChan
   const upload = useIngestFile()
   const [file, setFile] = useState<File | null>(null)
   const [fileTopic, setFileTopic] = useState("")
+  const [share, setShare] = useState(false)  // publish to every user's searches; off = administrators only
   const form = useForm<IngestForm>({
     resolver: zodResolver(ingestSchema),
     defaultValues: { source_name: "", text: "", topic: "", parent_topic: "", pinned: false },
@@ -57,6 +58,7 @@ export function IngestDialog({ open, onOpenChange }: { open: boolean; onOpenChan
       })
     form.reset()
     setFile(null)
+    setShare(false)
     ingest.reset()
     upload.reset()
     onOpenChange(false)
@@ -66,7 +68,7 @@ export function IngestDialog({ open, onOpenChange }: { open: boolean; onOpenChan
     const metadata: Record<string, unknown> = {}
     if (v.topic) metadata.topic = v.topic
     if (v.parent_topic) metadata.parent_topic = v.parent_topic
-    ingest.mutate({ source_name: v.source_name, text: v.text, metadata, pinned: v.pinned }, { onSuccess: done })
+    ingest.mutate({ source_name: v.source_name, text: v.text, metadata, pinned: v.pinned, ...(share ? { visibility: "shared" as const } : {}) }, { onSuccess: done })
   })
   const text = useWatch({ control: form.control, name: "text" }) ?? ""
   const pinned = useWatch({ control: form.control, name: "pinned" })
@@ -115,6 +117,13 @@ export function IngestDialog({ open, onOpenChange }: { open: boolean; onOpenChan
                 </span>
                 <Switch checked={pinned} onCheckedChange={(v) => form.setValue("pinned", v)} aria-label="Pin memories" />
               </label>
+              <label className="flex items-center justify-between gap-3 rounded-xl border p-3 text-sm">
+                <span>
+                  <span className="font-medium">Share with all users</span>
+                  <span className="block text-xs text-muted-foreground">Off: only administrators can search this. On: every signed-in user&apos;s questions can find it, labelled “Shared”.</span>
+                </span>
+                <Switch checked={share} onCheckedChange={setShare} aria-label="Share with all users" />
+              </label>
               {error && <ErrorState error={error} />}
               <DialogFooter>
                 <Button type="submit" disabled={busy} className="w-full sm:w-auto">
@@ -133,9 +142,16 @@ export function IngestDialog({ open, onOpenChange }: { open: boolean; onOpenChan
               <Label htmlFor="file_topic">Topic <span className="text-muted-foreground">(optional)</span></Label>
               <Input id="file_topic" value={fileTopic} onChange={(e) => setFileTopic(e.target.value)} placeholder="django" />
             </div>
+            <label className="flex items-center justify-between gap-3 rounded-xl border p-3 text-sm">
+              <span>
+                <span className="font-medium">Share with all users</span>
+                <span className="block text-xs text-muted-foreground">Off: administrators only. On: published to every signed-in user&apos;s searches.</span>
+              </span>
+              <Switch checked={share} onCheckedChange={setShare} aria-label="Share uploaded file with all users" />
+            </label>
             {error && <ErrorState error={error} />}
             <DialogFooter>
-              <Button disabled={!file || busy} className="w-full sm:w-auto" onClick={() => file && upload.mutate({ file, topic: fileTopic || undefined }, { onSuccess: done })}>
+              <Button disabled={!file || busy} className="w-full sm:w-auto" onClick={() => file && upload.mutate({ file, topic: fileTopic || undefined, ...(share ? { visibility: "shared" as const } : {}) }, { onSuccess: done })}>
                 {upload.isPending && <Loader2 className="size-4 animate-spin" />} Upload & ingest
               </Button>
             </DialogFooter>

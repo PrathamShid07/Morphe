@@ -67,3 +67,6 @@ reference document/
 
 # Playwright admin session cookie (contains a live session; never commit)
 frontend/e2e/.auth/
+
+# pre-account migration backups (ids only, no content)
+data/backups/

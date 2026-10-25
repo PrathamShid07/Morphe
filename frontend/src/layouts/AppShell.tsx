@@ -1,13 +1,13 @@
 import { useState } from "react"
 import { NavLink, Outlet, useLocation } from "react-router-dom"
 import {
-  Activity, Archive, BarChart3, Database, FlaskConical, GitBranch, LayoutDashboard, LockKeyhole, LogOut, Menu, Moon, Network, Plus, Search, ShieldCheck, Sun, User, Workflow,
+  Activity, Archive, BarChart3, Database, FlaskConical, GitBranch, LayoutDashboard, LogOut, Menu, Moon, Network, Plus, ScrollText, Search, ShieldCheck, Sun, User, Users, Workflow,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Orb } from "@/components/app/Orb"
 import { IngestProvider, useIngestDialog } from "@/components/app/IngestDialog"
-import { AdminLoginDialog } from "@/components/app/AdminLoginDialog"
+import { PrivacyNotice } from "@/components/app/PrivacyNotice"
 import { ErrorState } from "@/components/app/states"
 import { useHealth, useSummary } from "@/api/hooks"
 import { useAuth } from "@/lib/auth"
@@ -27,9 +27,11 @@ export const NAV = [
   { to: "/metrics", label: "Metrics", icon: BarChart3 },
   { to: "/versions", label: "Versions", icon: GitBranch },
   { to: "/benchmarks", label: "Benchmarks", icon: FlaskConical },
+  { to: "/users", label: "Users", icon: Users },
+  { to: "/activity", label: "Activity", icon: ScrollText },
 ] as const
 
-/** Visitor navigation: exactly two destinations. */
+/** Ordinary-user navigation: exactly two destinations. */
 export const USER_NAV = [
   { to: "/query", label: "Query Playground", icon: Search },
   { to: "/graph", label: "Graph Explorer", icon: Network },
@@ -72,35 +74,29 @@ function NavList({ items, onNavigate }: { items: readonly NavItem[]; onNavigate?
   )
 }
 
-/** The explicit, always-visible statement of which experience is showing and what the session is. */
+/** The explicit, always-visible statement of who is signed in and which experience is showing. */
 function ModeBlock({ mode, onNavigate }: { mode: ShellMode; onNavigate?: () => void }) {
-  const { isAdminSession, username, openLogin, logout, switchToUser, switchToAdmin } = useAuth()
+  const { username, user, logout } = useAuth()
   if (mode === "admin") {
     return (
       <div className="space-y-2 rounded-2xl border bg-violet-soft/60 p-3" data-testid="mode-indicator" aria-label="Admin Mode">
         <div className="flex items-center gap-2 text-sm font-semibold"><ShieldCheck className="size-4 text-primary" />Admin Mode</div>
         <p className="truncate text-xs text-muted-foreground">Signed in as <b className="text-foreground">{username}</b></p>
-        <div className="grid gap-1.5">
-          <Button variant="outline" size="sm" className="h-10 justify-start gap-2 rounded-xl" onClick={() => { onNavigate?.(); switchToUser() }}><User className="size-4" />Switch to User Mode</Button>
-          <Button variant="ghost" size="sm" className="h-10 justify-start gap-2 rounded-xl text-muted-foreground" onClick={() => { onNavigate?.(); void logout() }}><LogOut className="size-4" />Sign out</Button>
-        </div>
+        <Button variant="ghost" size="sm" className="h-10 w-full justify-start gap-2 rounded-xl text-muted-foreground" onClick={() => { onNavigate?.(); void logout() }}><LogOut className="size-4" />Sign out</Button>
       </div>
     )
   }
   return (
     <div className="space-y-2 rounded-2xl border p-3" data-testid="mode-indicator" aria-label="User Mode">
       <div className="flex items-center gap-2 text-sm font-semibold"><User className="size-4 text-muted-foreground" />User Mode</div>
-      {isAdminSession ? (
-        <>
-          <p className="text-xs text-muted-foreground">An administrator session is still active (<b className="text-foreground">{username}</b>).</p>
-          <div className="grid gap-1.5">
-            <Button variant="secondary" size="sm" className="h-10 justify-start gap-2 rounded-xl border" onClick={() => { onNavigate?.(); switchToAdmin() }}><ShieldCheck className="size-4" />Return to Admin Mode</Button>
-            <Button variant="ghost" size="sm" className="h-10 justify-start gap-2 rounded-xl text-muted-foreground" onClick={() => { onNavigate?.(); void logout() }}><LogOut className="size-4" />Sign out</Button>
-          </div>
-        </>
-      ) : (
-        <Button variant="secondary" className="h-11 w-full justify-start gap-2 rounded-xl border" onClick={() => { onNavigate?.(); openLogin() }}><LockKeyhole className="size-4" />Admin Login</Button>
-      )}
+      <div className="min-w-0 text-xs text-muted-foreground" data-testid="account-identity">
+        <p className="truncate font-medium text-foreground">{user?.full_name}</p>
+        <p className="truncate">{user?.email}</p>
+      </div>
+      <div className="grid gap-1.5">
+        <PrivacyNotice />
+        <Button variant="ghost" size="sm" className="h-10 justify-start gap-2 rounded-xl text-muted-foreground" onClick={() => { onNavigate?.(); void logout() }}><LogOut className="size-4" />Log out</Button>
+      </div>
     </div>
   )
 }
@@ -155,7 +151,7 @@ function IngestButton({ className }: { className?: string }) {
 function Shell({ mode }: { mode: ShellMode }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { theme, toggle } = useTheme()
-  const { openLogin, switchToUser } = useAuth()
+  const { user } = useAuth()
   const health = useHealth()
   const loc = useLocation()
   const items: readonly NavItem[] = mode === "admin" ? NAV : USER_NAV
@@ -184,15 +180,9 @@ function Shell({ mode }: { mode: ShellMode }) {
           <div className="flex min-w-0 items-center gap-2 lg:hidden"><Orb small pulse={false} className="size-5 shrink-0" /></div>
           <p className="min-w-0 flex-1 truncate text-sm font-medium text-muted-foreground sm:text-base">{current?.label ?? "MORPHE"}</p>
           {mode === "admin" ? (
-            <>
-              <span className="hidden items-center gap-1.5 rounded-full border border-primary/40 bg-violet-soft px-3 py-1 text-xs font-medium sm:flex"><ShieldCheck className="size-3.5 text-primary" />Admin Mode</span>
-              <Button variant="outline" size="sm" className="h-10 gap-1.5 rounded-xl lg:hidden" onClick={switchToUser} aria-label="Switch to User Mode"><User className="size-4" /><span className="hidden sm:inline">User Mode</span></Button>
-            </>
+            <span className="hidden items-center gap-1.5 rounded-full border border-primary/40 bg-violet-soft px-3 py-1 text-xs font-medium sm:flex"><ShieldCheck className="size-3.5 text-primary" />Admin Mode</span>
           ) : (
-            <>
-              <span className="hidden items-center gap-1.5 rounded-full border px-3 py-1 text-xs text-muted-foreground sm:flex"><Activity className="size-3.5" />User Mode</span>
-              <Button variant="outline" size="sm" className="h-10 gap-1.5 rounded-xl lg:hidden" onClick={openLogin} aria-label="Admin Login"><LockKeyhole className="size-4" /><span className="hidden sm:inline">Admin Login</span></Button>
-            </>
+            <span className="hidden max-w-[16rem] items-center gap-1.5 truncate rounded-full border px-3 py-1 text-xs text-muted-foreground sm:flex"><Activity className="size-3.5 shrink-0" /><span className="truncate">{user?.full_name ?? "User Mode"}</span></span>
           )}
           <Button variant="ghost" size="icon" className="size-11 lg:hidden" onClick={toggle} aria-label="Toggle light and dark theme">
             {theme === "dark" ? <Sun className="size-5" /> : <Moon className="size-5" />}
@@ -208,7 +198,6 @@ function Shell({ mode }: { mode: ShellMode }) {
           <Outlet />
         </main>
       </div>
-      <AdminLoginDialog />
     </div>
   )
 }

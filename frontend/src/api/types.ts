@@ -118,6 +118,8 @@ export interface ModuleInfo {
   profile_status: string
   capacity_threshold?: number
   utilization?: number | null
+  /** Per-user graph only: whose module this is. */
+  scope?: "personal" | "shared" | null
 }
 export interface ModuleDetail extends ModuleInfo {
   architecture_version?: string | null
@@ -132,7 +134,7 @@ export interface GraphNode {
   id: string
   type: string
   position: { x: number; y: number }
-  data: { label: string; recordCount: number; parentId: string | null; isContainer: boolean; lastChangeOp: string | null; lastChangeAt: string | null; utilization?: number | null }
+  data: { label: string; recordCount: number; parentId: string | null; isContainer: boolean; lastChangeOp: string | null; lastChangeAt: string | null; utilization?: number | null; scope?: "personal" | "shared" }
 }
 export interface GraphEdge {
   id: string
@@ -157,6 +159,8 @@ export interface QueryResult {
   module_name: string | null
   source_name: string | null
   section?: string | null
+  /** Signed-in users only: `personal` = one of your own memories, `shared` = published shared knowledge. */
+  scope?: "personal" | "shared"
 }
 export type QueryMode = "graph" | "global" | "progressive" | "soft"
 export interface ProgressiveStage {
@@ -699,16 +703,81 @@ export type StrategyRow = {
 } & Record<StrategyName, QualityMetrics & { e2e_ms: number; retrieval_ms: number; eligible_candidates: number; fallback: number; modules_searched: number | null; excluded_relevant: number; relevant_total: number
   fallback_reason: string | null; stages_run: number | null; stop_reason: string | null; useful_expansion_steps: number | null; soft_promoted: number | null; soft_demoted: number | null }>
 
-// ---------------------------------------------------------------------------------------------- authentication / visitor mode
+// ---------------------------------------------------------------------------------------------- accounts, sessions and personal memory
+export interface AccountUser {
+  user_id: string
+  full_name: string
+  email: string
+  role: "user"
+  status: "active" | "disabled"
+  created_at: string
+  last_login_at: string | null
+  last_activity_at: string | null
+}
 export interface AuthSession {
   authenticated: boolean
-  role: "admin" | "user"
+  role: "admin" | "user" | null
+  user: AccountUser | null
+  /** Administrator username (administrators only). */
   username: string | null
-  /** Unix seconds at which the administrator session ends. */
+  /** Unix seconds at which the session ends. */
   expires_at: number | null
   csrf_token: string | null
   admin_configured: boolean
+  registration_enabled: boolean
+  /** The browser held a session for an account that has since been disabled. */
+  account_disabled?: boolean
 }
+export interface MemoryScope { personal_records: number; shared_records: number; empty: boolean }
+export type PersonalQueryResponse = QueryResponse & { memory_scope: MemoryScope; fallback_used: boolean }
+export interface MyMemory {
+  memory_id: string
+  module_id: string
+  module_name?: string | null
+  source_id: string
+  source_name: string
+  text_preview: string
+  token_count: number
+  created_at: string
+  status: string
+}
+export interface SaveMemoryResult {
+  source_id: string
+  status: "completed" | "duplicate"
+  chunks_created: number
+  memory_ids: string[]
+  module_ids: string[]
+  new_module_ids: string[]
+  tokens_added: number
+  message: string
+}
+export interface MySummary { memories: number; modules: number; sources: number; tokens: number; shared_records: number }
+export interface UserStats {
+  private_memories: number; personal_modules: number; sources: number; queries_submitted: number; queries_succeeded: number; queries_failed: number
+  memory_saves: number; memory_save_failures: number; memory_deletions: number; failed_operations: number; failed_logins: number
+}
+export interface AuditEvent {
+  event_id: string
+  actor_user_id: string | null
+  actor_role: "user" | "admin"
+  actor_label: string | null
+  subject_user_id: string | null
+  action: string
+  target_type: string | null
+  target_id: string | null
+  timestamp: string
+  status: "success" | "failure" | "denied"
+  request_id: string | null
+  metadata: Record<string, unknown>
+  user?: { full_name: string | null; email: string | null } | null
+}
+export interface AdminUser extends AccountUser {
+  stats: UserStats
+  disabled_at?: string | null
+  disabled_reason?: string | null
+  recent_activity?: AuditEvent[]
+}
+export interface AdminUserQuery { query_id: string; query: string; mode: QueryMode | null; created_at: string; result_count: number; latency_ms: number | null }
 export interface QueryHistoryItem {
   query_id: string
   query: string

@@ -15,11 +15,11 @@ from app.auth.passwords import fast_hasher, hash_password, verify_password
 from app.auth.service import ADMIN_COOKIE, USER_COOKIE
 from app.config import Settings
 from app.main import create_app
-from tests.conftest import ADMIN_PASSWORD, ADMIN_USER, SESSION_SECRET, admin_test_client, login_admin, make_settings
+from tests.conftest import ADMIN_PASSWORD, ADMIN_USER, SESSION_SECRET, admin_test_client, login_admin, make_settings, register_user
 from tests.test_api import seed
 
 A = "/api/v1"
-LOGIN = f"{A}/auth/login"
+LOGIN = f"{A}/auth/admin/login"
 
 
 def setck(c, name, value):
@@ -39,7 +39,7 @@ def test_valid_credentials_sign_in_and_cookie_is_httponly_strict(anon_client):
     assert ADMIN_PASSWORD not in r.text
     cookie = next(h for h in r.headers.get_list("set-cookie") if h.startswith(ADMIN_COOKIE))
     assert "httponly" in cookie.lower() and "samesite=strict" in cookie.lower()
-    s = anon_client.get(f"{A}/auth/session").json()
+    s = anon_client.get(f"{A}/auth/me").json()
     assert s["authenticated"] and s["role"] == "admin" and s["csrf_token"] == body["csrf_token"]
 
 
@@ -49,23 +49,15 @@ def test_invalid_credentials_are_rejected_without_revealing_which_part_was_wrong
     assert bad_pw.json()["error"]["code"] == bad_user.json()["error"]["code"] == "invalid_credentials"
     assert bad_pw.json()["error"]["message"] == bad_user.json()["error"]["message"]
     assert not any(h.startswith(ADMIN_COOKIE) for h in bad_pw.headers.get_list("set-cookie"))
-    assert anon_client.get(f"{A}/auth/session").json()["authenticated"] is False
+    assert anon_client.get(f"{A}/auth/me").json()["authenticated"] is False
 
 
 def test_a_client_cannot_assert_its_own_role(anon_client):
     r = anon_client.post(LOGIN, json={"username": ADMIN_USER, "password": "wrong", "role": "admin"})
     assert r.status_code == 422  # unknown fields (such as "role") are refused outright
-    assert anon_client.get(f"{A}/auth/session", params={"role": "admin"}, headers={"X-Role": "admin", "X-User-Role": "admin"}).json()["role"] == "user"
+    assert anon_client.get(f"{A}/auth/me", params={"role": "admin"}, headers={"X-Role": "admin", "X-User-Role": "admin"}).json()["role"] is None
     anon_client.cookies.set("role", "admin")
     assert anon_client.get(f"{A}/memories").status_code in (401, 403)
-
-
-def test_there_is_no_public_registration(anon_client):
-    paths = {getattr(r, "path", "") for r in anon_client.app.routes}
-    assert not any(w in p for p in paths for w in ("register", "signup", "sign-up", "/users"))
-    for p in ("auth/register", "auth/signup", "users", "auth/admin"):
-        assert anon_client.post(f"{A}/{p}", json={"username": "x", "password": "y" * 20, "role": "admin"}).status_code in (404, 405)
-    assert anon_client.get(f"{A}/auth/session").json()["role"] == "user"
 
 
 def test_expired_session_is_rejected(settings):
@@ -76,8 +68,8 @@ def test_expired_session_is_rejected(settings):
         c.app.state.auth.clock = lambda: real() + 11 * 60  # eleven minutes later
         r = c.get(f"{A}/metrics/summary")
         assert r.status_code == 401 and r.json()["error"]["code"] == "session_expired"
-        s = c.get(f"{A}/auth/session").json()
-        assert s["authenticated"] is False and s["role"] == "user"
+        s = c.get(f"{A}/auth/me").json()
+        assert s["authenticated"] is False and s["role"] is None
 
 
 def test_tampered_forged_and_swapped_cookies_are_rejected(anon_client, settings):
@@ -96,9 +88,11 @@ def test_tampered_forged_and_swapped_cookies_are_rejected(anon_client, settings)
         foreign = o.cookies.get(ADMIN_COOKIE)
     setck(anon_client, ADMIN_COOKIE, foreign)
     assert anon_client.get(f"{A}/metrics/summary").status_code == 401
-    # a visitor token cannot be passed off as an administrator token (the signature covers the token kind)
-    anon_client.get(f"{A}/auth/session")
-    setck(anon_client, ADMIN_COOKIE, anon_client.cookies.get(USER_COOKIE))
+    # a user token cannot be passed off as an administrator token (the signature covers the token kind)
+    with TestClient(anon_client.app) as u:
+        register_user(u)
+        user_token = u.cookies.get(USER_COOKIE)
+    setck(anon_client, ADMIN_COOKIE, user_token)
     assert anon_client.get(f"{A}/metrics/summary").status_code == 401
 
 
@@ -112,7 +106,7 @@ def test_logout_revokes_the_session_even_if_the_cookie_is_replayed(client):
         replay.cookies.set(ADMIN_COOKIE, stolen)
         r = replay.get(f"{A}/metrics/summary")
         assert r.status_code == 401 and r.json()["error"]["code"] == "session_expired"
-        assert replay.get(f"{A}/auth/session").json()["authenticated"] is False
+        assert replay.get(f"{A}/auth/me").json()["authenticated"] is False
 
 
 def test_logout_is_idempotent_without_a_session(anon_client):
@@ -162,7 +156,7 @@ def test_sign_in_is_disabled_when_no_admin_is_configured(tmp_path):
         r = login(c)
         assert r.status_code == 503 and r.json()["error"]["code"] == "admin_not_configured"
         assert c.get(f"{A}/metrics/summary").status_code == 401
-        assert c.get(f"{A}/auth/session").json()["admin_configured"] is False
+        assert c.get(f"{A}/auth/me").json()["admin_configured"] is False
 
 
 def test_passwords_are_stored_as_argon2id_and_never_in_plaintext(settings):

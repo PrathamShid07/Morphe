@@ -15,15 +15,19 @@ const Adaptation = lazy(() => import("@/pages/Adaptation"))
 const Metrics = lazy(() => import("@/pages/Metrics"))
 const Versions = lazy(() => import("@/pages/Versions"))
 const Benchmarks = lazy(() => import("@/pages/Benchmarks"))
+const Users = lazy(() => import("@/pages/Users"))
+const ActivityLog = lazy(() => import("@/pages/ActivityLog"))
+const AuthPage = lazy(() => import("@/pages/Auth"))
 
 const page = (el: React.ReactNode) => <Suspense fallback={<LoadingBlock rows={4} />}>{el}</Suspense>
 
-/** Two completely separate route tables. In User Mode the administrator pages are not merely hidden: they are not routable
- *  (every unknown path lands on the Query Playground), and the API refuses their data to anyone without an administrator session anyway. */
+/** Three completely separate route tables chosen by the SERVER-verified role. A visitor can only see the sign-in page; an ordinary user can only
+ *  reach the Query Playground and Graph Explorer (administrator pages are not routable for them, and the API refuses their data anyway). */
 export function App() {
-  const { loading, isAdminView } = useAuth()
+  const { loading, authenticated, role } = useAuth()
   if (loading) return <div className="mx-auto max-w-3xl p-8"><LoadingBlock rows={3} /></div>
-  if (isAdminView) {
+  if (!authenticated) return page(<AuthPage />)
+  if (role === "admin") {
     return (
       <Routes>
         <Route element={<AppShell mode="admin" />}>
@@ -36,6 +40,8 @@ export function App() {
           <Route path="metrics" element={page(<Metrics />)} />
           <Route path="versions" element={page(<Versions />)} />
           <Route path="benchmarks" element={page(<Benchmarks />)} />
+          <Route path="users" element={page(<Users />)} />
+          <Route path="activity" element={page(<ActivityLog />)} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

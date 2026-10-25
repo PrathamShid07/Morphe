@@ -90,7 +90,10 @@ class IngestionService:
 
     # ---------------------------------------------------------------- ingest
     def ingest(self, source_name: str, text: str, metadata: dict[str, Any] | None = None, tags: list[str] | None = None,
-               importance: str = "normal", pinned: bool = False, operation_id: str | None = None) -> dict[str, Any]:
+               importance: str = "normal", pinned: bool = False, operation_id: str | None = None,
+               visibility: str = "restricted") -> dict[str, Any]:
+        if visibility not in ("shared", "restricted"):
+            raise ValidationFailure("visibility must be 'shared' or 'restricted'", code="invalid_visibility")
         metadata = dict(metadata or {})
         normalized = self._validate(source_name, text, importance)
         content_hash = sha256_hex(normalized)
@@ -113,7 +116,7 @@ class IngestionService:
         try:
             with self.coordinator.mutate("ingestion", operation_id, {"source_id": source_id}) as op:
                 result = self._write(op["operation_id"], source_id, source_name, normalized, content_hash, chunks,
-                                     vectors, metadata, tags or [], importance, pinned)
+                                     vectors, metadata, tags or [], importance, pinned, visibility)
                 op["result"] = {k: result[k] for k in ("source_id", "chunks_created", "tokens_added")}
         except AlreadyCompleted as done:
             usage = self.budget.usage()
@@ -132,7 +135,7 @@ class IngestionService:
 
     def _write(self, operation_id: str, source_id: str, source_name: str, normalized: str, content_hash: str,
                chunks, vectors: np.ndarray, metadata: dict[str, Any], tags: list[str], importance: str,
-               pinned: bool) -> dict[str, Any]:
+               pinned: bool, visibility: str = "restricted") -> dict[str, Any]:
         now = iso()
         module_ids, created = self._assign_modules(len(chunks), vectors, source_name, metadata, operation_id)
         base = source_id[4:]
@@ -140,7 +143,7 @@ class IngestionService:
             MemoryRecord(memory_id=f"mem_{base}_{c.index:04d}", module_id=module_ids[i], text=c.text,
                          source_id=source_id, source_name=source_name, created_at=now, token_count=c.token_count,
                          content_hash=sha256_hex(c.text), section=c.section, chunk_index=c.index, status=PENDING,
-                         importance=importance, pinned=pinned, tags=tags)
+                         importance=importance, pinned=pinned, tags=tags, visibility=visibility)
             for i, c in enumerate(chunks)]
         ids = [r.memory_id for r in records]
         touched = sorted(set(module_ids))
@@ -153,7 +156,7 @@ class IngestionService:
                 {"$set": {"source_id": source_id, "source_name": source_name, "content_hash": content_hash,
                           "created_at": now, "metadata": metadata, "tags": tags, "chunk_count": len(records),
                           "token_count": sum(r.token_count for r in records), "status": "active",
-                          "operation_id": operation_id, "module_ids": touched}}, upsert=True)
+                          "operation_id": operation_id, "module_ids": touched, "visibility": visibility}}, upsert=True)
             # activation: only now do the chunks become retrievable
             self.qdrant.set_status(ids, ACTIVE)
             self.mongo.update_memory_metadata(ids, {"status": ACTIVE})

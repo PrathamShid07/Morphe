@@ -35,6 +35,8 @@ class IngestionRequest(BaseModel):
     importance: Importance = "normal"
     pinned: bool = False
     operation_id: str | None = Field(None, max_length=64, description="Idempotency key")
+    visibility: Literal["shared", "restricted"] = Field(
+        "restricted", description="'shared' publishes the content to every signed-in user's searches; 'restricted' (default) keeps it administrator-only")
 
 
 class IngestionResponse(Loose):
@@ -78,6 +80,10 @@ class QueryResponse(Loose):
 
 
 # ---------------------------------------------------------------- memories
+class VisibilityRequest(BaseModel):
+    visibility: Literal["shared", "restricted"]
+
+
 class MemoryPatch(BaseModel):
     pinned: bool | None = None
     importance: Importance | None = None

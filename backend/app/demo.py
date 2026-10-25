@@ -63,7 +63,7 @@ class DemoService:
         for item in man["sets"][set_name]:
             text = (Path(self.s.samples_dir) / item["file"]).read_text(encoding="utf-8")
             r = self.ctx.ingestion.ingest(item["source_name"], text, item.get("metadata", {}), item.get("tags", []),
-                                          item.get("importance", "normal"), item.get("pinned", False))
+                                          item.get("importance", "normal"), item.get("pinned", False), visibility="shared")  # the sample corpus is the shared demonstration knowledge
             results.append({"source_name": item["source_name"], "status": r["status"], "chunks": r["chunks_created"],
                             "modules": r["module_ids"]})
         return results

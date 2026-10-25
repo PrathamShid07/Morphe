@@ -36,8 +36,21 @@ class Settings(BaseSettings):
     session_cookie_secure: bool | None = None  # None: Secure cookies in production only (plain-HTTP localhost cannot store Secure cookies)
     login_max_attempts: int = 5
     login_lockout_seconds: int = 300
-    user_top_k_max: int = 20                 # ordinary visitors may request at most this many results
-    user_history_limit: int = 20             # stored query results kept per visitor session
+    user_top_k_max: int = 20                 # ordinary users may request at most this many results
+    user_history_limit: int = 20             # stored query results kept per user
+    # --- accounts and personal memory ----------------------------------------------------------------------------
+    registration_enabled: bool = True        # public sign-up always creates a regular `user`; there is no way to register an administrator
+    password_min_length: int = 10
+    register_max_per_hour: int = 20          # sign-ups per client address
+    user_memory_max_chars: int = 20_000      # one "save to my memory" request
+    user_memory_max_records: int = 5_000     # active private records per user (storage guard)
+    user_coaccess_min_count: int = 3         # a personal co-access shortcut appears after this many queries touched both modules
+    qdrant_user_memory_collection: str = "morphe_user_memories"
+    qdrant_user_module_collection: str = "morphe_user_module_profiles"
+    auto_migrate: bool = True                # on startup, label pre-account records on the shared plane (idempotent; see docs/USER_ACCOUNTS.md)
+    migration_backup_dir: str = str(REPO_ROOT / "data" / "backups")
+    audit_retention_days: int = 365          # 0 = keep audit events forever
+    audit_query_text_chars: int = 300        # how much of a submitted question the audit log retains (disclosed in the privacy notice)
 
     # --- embeddings --------------------------------------------------------
     embedding_backend: Literal["sentence_transformers", "hashing"] = "sentence_transformers"
@@ -195,6 +208,8 @@ class Settings(BaseSettings):
             raise ValueError("SESSION_SECRET must be at least 32 characters (generate one with backend/scripts/admin_credentials.py)")
         if self.is_production and self.admin_password_hash and not self.session_secret:
             raise ValueError("SESSION_SECRET is required in production when an administrator password is configured")
+        if self.password_min_length < 8:
+            raise ValueError("PASSWORD_MIN_LENGTH must be at least 8")
         if self.admin_session_ttl_minutes <= 0 or self.user_session_ttl_days <= 0:
             raise ValueError("session lifetimes must be positive")
         return self

@@ -33,6 +33,9 @@ class MemoryRecord:
     external_id: str | None = None  # original id in an external collection (e.g. BEIR corpus document id)
     dataset_id: str | None = None
     title: str | None = None
+    # Shared plane only: "shared" = published to every signed-in user, "restricted" = administrators only. Nothing is shared unless an
+    # administrator says so explicitly (the default is the safe one). Personal memories live in their own plane with visibility "private".
+    visibility: str = "restricted"
 
     def qdrant_payload(self) -> dict[str, Any]:
         payload = {
@@ -42,6 +45,7 @@ class MemoryRecord:
             "importance": self.importance, "pinned": self.pinned, "summary_of": self.summary_of,
             "superseded_by": self.superseded_by, "tags": self.tags, "content_hash": self.content_hash,
             "merged_source_ids": self.merged_source_ids, "kind": self.kind,
+            "visibility": self.visibility, "owner_user_id": None,
         }
         if self.external_id is not None:  # keep ordinary chunk payloads unchanged
             payload.update({"beir_doc_id": self.external_id, "dataset_id": self.dataset_id, "title": self.title})

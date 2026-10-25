@@ -39,7 +39,7 @@ def sign_in() -> None:
     import getpass
     user = os.environ.get("MORPHE_ADMIN_USERNAME", "morphe-admin")
     password = os.environ.get("MORPHE_ADMIN_PASSWORD") or getpass.getpass(f"MORPHE administrator password for {user}: ")
-    r = c.post(f"{P}/auth/login", json={"username": user, "password": password})
+    r = c.post(f"{P}/auth/admin/login", json={"username": user, "password": password})
     if r.status_code != 200:
         print(f"! administrator sign-in failed ({r.status_code}): {r.json().get('error', {}).get('message', r.text[:200])}", file=sys.stderr)
         raise SystemExit(1)

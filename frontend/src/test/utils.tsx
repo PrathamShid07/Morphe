@@ -36,8 +36,10 @@ export function mockApi(routes: Routes) {
 /** A static auth context for component tests. The default is the administrator view (what the pre-existing page tests exercise). */
 export function testAuth(kind: "admin" | "user" = "admin", over: Partial<AuthState> = {}): AuthState {
   const admin = kind === "admin"
-  return { loading: false, isAdminSession: admin, isAdminView: admin, username: admin ? "test-admin" : null, adminConfigured: true, loginOpen: false,
-    openLogin: () => {}, closeLogin: () => {}, login: async () => {}, logout: async () => {}, switchToUser: () => {}, switchToAdmin: () => {}, refresh: async () => {}, ...over }
+  const user = admin ? null : { user_id: "usr_TEST", full_name: "Alice Tester", email: "alice@example.com", role: "user" as const, status: "active" as const,
+    created_at: "2026-10-25T10:00:00Z", last_login_at: null, last_activity_at: null }
+  return { loading: false, authenticated: true, role: kind, user, username: admin ? "test-admin" : null, isAdminView: admin, isAdminSession: admin, adminConfigured: true,
+    registrationEnabled: true, accountDisabled: false, register: async () => {}, loginUser: async () => {}, loginAdmin: async () => {}, logout: async () => {}, refresh: async () => {}, ...over }
 }
 
 export function renderWith(ui: ReactElement, route = "/", auth: AuthState = testAuth("admin")) {

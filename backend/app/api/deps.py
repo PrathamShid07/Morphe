@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
-
 from fastapi import Request, Response
 
 from ..auth.service import ADMIN_COOKIE, USER_COOKIE, AuthError, AuthService, Identity
@@ -30,7 +28,8 @@ def get_auth(request: Request) -> AuthService:
 
 
 def set_session_cookie(response: Response, auth: AuthService, name: str, value: str, max_age: float) -> None:
-    # Admin cookie: SameSite=Strict (never sent on cross-site requests). Visitor cookie: Lax. Both HttpOnly; Secure outside plain-HTTP development.
+    # Admin cookie: SameSite=Strict (never sent on cross-site requests). User cookie: Lax (so a link from elsewhere still opens signed in).
+    # Both HttpOnly; Secure outside plain-HTTP development. Cookie-authenticated writes also need the CSRF header.
     response.set_cookie(name, value, max_age=int(max_age), httponly=True, secure=auth.cookie_secure,
                         samesite="strict" if name == ADMIN_COOKIE else "lax", path="/")
 
@@ -40,24 +39,9 @@ def clear_cookie(response: Response, auth: AuthService, name: str) -> None:
                            samesite="strict" if name == ADMIN_COOKIE else "lax")
 
 
-def require_admin(request: Request) -> Identity:
-    """Authorization gate for every administrative route. The role comes only from a verified, unexpired, unrevoked server session.
-
-    401: no valid session at all, or the administrator session has expired / been revoked / has a bad signature.
-    403: a valid ordinary visitor session without administrator rights, or a state-changing request without a valid CSRF token.
-    """
-    auth = get_auth(request)
-    token = request.cookies.get(ADMIN_COOKIE)
-    ident = auth.verify_admin(token) if token else None
-    if ident is None:
-        if token:
-            raise AuthError("your administrator session has expired or is invalid; sign in again", code="session_expired")
-        if auth.verify_user(request.cookies.get(USER_COOKIE)):
-            raise MorpheError("administrator privileges are required for this operation", code="admin_required", status_code=403)
-        raise AuthError("authentication is required")
-    if request.method not in SAFE_METHODS and not auth.csrf_ok(ident.sid, request.headers.get(CSRF_HEADER)):
+def _check_csrf(request: Request, auth: AuthService, sid: str) -> None:
+    if request.method not in SAFE_METHODS and not auth.csrf_ok(sid, request.headers.get(CSRF_HEADER)):
         raise MorpheError("missing or invalid CSRF token", code="csrf_failed", status_code=403)
-    return ident
 
 
 def try_admin(request: Request) -> Identity | None:
@@ -69,28 +53,52 @@ def try_admin(request: Request) -> Identity | None:
         return None
 
 
-@dataclass
-class Actor:
-    role: str  # "admin" | "user"
-    sid: str   # the visitor-session id (server-issued); present for administrators too
-    admin: Identity | None = None
+def require_admin(request: Request) -> Identity:
+    """Authorization gate for every administrative route. The role comes only from a verified, unexpired, unrevoked server session.
 
-    @property
-    def is_admin(self) -> bool:
-        return self.admin is not None
-
-
-def get_actor(request: Request, response: Response) -> Actor:
-    """Who is calling a public endpoint: an administrator (valid session + CSRF on unsafe methods) or an ordinary visitor.
-
-    Every caller gets a server-issued, signed visitor-session cookie; the client never gets to choose its own identifier.
+    401: no valid session at all, or the administrator session has expired / been revoked / has a bad signature.
+    403: a valid ordinary-user session without administrator rights, or a state-changing request without a valid CSRF token.
     """
     auth = get_auth(request)
+    token = request.cookies.get(ADMIN_COOKIE)
+    ident = auth.verify_admin(token) if token else None
+    if ident is None:
+        if token:
+            raise AuthError("your administrator session has expired or is invalid; sign in again", code="session_expired")
+        user_token = request.cookies.get(USER_COOKIE)
+        if user_token and auth.verify_user(user_token):
+            raise MorpheError("administrator privileges are required for this operation", code="admin_required", status_code=403)
+        raise AuthError("authentication is required")
+    _check_csrf(request, auth, ident.sid)
+    request.state.identity = ident
+    return ident
+
+
+def require_user(request: Request) -> Identity:
+    """Gate for every personal-memory route. The `user_id` it returns is the ONLY source of ownership for what follows.
+
+    401: no valid user session (missing, expired, revoked, tampered). 403: the account was disabled, or a state-changing request lacks the CSRF token.
+    An administrator session alone is not a user session: administrators have no personal memory space.
+    """
+    auth = get_auth(request)
+    token = request.cookies.get(USER_COOKIE)
+    ident = auth.verify_user(token) if token else None  # raises AccountDisabled (403) for a disabled account
+    if ident is None:
+        if token:
+            raise AuthError("your session has expired; sign in again", code="session_expired")
+        if try_admin(request) is not None:
+            raise MorpheError("this area belongs to ordinary user accounts; administrators have no personal memory",
+                              code="user_account_required", status_code=403)
+        raise AuthError("authentication is required")
+    _check_csrf(request, auth, ident.sid)
+    request.state.identity = ident
+    return ident
+
+
+def current_identity(request: Request) -> Identity | None:
+    """Who the cookies say the caller is (administrator first, then user); None for an unauthenticated visitor. Raises for disabled accounts."""
     admin = try_admin(request)
-    if admin is not None and request.method not in SAFE_METHODS and not auth.csrf_ok(admin.sid, request.headers.get(CSRF_HEADER)):
-        admin = None  # an unsigned state-changing request is treated as an ordinary visitor's
-    sid = auth.verify_user(request.cookies.get(USER_COOKIE))
-    if sid is None:
-        token, sid = auth.new_user_session()
-        set_session_cookie(response, auth, USER_COOKIE, token, auth.user_ttl)
-    return Actor("admin" if admin else "user", sid, admin)
+    if admin is not None:
+        return admin
+    token = request.cookies.get(USER_COOKIE)
+    return get_auth(request).verify_user(token) if token else None

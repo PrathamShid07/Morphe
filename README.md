@@ -84,9 +84,11 @@ cd frontend && npm run dev            # http://localhost:5173
 First start loads the embedding model (≈ 10 s after the initial download). If MongoDB or the model is unavailable the
 API still serves `/health` with the reason and the dashboard shows it instead of failing silently.
 
-## Two experiences: User Mode and Admin Mode
+## Accounts, personal memory and the administrator dashboard
 
-The dashboard opens in **User Mode** (Query Playground and a read-only, sanitised Graph Explorer; no sign-in). Press **Admin Login** to reach the full dashboard (Overview, Ingest, Memories, Compression, Adaptation, Metrics, Versions, Benchmarks). Authorization is enforced by the API, not by the UI. Create the administrator account locally with `.venv/bin/python backend/scripts/admin_credentials.py init` (the password is printed once; only its Argon2id hash goes into the git-ignored `backend/.env`). See [`docs/ACCESS_CONTROL.md`](docs/ACCESS_CONTROL.md).
+The dashboard opens on a sign-in page with **Sign in**, **Create account** and **Administrator**. A registered **user** gets the Query Playground and Graph Explorer only, a private memory space of their own (saved explicitly with **Save to My Memory**), and sees published shared knowledge alongside it; questions, fallbacks and graph traversal are restricted to that scope by the backend, not by the UI. The **administrator** keeps the full dashboard (Overview, Ingest, Memories, Compression, Adaptation, Metrics, Versions, Benchmarks) plus **Users** and **Activity** pages that show registered accounts and an audit trail. Personal memory lives in its own storage plane, so versioning, rollback, compression and adaptation never touch it.
+
+Create the administrator account locally with `.venv/bin/python backend/scripts/admin_credentials.py init` (the password is printed once; only its Argon2id hash goes into the git-ignored `backend/.env`). Users create their own accounts on the sign-in page. See [`docs/ACCESS_CONTROL.md`](docs/ACCESS_CONTROL.md) and [`docs/USER_ACCOUNTS.md`](docs/USER_ACCOUNTS.md) (ownership model, shared vs private, audit, migration and recovery).
 
 ## Demo (deterministic, reproducible)
 
@@ -165,9 +167,9 @@ internal split. Methodology: `docs/BEIR_BENCHMARK_METHODOLOGY.md`; plan and prot
 ## Tests
 
 ```bash
-cd backend  && ../.venv/bin/python -m pytest                    # 221 backend tests (real algorithms; fake embedder, mongomock, in-memory Qdrant)
-cd frontend && npm test && npm run lint && npm run typecheck    # 96 component/interaction tests, ESLint, strict TypeScript
-cd frontend && npm run e2e                                      # 77 Playwright tests against the RUNNING real stack
+cd backend  && ../.venv/bin/python -m pytest                    # 298 backend tests (real algorithms; fake embedder, mongomock, in-memory Qdrant)
+cd frontend && npm test && npm run lint && npm run typecheck    # 116 component/interaction tests, ESLint, strict TypeScript
+cd frontend && npm run e2e                                      # 98 Playwright tests against the RUNNING real stack
                                                                 # (needs MongoDB + API on :8000; resets and re-seeds the demo data)
 ```
 Demo helpers: `python backend/scripts/demo.py strategies` runs all four strategies over every labeled query on the live architecture and lists the instructive ones; the complete live walkthrough is in [`docs/DEMO_RUNBOOK.md`](docs/DEMO_RUNBOOK.md).

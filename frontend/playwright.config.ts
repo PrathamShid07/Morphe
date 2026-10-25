@@ -6,6 +6,7 @@ export default defineConfig({
   timeout: 120_000,
   workers: 1,
   globalSetup: "./e2e/global-setup.ts",
+  globalTeardown: "./e2e/global-teardown.ts",
   fullyParallel: false,
   reporter: [["list"]],
   use: { baseURL: "http://127.0.0.1:5173", trace: "retain-on-failure" },

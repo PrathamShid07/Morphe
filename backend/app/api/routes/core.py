@@ -10,7 +10,7 @@ from ...common import ValidationFailure
 from ...container import AppContext
 from ...memory.module_view import ModuleView
 from ..deps import get_ctx, require_admin
-from ..schemas.models import IngestionRequest, IngestionResponse, MemoryPatch
+from ..schemas.models import IngestionRequest, IngestionResponse, MemoryPatch, QueryRequest, QueryResponse, VisibilityRequest
 
 router = APIRouter(dependencies=[Depends(require_admin)])  # every route here is administrator-only (the visitor-facing routes are in public.py)
 
@@ -20,12 +20,12 @@ router = APIRouter(dependencies=[Depends(require_admin)])  # every route here is
 def ingest(body: IngestionRequest, ctx: AppContext = Depends(get_ctx)):
     """Chunk, embed and store text. Identical content that is already active returns `status: duplicate`."""
     return ctx.ingestion.ingest(body.source_name, body.text, body.metadata, body.tags, body.importance, body.pinned,
-                                body.operation_id)
+                                body.operation_id, body.visibility)
 
 
 @router.post("/ingestion/file", response_model=IngestionResponse, tags=["ingestion"])
 async def ingest_file(file: UploadFile = File(...), topic: str | None = Form(None), parent_topic: str | None = Form(None),
-                      ctx: AppContext = Depends(get_ctx)):
+                      visibility: str = Form("restricted"), ctx: AppContext = Depends(get_ctx)):
     """Ingest a UTF-8 text/markdown/code file (.txt, .md, .rst, .py, .json, ...)."""
     raw = await file.read(ctx.settings.max_ingest_chars * 4 + 1)
     try:
@@ -39,7 +39,20 @@ async def ingest_file(file: UploadFile = File(...), topic: str | None = Form(Non
         meta["parent_topic"] = parent_topic
     import anyio
     return await anyio.to_thread.run_sync(ctx.ingestion.ingest, file.filename or "upload.txt", text, meta, [], "normal",
-                                          False, None)
+                                          False, None, visibility)
+
+
+@router.post("/query", response_model=QueryResponse, tags=["query"])
+def query(body: QueryRequest, ctx: AppContext = Depends(get_ctx)):
+    """Administrator playground on the shared architecture (complete diagnostic response). Ordinary users use POST /me/query, which is scoped to
+    their own memories; this route never reads the personal plane."""
+    return ctx.retrieval.query(body.query, body.top_k, body.debug_trace, body.mode)
+
+
+@router.post("/sources/{source_id}/visibility", tags=["memories"])
+def set_source_visibility(source_id: str, body: VisibilityRequest, ctx: AppContext = Depends(get_ctx)):
+    """Publish a source to all users (`shared`) or withdraw it (`restricted`)."""
+    return ctx.memories.set_source_visibility(source_id, body.visibility)
 
 
 @router.get("/memories", tags=["memories"])

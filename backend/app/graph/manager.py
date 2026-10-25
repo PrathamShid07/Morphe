@@ -55,34 +55,42 @@ class GraphManager:
         return g.number_of_nodes(), g.number_of_edges()
 
     def neighbors(self, module_id: str) -> list[dict[str, Any]]:
-        g = self._graph
-        if module_id not in g:
-            return []
-        out = []
-        for _, other, key, data in g.edges(module_id, keys=True, data=True):
-            out.append({"module_id": other, "relation_type": key, "weight": data.get("weight", 1.0),
-                        "co_access_count": data.get("co_access_count", 0),
-                        "direction": ("parent" if key == HIERARCHY and data.get("target") == module_id else
-                                      "child" if key == HIERARCHY else "shortcut")})
-        return sorted(out, key=lambda x: (x["relation_type"], -x["weight"], x["module_id"]))
+        return neighbors_of(self._graph, module_id)
 
     def export(self, with_layout: bool = True) -> dict[str, Any]:
-        g = self._graph
-        positions = compute_layout(g) if with_layout else {}
-        nodes = []
-        for mid, d in sorted(g.nodes(data=True)):
-            nodes.append({"id": mid, "type": "moduleNode", "position": positions.get(mid, {"x": 0, "y": 0}),
-                          "data": {"label": d.get("name", mid), "recordCount": d.get("active_record_count", 0),
-                                   "parentId": d.get("parent_id"), "isContainer": d.get("active_record_count", 0) == 0,
-                                   "lastChangeOp": d.get("last_change_op"), "lastChangeAt": d.get("last_change_at")}})
-        edges = []
-        for u, v, key, d in sorted(g.edges(keys=True, data=True), key=lambda x: x[3].get("edge_id", "")):
-            edges.append({"id": d["edge_id"], "source": d.get("source", u), "target": d.get("target", v),
-                          "label": key, "type": "default",
-                          "data": {"relationType": key, "weight": d.get("weight", 1.0),
-                                   "coAccessCount": d.get("co_access_count", 0), "createdAt": d.get("created_at"),
-                                   "evidence": d.get("evidence") or {}, "operationId": d.get("operation_id")}})
-        return {"nodes": nodes, "edges": edges}
+        return export_graph(self._graph, with_layout)
+
+
+def neighbors_of(g: nx.MultiGraph, module_id: str) -> list[dict[str, Any]]:
+    if module_id not in g:
+        return []
+    out = []
+    for _, other, key, data in g.edges(module_id, keys=True, data=True):
+        out.append({"module_id": other, "relation_type": key, "weight": data.get("weight", 1.0),
+                    "co_access_count": data.get("co_access_count", 0),
+                    "direction": ("parent" if key == HIERARCHY and data.get("target") == module_id else
+                                  "child" if key == HIERARCHY else "shortcut")})
+    return sorted(out, key=lambda x: (x["relation_type"], -x["weight"], x["module_id"]))
+
+
+def export_graph(g: nx.MultiGraph, with_layout: bool = True) -> dict[str, Any]:
+    positions = compute_layout(g) if with_layout else {}
+    nodes = []
+    for mid, d in sorted(g.nodes(data=True)):
+        data = {"label": d.get("name", mid), "recordCount": d.get("active_record_count", 0),
+                "parentId": d.get("parent_id"), "isContainer": d.get("active_record_count", 0) == 0,
+                "lastChangeOp": d.get("last_change_op"), "lastChangeAt": d.get("last_change_at")}
+        if d.get("scope"):  # only the per-user view tags modules as "personal" or "shared"
+            data["scope"] = d["scope"]
+        nodes.append({"id": mid, "type": "moduleNode", "position": positions.get(mid, {"x": 0, "y": 0}), "data": data})
+    edges = []
+    for u, v, key, d in sorted(g.edges(keys=True, data=True), key=lambda x: x[3].get("edge_id", "")):
+        edges.append({"id": d["edge_id"], "source": d.get("source", u), "target": d.get("target", v),
+                      "label": key, "type": "default",
+                      "data": {"relationType": key, "weight": d.get("weight", 1.0),
+                               "coAccessCount": d.get("co_access_count", 0), "createdAt": d.get("created_at"),
+                               "evidence": d.get("evidence") or {}, "operationId": d.get("operation_id")}})
+    return {"nodes": nodes, "edges": edges}
 
 
 SLOT_W, ROW_H, MAX_ROW_W = 200.0, 130.0, 1700.0

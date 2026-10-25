@@ -99,3 +99,17 @@ class MemoryManager:
         log_event(log, "memory_deleted", memory_id=memory_id, tokens=tokens)
         return {"memory_id": memory_id, "status": "deleted", "active_tokens_reclaimed": tokens,
                 "module_id": module_id, "modules_retired": retired}
+
+    def set_source_visibility(self, source_id: str, visibility: str) -> dict[str, Any]:
+        """Publish (`shared`) or withdraw (`restricted`) every active record of one source on the shared plane. Administrator action."""
+        if visibility not in ("shared", "restricted"):
+            raise ValidationFailure("visibility must be 'shared' or 'restricted'", code="invalid_visibility")
+        with self.coordinator.mutate("visibility_change", meta={"source_id": source_id, "visibility": visibility}):
+            if not self.mongo.col("sources").find_one({"source_id": source_id}):
+                raise NotFoundError(f"source {source_id} not found", code="source_not_found")
+            ids = [mid for mid, _, _ in self.qdrant.scroll_memories(source_id=source_id, status=None)]
+            if ids:
+                self.qdrant.set_payload(ids, {"visibility": visibility})
+                self.mongo.update_memory_metadata(ids, {"visibility": visibility})
+            self.mongo.col("sources").update_one({"source_id": source_id}, {"$set": {"visibility": visibility}})
+        return {"source_id": source_id, "visibility": visibility, "records_updated": len(ids)}

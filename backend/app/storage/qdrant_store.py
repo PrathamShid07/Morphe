@@ -88,7 +88,7 @@ class QdrantStore:
                     name, vectors_config=models.VectorParams(size=self.dimension, distance=models.Distance.COSINE)
                 )
         if not self.is_local:  # payload indexes have no effect in local mode
-            for field in ("module_id", "status", "source_id"):
+            for field in ("module_id", "status", "source_id", "visibility", "owner_user_id"):
                 self.client.create_payload_index(self.memory_collection, field, models.PayloadSchemaType.KEYWORD)
         info = self.client.get_collection(self.memory_collection)
         size = info.config.params.vectors.size  # type: ignore[union-attr]
@@ -112,8 +112,10 @@ class QdrantStore:
     # --------------------------------------------------------------- filters
     @staticmethod
     def _filter(module_ids: Sequence[str] | None = None, status: str | None = ACTIVE,
-                source_id: str | None = None) -> models.Filter | None:
+                source_id: str | None = None, visibility: str | None = None) -> models.Filter | None:
         must: list[models.Condition] = []
+        if visibility:  # shared-plane records a user may see: only those explicitly published (anything else, or unlabeled, never matches)
+            must.append(models.FieldCondition(key="visibility", match=models.MatchValue(value=visibility)))
         if status:
             must.append(models.FieldCondition(key="status", match=models.MatchValue(value=status)))
         if module_ids is not None:
@@ -135,10 +137,10 @@ class QdrantStore:
             )
 
     def search_memories(self, vector: Sequence[float], module_ids: Sequence[str] | None, limit: int,
-                        status: str | None = ACTIVE) -> list[Hit]:
+                        status: str | None = ACTIVE, visibility: str | None = None) -> list[Hit]:
         if module_ids is not None and len(module_ids) == 0:
             return []
-        flt, q = self._filter(module_ids, status), list(map(float, vector))
+        flt, q = self._filter(module_ids, status, None, visibility), list(map(float, vector))
         points = self._tie_safe(lambda n: self.client.query_points(self.memory_collection, query=q, limit=n, query_filter=flt,
                                                                    with_payload=True).points, limit, "memory_id")
         return [Hit(p.payload["memory_id"], p.payload.get("module_id", ""), float(p.score), p.payload) for p in points]
@@ -161,10 +163,10 @@ class QdrantStore:
         pts.sort(key=lambda p: (-float(p.score), p.payload.get(id_key, "")))
         return pts[:limit]
 
-    def count_memories(self, module_ids: Sequence[str] | None, status: str | None = ACTIVE) -> int:
+    def count_memories(self, module_ids: Sequence[str] | None, status: str | None = ACTIVE, visibility: str | None = None) -> int:
         if module_ids is not None and len(module_ids) == 0:
             return 0
-        return self.client.count(self.memory_collection, count_filter=self._filter(module_ids, status),
+        return self.client.count(self.memory_collection, count_filter=self._filter(module_ids, status, None, visibility),
                                  exact=True).count
 
     def scroll_memories(self, module_id: str | None = None, status: str | None = ACTIVE, with_vectors: bool = False,
@@ -202,6 +204,10 @@ class QdrantStore:
             self.client.set_payload(self.memory_collection, payload=payload,
                                     points=[point_id(m) for m in memory_ids[i:i + 512]], wait=True)
 
+    def delete_payload_keys(self, memory_ids: Sequence[str], keys: Sequence[str]) -> None:
+        for i in range(0, len(memory_ids), 512):
+            self.client.delete_payload(self.memory_collection, keys=list(keys), points=[point_id(m) for m in memory_ids[i:i + 512]], wait=True)
+
     def set_module(self, memory_ids: Sequence[str], module_id: str) -> None:
         self.set_payload(memory_ids, {"module_id": module_id})
 
@@ -225,9 +231,13 @@ class QdrantStore:
             wait=True,
         )
 
-    def search_modules(self, vector: Sequence[float], limit: int) -> list[ModuleHit]:
+    def search_modules(self, vector: Sequence[float], limit: int, module_ids: Sequence[str] | None = None) -> list[ModuleHit]:
+        """`module_ids` restricts the profile search to those modules (used to hide modules a user may not see)."""
+        if module_ids is not None and len(module_ids) == 0:
+            return []
         q = list(map(float, vector))
-        points = self._tie_safe(lambda n: self.client.query_points(self.module_collection, query=q, limit=n, with_payload=True).points,
+        flt = None if module_ids is None else models.Filter(must=[models.FieldCondition(key="module_id", match=models.MatchAny(any=list(module_ids)))])
+        points = self._tie_safe(lambda n: self.client.query_points(self.module_collection, query=q, limit=n, query_filter=flt, with_payload=True).points,
                                 limit, "module_id")
         return [ModuleHit(p.payload["module_id"], float(p.score), p.payload) for p in points]
 

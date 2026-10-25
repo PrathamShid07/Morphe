@@ -45,7 +45,7 @@ export default function GraphExplorer() {
 
   return (
     <Tabs value={view} onValueChange={setView} className="gap-0 space-y-4">
-      <PageHeader title="Graph Explorer" description={readOnly ? "Explore how MORPHE organises its memory into modules, and trace a question to see the route it took. This view is read-only." : "Search, filter and select modules, or trace a real query to see the route it took."}
+      <PageHeader title="Graph Explorer" description={readOnly ? "Explore how your memory is organised into topics, and trace a question to see the route it took. Only your own memories and published shared knowledge appear here. This view is read-only." : "Search, filter and select modules, or trace a real query to see the route it took."}
         actions={g.data && !empty ? <TabsList><TabsTrigger value="graph">Graph</TabsTrigger><TabsTrigger value="list">Module list</TabsTrigger></TabsList> : undefined} />
       {g.data && (
         <div className="-mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
@@ -58,7 +58,7 @@ export default function GraphExplorer() {
       {g.isLoading && <LoadingBlock rows={4} />}
       {g.isError && <ErrorState error={g.error} onRetry={() => g.refetch()} />}
       {empty && (readOnly
-        ? <EmptyState title="The graph is empty" description="There are no memory modules to show yet. They appear as soon as an administrator adds content." />
+        ? <EmptyState title="Your graph is empty" description="Your personal memory graph fills in as you save information. Open the Query Playground and use “Save to My Memory” to add your first note." />
         : <EmptyState title="The graph is empty" description="Modules appear as soon as content is ingested. Load the demo corpus with `python backend/scripts/demo.py seed`, or ingest your own text." action={<Button onClick={open}>Ingest content</Button>} />)}
       {g.data && !empty && (
         <>

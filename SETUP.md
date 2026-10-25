@@ -94,13 +94,15 @@ cp backend/.env.example backend/.env          # Windows: Copy-Item backend\.env.
 
 ### Administrator sign-in (required for Admin Mode)
 
-Anyone can open the dashboard in **User Mode** (Query Playground and a read-only Graph Explorer). The full dashboard needs an administrator account, which you create locally; nothing is committed and there is no default password:
+The sign-in page offers **Sign in**, **Create account** (a regular user with a private memory) and **Administrator**. The administrator account is created locally; nothing is committed and there is no default password:
 
 ```bash
 .venv/bin/python backend/scripts/admin_credentials.py init     # prints the password ONCE; stores only its Argon2id hash + a session secret in backend/.env
 ```
 
-Restart the API afterwards. Full details, rotation, recovery and the role matrix: [`docs/ACCESS_CONTROL.md`](docs/ACCESS_CONTROL.md). Scripts and e2e tests that need admin rights read `MORPHE_ADMIN_PASSWORD` from the environment.
+Restart the API afterwards. To try the user experience, open the dashboard, choose **Create account**, then use **Save to My Memory** on the Query Playground. Details: [`docs/ACCESS_CONTROL.md`](docs/ACCESS_CONTROL.md) (roles, credentials, recovery) and [`docs/USER_ACCOUNTS.md`](docs/USER_ACCOUNTS.md) (personal memory, audit, migration).
+
+Upgrading an existing database: the API labels pre-account records at startup (`AUTO_MIGRATE=true`). Inspect or undo it with `.venv/bin/python backend/scripts/migrate_accounts.py plan|apply|status|rollback` (stop the API first; see `docs/USER_ACCOUNTS.md`). Scripts and e2e tests that need admin rights read `MORPHE_ADMIN_PASSWORD` from the environment.
 
 ## 4. MongoDB
 
@@ -179,7 +181,7 @@ cd backend && ../.venv/bin/python -m pytest
 cd frontend && npm test && npm run lint && npm run typecheck
 
 # end-to-end (drives the REAL running stack; needs MongoDB + API on :8000; resets and re-seeds the demo data)
-# admin specs sign in with the real administrator account: export its password for the run (never written to disk)
+# signs in as the real administrator (export its password for the run; never written to disk) and creates two throw-away user accounts that the teardown deletes
 cd frontend && npx playwright install chromium     # once
 cd frontend && MORPHE_ADMIN_PASSWORD='...' npm run e2e
 ```
@@ -228,7 +230,7 @@ QDRANT__STORAGE__STORAGE_PATH="$PWD/data/qdrant_perf_server/storage" QDRANT__TEL
 | `/health` returns 503 `mongodb_unavailable` | MongoDB is not running at `MONGODB_URI`: start it (section 4) or fix the URI in `backend/.env` |
 | `qdrant_unavailable … already accessed by another instance` | another process holds `data/qdrant`. Stop the other API/worker (run exactly one). Do not delete the folder unless you intend to reset MORPHE's data |
 | `Address already in use` (port 8000, 5173, 27017) | something else is using the port. Find it (`lsof -i :8000`; Windows: `netstat -ano \| findstr 8000`) and stop it, or start on another port (`--port 8001`; for Vite set `VITE_PROXY_TARGET`) |
-| the dashboard shows only Query Playground / Graph Explorer; Admin Login says "not set up" | no administrator hash is configured: run `admin_credentials.py init` and restart the API |
+| the Administrator tab says "not set up" | no administrator hash is configured: run `admin_credentials.py init` and restart the API |
 | `403 csrf_failed` from a script | cookie-authenticated writes need the `X-CSRF-Token` returned by login |
 | settings seem ignored | the file must be `backend/.env` (not the repository root); restart the API after editing it |
 | `DatasetNotAvailable` for a BEIR dataset | it is not cached in `data/beir/`: add `--download` (needs internet) |

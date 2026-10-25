@@ -9,8 +9,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Progress } from "@/components/ui/progress"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { EmptyState, ErrorState } from "@/components/app/states"
-import { useMyQueries, useQuery_, fetchStoredQuery } from "@/api/hooks"
-import type { QueryMode, QueryResponse } from "@/api/types"
+import { SaveMemory } from "@/components/app/SaveMemory"
+import { useAskMyMemory, useMyQueries, useMySummary, fetchStoredQuery } from "@/api/hooks"
+import type { PersonalQueryResponse, QueryMode, QueryResponse } from "@/api/types"
 import { DEMO_QUERIES } from "@/lib/examples"
 import { routeFromResponse, setRoute } from "@/lib/route-store"
 import { describeRoute, WEAK_MATCH_SCORE } from "@/lib/route-text"
@@ -18,9 +19,9 @@ import { MODE_ORDER, STRATEGY_HINT, STRATEGY_LABEL } from "@/lib/strategies"
 import { ms, timeAgo } from "@/lib/format"
 import { cn } from "@/lib/utils"
 
-interface View { query: string; mode: QueryMode; response: QueryResponse }
+interface View { query: string; mode: QueryMode; response: QueryResponse | PersonalQueryResponse }
 
-/** Visitor landing page: a memory assistant, not an administration console. Uses the real retrieval engine through the visitor-safe API. */
+/** The signed-in user's landing page: ask questions of THEIR memory (plus published shared knowledge) and save new private memories. Real retrieval engine, server-side scoping. */
 export default function UserQuery() {
   const [text, setText] = useState("")
   const [topK, setTopK] = useState("5")
@@ -28,8 +29,10 @@ export default function UserQuery() {
   const [view, setView] = useState<View | null>(null)
   const [opening, setOpening] = useState<string | null>(null)
   const nav = useNavigate()
-  const m = useQuery_()
+  const m = useAskMyMemory()
   const history = useMyQueries()
+  const summary = useMySummary()
+  const nothingStored = !!summary.data && summary.data.memories === 0 && summary.data.shared_records === 0
 
   const run = (q = text) => {
     const query = q.trim()
@@ -108,7 +111,14 @@ export default function UserQuery() {
       )}
       {m.isError && <ErrorState error={m.error} onRetry={() => run()} />}
 
-      {!data && !m.isPending && !m.isError && (
+      <SaveMemory />
+
+      {nothingStored && !data && !m.isPending && (
+        <EmptyState title="Your memory is empty" description="Nothing has been saved to your account yet, so there is nothing to search. Open “Save to My Memory” above, add a few notes, then ask a question about them. Your graph fills in as you save."
+          icon={<Sparkles className="size-5" />} />
+      )}
+
+      {!data && !m.isPending && !m.isError && !nothingStored && (
         <section aria-label="Example questions" className="space-y-3">
           <h2 className="text-center text-sm font-medium text-muted-foreground">Try one of these</h2>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -139,7 +149,7 @@ export default function UserQuery() {
           </div>
 
           {data.results.length === 0 ? (
-            <EmptyState title="No relevant memories were found" description="MORPHE has nothing stored that matches this question. Try different words, or ask about a topic you know has been added." icon={<Search className="size-5" />} />
+            <EmptyState title="No relevant memories were found" description={"memory_scope" in data && data.memory_scope.empty ? "You have not saved any memories yet. Use “Save to My Memory” to add some, then ask again." : "Nothing in your memory (or the shared knowledge) matches this question. Try different words, or save a note about it first."} icon={<Search className="size-5" />} />
           ) : (
             <>
               {weak && (
@@ -152,6 +162,7 @@ export default function UserQuery() {
                     <div className="flex flex-wrap items-center gap-2 text-xs">
                       <span className="grid size-6 place-items-center rounded-full bg-violet-soft font-semibold text-accent-foreground">{i + 1}</span>
                       <Badge variant="secondary">{r.module_name ?? r.module_id}</Badge>
+                      {r.scope && <Badge variant={r.scope === "shared" ? "outline" : "default"} data-testid="result-scope">{r.scope === "shared" ? "Shared" : "Mine"}</Badge>}
                       {r.source_name && <span className="text-muted-foreground">{r.source_name}{r.section ? ` · ${r.section}` : ""}</span>}
                       <span className="ml-auto flex items-center gap-2 tabular-nums"><Progress value={Math.max(0, r.score) * 100} className="h-1.5 w-16" aria-hidden /><b>{r.score.toFixed(3)}</b></span>
                     </div>
@@ -167,7 +178,7 @@ export default function UserQuery() {
       {history.data && history.data.items.length > 0 && (
         <section aria-label="Your recent questions" className="space-y-2">
           <h2 className="flex items-center gap-2 text-sm font-semibold"><History className="size-4" />Your recent questions</h2>
-          <p className="text-xs text-muted-foreground">Only you can see these; they belong to this browser session.</p>
+          <p className="text-xs text-muted-foreground">Only you (and administrators, for support and auditing) can see these.</p>
           <ul className="space-y-1.5">
             {history.data.items.map((h) => (
               <li key={h.query_id}>
@@ -181,6 +192,10 @@ export default function UserQuery() {
           </ul>
         </section>
       )}
+
+      <p className="pb-4 text-center text-xs text-muted-foreground" data-testid="privacy-line">
+        Your saved memories are private by default and questions only search your own memory plus shared knowledge. Administrators can see operational activity and the questions you ask.
+      </p>
     </div>
   )
 }

@@ -6,6 +6,7 @@ import type {
   EvalRun, GraphData, IngestionResponse, Memory, MetricsHistory, MetricsSummary, ModeComparison, ModuleDetail, ModuleInfo,
   Page, QueryMode, QueryResponse, RestorePreview, RestoreResult, ScenarioInfo, StrategyComparison, StrategyGroup, StrategyGroupResult,
   StrategyRow, StrategyRunDetail, StrategyRunSummary, VersionCompare, VersionDetail, VersionManifest, QueryHistoryItem, StoredQuery,
+  AdminUser, AdminUserQuery, AuditEvent, MyMemory, MySummary, PersonalQueryResponse, SaveMemoryResult,
 } from "./types"
 
 /** Server state is the only source of truth: after any successful mutation everything is refetched. */
@@ -37,7 +38,7 @@ export const useAdaptationEvents = (status?: string, limit = 50) =>
       api.get<Page<AdaptationEvent> & { status_counts: Record<string, number> }>("/adaptation/events", { status: status === "all" ? undefined : status, limit }),
     refetchInterval: POLL.fast,
   })
-/** Graph and module data come from the administrator endpoints in Admin Mode and from the sanitised, read-only /explore endpoints otherwise. */
+/** Graph and module data come from the administrator endpoints for an administrator and from the signed-in user's own scoped /me endpoints otherwise. */
 const useScope = () => (useAuth().isAdminView ? "admin" : "user")
 
 /** The visitor endpoints omit operational fields; give them neutral values so the shared components keep one shape (the UI hides those fields in read-only mode). */
@@ -47,14 +48,14 @@ const asModuleInfo = (m: Partial<ModuleInfo> & Pick<ModuleInfo, "module_id" | "n
 })
 export const useGraph = () => {
   const scope = useScope()
-  return useQuery({ queryKey: ["graph", scope], queryFn: () => api.get<GraphData>(scope === "admin" ? "/graph" : "/explore/graph"), refetchInterval: 20000 })
+  return useQuery({ queryKey: ["graph", scope], queryFn: () => api.get<GraphData>(scope === "admin" ? "/graph" : "/me/graph"), refetchInterval: 20000 })
 }
 export const useModules = () => {
   const scope = useScope()
   return useQuery({
     queryKey: ["modules", scope],
     queryFn: async () => {
-      const r = await api.get<{ items: ModuleInfo[] }>(scope === "admin" ? "/modules" : "/explore/modules")
+      const r = await api.get<{ items: ModuleInfo[] }>(scope === "admin" ? "/modules" : "/me/modules")
       return scope === "admin" ? r : { items: r.items.map(asModuleInfo) }
     },
   })
@@ -64,13 +65,13 @@ export const useModule = (id: string | null) => {
   return useQuery({
     queryKey: ["module", scope, id],
     queryFn: async () => {
-      const d = await api.get<ModuleDetail>(scope === "admin" ? `/modules/${id}` : `/explore/modules/${id}`)
+      const d = await api.get<ModuleDetail>(scope === "admin" ? `/modules/${id}` : `/me/modules/${id}`)
       return scope === "admin" ? d : { ...asModuleInfo(d), architecture_version: null, parent: d.parent ? asModuleInfo(d.parent) : null, neighbors: d.neighbors ?? [], memories: [], adaptation_history: [], queries_touching_module: 0 }
     },
     enabled: !!id,
   })
 }
-/** The visitor's own recent questions (server-side, scoped to their session). */
+/** The signed-in user's own recent questions (server-side, scoped to their account). */
 export const useMyQueries = () => useQuery({ queryKey: ["me", "queries"], queryFn: () => api.get<{ items: QueryHistoryItem[] }>("/me/queries", { limit: 10 }) })
 export const fetchStoredQuery = (id: string) => api.get<StoredQuery>(`/me/queries/${id}`)
 export interface MemoryFilters {
@@ -113,7 +114,7 @@ function useRefreshAll() {
 export function useIngest() {
   const refresh = useRefreshAll()
   return useMutation({
-    mutationFn: (body: { source_name: string; text: string; metadata?: Record<string, unknown>; tags?: string[]; pinned?: boolean }) =>
+    mutationFn: (body: { source_name: string; text: string; metadata?: Record<string, unknown>; tags?: string[]; pinned?: boolean; visibility?: "shared" | "restricted" }) =>
       api.post<IngestionResponse>("/ingestion", body),
     onSuccess: refresh,
   })
@@ -121,10 +122,11 @@ export function useIngest() {
 export function useIngestFile() {
   const refresh = useRefreshAll()
   return useMutation({
-    mutationFn: (v: { file: File; topic?: string }) => {
+    mutationFn: (v: { file: File; topic?: string; visibility?: "shared" | "restricted" }) => {
       const fd = new FormData()
       fd.append("file", v.file)
       if (v.topic) fd.append("topic", v.topic)
+      if (v.visibility) fd.append("visibility", v.visibility)
       return api.upload<IngestionResponse>("/ingestion/file", fd)
     },
     onSuccess: refresh,
@@ -285,3 +287,63 @@ export const useStrategyRows = (runId: string | null, dataset: string | null, gr
     enabled: !!runId && !!dataset, placeholderData: keepPreviousData, retry: false,
   })
 export const strategyExportUrl = (runId: string, format: "json" | "csv") => `${API}/benchmarks/strategies/runs/${runId}/export?format=${format}`
+
+
+// ---------------------------------------------------------------------------------------------- the signed-in user's own space
+/** Ask a question inside the caller's own scope (their private memories + published shared knowledge). */
+export function useAskMyMemory() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (body: { query: string; top_k: number; debug_trace: boolean; mode: QueryMode }) => api.post<PersonalQueryResponse>("/me/query", body),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["me", "queries"] })
+      qc.invalidateQueries({ queryKey: ["graph"] })  // retrieval can add personal co-access shortcuts
+    },
+  })
+}
+export const useMySummary = () => useQuery({ queryKey: ["me", "summary"], queryFn: () => api.get<MySummary>("/me/summary") })
+export const useMyMemories = (limit = 5) =>
+  useQuery({ queryKey: ["me", "memories", limit], queryFn: () => api.get<{ items: MyMemory[]; total: number }>("/me/memories", { limit }) })
+export function useSaveMemory() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (body: { text: string; title?: string; topic?: string; group?: string }) => api.post<SaveMemoryResult>("/me/memories", body),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["me"] })
+      qc.invalidateQueries({ queryKey: ["graph"] })
+      qc.invalidateQueries({ queryKey: ["modules"] })
+    },
+  })
+}
+export function useDeleteMyMemory() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (id: string) => api.del<{ memory_id: string }>(`/me/memories/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["me"] })
+      qc.invalidateQueries({ queryKey: ["graph"] })
+      qc.invalidateQueries({ queryKey: ["modules"] })
+    },
+  })
+}
+
+// ---------------------------------------------------------------------------------------------- administrator: users and activity
+export interface UserFilters { search?: string; status?: string; active_after?: string; active_before?: string; limit?: number; offset?: number }
+export const useAdminUsers = (f: UserFilters) =>
+  useQuery({ queryKey: ["admin", "users", f], queryFn: () => api.get<Page<AdminUser>>("/admin/users", { ...f }), placeholderData: keepPreviousData, refetchInterval: 20000 })
+export const useAdminUser = (id: string | null) =>
+  useQuery({ queryKey: ["admin", "user", id], queryFn: () => api.get<AdminUser>(`/admin/users/${id}`), enabled: !!id })
+export const useAdminUserQueries = (id: string | null) =>
+  useQuery({ queryKey: ["admin", "user", id, "queries"], queryFn: () => api.get<Page<AdminUserQuery>>(`/admin/users/${id}/queries`, { limit: 10 }), enabled: !!id })
+export interface ActivityFilters { user_id?: string; action?: string; status?: string; target_type?: string; role?: string; since?: string; until?: string; search?: string; limit?: number; offset?: number }
+export const useActivity = (f: ActivityFilters) =>
+  useQuery({ queryKey: ["admin", "activity", f], queryFn: () => api.get<Page<AuditEvent>>("/admin/activity", { ...f }), placeholderData: keepPreviousData, refetchInterval: 15000 })
+export const useActivityActions = () =>
+  useQuery({ queryKey: ["admin", "activity-actions"], queryFn: () => api.get<{ items: string[] }>("/admin/activity/actions"), staleTime: 60000 })
+export function useSetUserStatus() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (v: { id: string; status: "active" | "disabled"; reason?: string }) => api.post<AdminUser>(`/admin/users/${v.id}/status`, { status: v.status, reason: v.reason }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["admin"] }),
+  })
+}

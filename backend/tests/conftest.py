@@ -77,10 +77,29 @@ def seeded(ctx, tmp_path):
 
 def login_admin(c: TestClient, username: str = ADMIN_USER, password: str = ADMIN_PASSWORD) -> TestClient:
     """Sign the client in as the administrator exactly like the SPA does: cookie session + CSRF header."""
-    r = c.post("/api/v1/auth/login", json={"username": username, "password": password})
+    r = c.post("/api/v1/auth/admin/login", json={"username": username, "password": password})
     assert r.status_code == 200, r.text
     c.headers["X-CSRF-Token"] = r.json()["csrf_token"]
     return c
+
+
+USER_PASSWORD = "Correct-Horse-Battery-9"  # throw-away password for in-memory test accounts
+
+
+def register_user(c: TestClient, name: str = "Alice Tester", email: str = "alice@example.com", password: str = USER_PASSWORD) -> dict:
+    """Create and sign in a regular account exactly like the SPA does: cookie session + CSRF header."""
+    r = c.post("/api/v1/auth/register", json={"full_name": name, "email": email, "password": password, "confirm_password": password})
+    assert r.status_code == 201, r.text
+    body = r.json()
+    c.headers["X-CSRF-Token"] = body["csrf_token"]
+    return body
+
+
+def login_user(c: TestClient, email: str, password: str = USER_PASSWORD) -> dict:
+    r = c.post("/api/v1/auth/login", json={"email": email, "password": password})
+    assert r.status_code == 200, r.text
+    c.headers["X-CSRF-Token"] = r.json()["csrf_token"]
+    return r.json()
 
 
 @contextmanager
@@ -101,3 +120,43 @@ def anon_client(settings):
     """A first-time visitor: no administrator session."""
     with TestClient(create_app(settings)) as c:
         yield c
+
+
+@pytest.fixture()
+def user_client(settings):
+    """A registered, signed-in ordinary user."""
+    with TestClient(create_app(settings)) as c:
+        register_user(c)
+        yield c
+
+
+@pytest.fixture()
+def world(ctx, settings):
+    """One shared context (one database) and a factory for independent browsers: separate cookie jars, same backend."""
+    app = create_app(settings, ctx)
+    opened: list[TestClient] = []
+
+    class World:
+        pass
+
+    w = World()
+    w.ctx, w.app, w.settings = ctx, app, settings
+
+    def browser() -> TestClient:
+        c = TestClient(app)
+        c.__enter__()
+        opened.append(c)
+        return c
+
+    def user(name: str, email: str) -> TestClient:
+        c = browser()
+        register_user(c, name, email)
+        return c
+
+    def admin() -> TestClient:
+        return login_admin(browser())
+
+    w.browser, w.user, w.admin = browser, user, admin
+    yield w
+    for c in opened:
+        c.__exit__(None, None, None)

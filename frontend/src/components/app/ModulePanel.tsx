@@ -42,6 +42,7 @@ export function ModulePanel({ moduleId, onSelect, readOnly = false }: { moduleId
         <div className="flex flex-wrap items-center gap-2">
           <h3 className="text-lg font-semibold">{m.name}</h3>
           <Badge variant={m.is_container ? "outline" : "secondary"}>{m.is_container ? "group / container" : "content module"}</Badge>
+          {ro && m.scope && <Badge variant={m.scope === "shared" ? "outline" : "default"} data-testid="module-scope">{m.scope === "shared" ? "Shared knowledge" : "Personal"}</Badge>}
         </div>
         {!ro && <MonoId id={m.module_id} short={30} />}
         {m.keywords.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">{m.keywords.map((k) => <Badge key={k} variant="outline" className="font-normal">{k}</Badge>)}</div>}

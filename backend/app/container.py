@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from .adaptation.controller import AdaptationService
+from .audit import AuditService
 from .common import get_logger, log_event
 from .compression.cleanup import CompressionExecutor
 from .compression.controller import CompressionService
@@ -23,12 +24,15 @@ from .memory.access_tracker import AccessTracker
 from .memory.budget_tracker import BudgetTracker
 from .memory.manager import MemoryManager
 from .memory.modules import ModuleService
+from .memory.personal import PersonalMemoryService
 from .monitoring.events import EventLog
 from .monitoring.metrics import MetricsService
 from .reconcile import reconcile_startup
 from .retrieval.controller import RetrievalEngine, RetrievalService
+from .retrieval.personal import PersonalRetrievalService
 from .storage.mongo_store import MongoStore
 from .storage.qdrant_store import QdrantStore
+from .storage.user_plane import UserDataStore, UserVectorStore
 from .versioning.rollback import ArchitectureLifecycle
 from .versioning.snapshots import VersionStore
 from .versioning.validator import LiveValidator
@@ -63,6 +67,11 @@ class AppContext:
     compression_exec: CompressionExecutor
     compression: CompressionService
     metrics: MetricsService
+    user_vectors: UserVectorStore
+    user_data: UserDataStore
+    personal: PersonalMemoryService
+    personal_retrieval: PersonalRetrievalService
+    audit: AuditService
     startup_report: dict[str, Any] | None = None
 
     def close(self) -> None:
@@ -119,12 +128,21 @@ def build_context(settings: Settings, *, embedder: Embedder | None = None, qdran
 
     ingestion = IngestionService(settings, cached, qdrant, mongo, modules, coordinator, budget, after_mutation)
     retrieval = RetrievalService(settings, cached, engine, coordinator, mongo, tracker, versions.active_id, on_query)
+    # personal plane: private vectors/metadata per user, entirely separate from the shared architecture machinery above
+    user_vectors = UserVectorStore(qdrant, settings.qdrant_user_memory_collection, settings.qdrant_user_module_collection)
+    user_data = UserDataStore(mongo)
+    personal = PersonalMemoryService(settings, cached, user_vectors, user_data)
+    personal_retrieval = PersonalRetrievalService(settings, cached, qdrant, user_vectors, personal, mongo, lambda: graph.graph, coordinator)
+    audit = AuditService(mongo, settings.audit_retention_days, settings.audit_query_text_chars)
     ctx = AppContext(settings, cached, qdrant, mongo, graph, persistence, coordinator, events, versions, validator,
                      lifecycle, modules, budget, memories, ingestion, tracker, retrieval, datasets, evaluator, evaluation,
-                     policy, adaptation, compression_exec, compression, metrics)
+                     policy, adaptation, compression_exec, compression, metrics, user_vectors, user_data, personal, personal_retrieval, audit)
     if reconcile:
         with coordinator.mutate("reconciliation", meta={"reason": "startup"}):
             ctx.startup_report = reconcile_startup(ctx)
+        if settings.auto_migrate:
+            from .migration import migrate
+            migrate(ctx)  # labels pre-account records on the shared plane (no-op when everything is labelled)
         if not datasets.current().queries:
             datasets.load_fixture()
     log_event(log, "context_ready", memories=budget.usage()["active_memories"], modules=graph.counts()[0])

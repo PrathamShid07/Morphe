@@ -142,7 +142,8 @@ class CompressionExecutor:
             importance=max((job.docs[i].get("importance", "normal") for i in source_ids),
                            key=lambda x: ["low", "normal", "high", "critical"].index(x)),
             pinned=False, summary_of=list(source_ids), tags=sorted({t for i in source_ids for t in job.docs[i].get("tags", [])}),
-            merged_source_ids=src_ids, kind=kind)
+            merged_source_ids=src_ids, kind=kind,
+            visibility="shared" if all(job.docs[i].get("visibility") == "shared" for i in source_ids) else "restricted")  # a summary is only as public as its least public source
         wrote = False
         try:
             self.qdrant.upsert_memories([(new_id, vec, rec.qdrant_payload())])
