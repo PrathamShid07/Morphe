@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 
 import pytest
@@ -11,6 +12,7 @@ from fastapi.testclient import TestClient
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from app.auth.passwords import fast_hasher, hash_password  # noqa: E402
 from app.config import Settings  # noqa: E402
 from app.container import build_context  # noqa: E402
 from app.main import create_app  # noqa: E402
@@ -19,13 +21,21 @@ from tests.corpus import DOCS, build_eval_fixture  # noqa: E402
 
 configure_logging("ERROR")
 
+# Test-only administrator account. The hash uses deliberately cheap Argon2 parameters so the suite stays fast; this password
+# belongs to the throw-away in-memory test apps and is unrelated to any real credential.
+ADMIN_USER = "test-admin"
+ADMIN_PASSWORD = "test-only-Passw0rd!-not-a-real-credential"
+SESSION_SECRET = "t" * 48
+_ADMIN_HASH = hash_password(ADMIN_PASSWORD, hasher=fast_hasher())
+
 
 def make_settings(tmp_path, **over) -> Settings:
     base = dict(app_env="test", embedding_backend="hashing", mongo_backend="mongomock", qdrant_mode="memory",
                 compression_mode="inline", adaptation_inline=True, auto_adaptation=False,
                 eval_dataset_path=str(tmp_path / "eval.json"), fallback_min_score=0.12, min_eval_queries=6,
                 split_mixed_min_records=12, split_min_group_size=3, split_min_silhouette=0.0,
-                split_mixed_min_silhouette=0.0, coaccess_min_count=5, coaccess_min_window_queries=10,
+                split_mixed_min_silhouette=0.0, admin_username=ADMIN_USER, admin_password_hash=_ADMIN_HASH, session_secret=SESSION_SECRET,
+                coaccess_min_count=5, coaccess_min_window_queries=10,
                 adaptation_query_batch=20, eval_repetitions=1, latency_noise_floor_ms=50.0,
                 seed_module_count=2, max_candidate_modules=3, merge_profile_similarity=0.6, merge_pair_similarity=0.6, log_level="WARNING", allow_validation_override=True)
     base.update(over)
@@ -65,8 +75,29 @@ def seeded(ctx, tmp_path):
     return ctx
 
 
+def login_admin(c: TestClient, username: str = ADMIN_USER, password: str = ADMIN_PASSWORD) -> TestClient:
+    """Sign the client in as the administrator exactly like the SPA does: cookie session + CSRF header."""
+    r = c.post("/api/v1/auth/login", json={"username": username, "password": password})
+    assert r.status_code == 200, r.text
+    c.headers["X-CSRF-Token"] = r.json()["csrf_token"]
+    return c
+
+
+@contextmanager
+def admin_test_client(app):
+    with TestClient(app) as c:
+        yield login_admin(c)
+
+
 @pytest.fixture()
 def client(settings):
-    app = create_app(settings)
-    with TestClient(app) as c:
+    """Administrator-authenticated client (the existing API tests exercise administrative routes)."""
+    with admin_test_client(create_app(settings)) as c:
+        yield c
+
+
+@pytest.fixture()
+def anon_client(settings):
+    """A first-time visitor: no administrator session."""
+    with TestClient(create_app(settings)) as c:
         yield c

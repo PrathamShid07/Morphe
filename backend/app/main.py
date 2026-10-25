@@ -10,13 +10,14 @@ import uuid
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from .api.deps import get_ctx
-from .api.routes import adaptation, admin, benchmarks, compression, core, metrics, versions
+from .api.deps import SAFE_METHODS, get_ctx, require_admin, try_admin
+from .api.routes import adaptation, admin, auth as auth_routes, benchmarks, compression, core, metrics, public, versions
+from .auth.service import AuthService
 from .common import (DependencyUnavailable, MorpheError, configure_logging, get_logger, log_event, request_id_var)
 from .config import Settings, get_settings
 from .benchmark.service import BenchmarkService
@@ -58,9 +59,13 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
 
     app = FastAPI(title="MORPHE API", version="1.0.0", lifespan=lifespan,
                   description="Memory-Oriented Reconfigurable Plasticity and Hierarchical Evolution")
-    app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origin_list, allow_credentials=False,
-                       allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"], allow_headers=["*"],
+    # Session cookies need credentialed CORS, which browsers only honour with explicit origins (never "*").
+    explicit = "*" not in settings.cors_origin_list
+    app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origin_list, allow_credentials=explicit,
+                       allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
+                       allow_headers=["Content-Type", "X-CSRF-Token", "X-Request-ID"] if explicit else ["*"],
                        expose_headers=["X-Request-ID"])
+    app.state.auth = AuthService(settings, lambda: getattr(getattr(app.state, "ctx", None), "mongo", None))
 
     @app.middleware("http")
     async def request_context(request: Request, call_next):
@@ -70,6 +75,10 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
             length = request.headers.get("content-length")
             if length and length.isdigit() and int(length) > settings.max_request_bytes:
                 return _error(413, "request_too_large", f"request body exceeds {settings.max_request_bytes} bytes")
+            origin = request.headers.get("origin")
+            if origin and request.method not in SAFE_METHODS and origin not in settings.cors_origin_list \
+                    and origin != f"{request.url.scheme}://{request.headers.get('host', '')}":
+                return _error(403, "origin_not_allowed", "cross-site state-changing requests are not accepted")  # defence in depth next to CSRF tokens
             t0 = time.perf_counter()
             response = await call_next(request)
             response.headers["X-Request-ID"] = rid
@@ -98,9 +107,11 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
     def health(request: Request):
         """Readiness of the backend, MongoDB, Qdrant and the embedding model."""
         c: AppContext | None = getattr(request.app.state, "ctx", None)
+        is_admin = try_admin(request) is not None
         if c is None:
-            return JSONResponse(status_code=503, content={"status": "unavailable", "ready": False,
-                                                          "error": state["startup_error"]})
+            err = state["startup_error"] if is_admin else {"code": (state["startup_error"] or {}).get("code", "not_ready"),
+                                                           "message": "The MORPHE service is starting or a dependency is unavailable."}
+            return JSONResponse(status_code=503, content={"status": "unavailable", "ready": False, "error": err})
         checks: dict[str, Any] = {}
         ok = True
         for name, fn in (("mongodb", lambda: c.mongo.ping() and {"database": settings.mongodb_database}),
@@ -111,6 +122,8 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
             except Exception as exc:
                 ok = False
                 checks[name] = {"ok": False, "error": type(exc).__name__}
+        if not is_admin:  # visitors only learn whether the service is ready, not what it is built from
+            return JSONResponse(status_code=200 if ok else 503, content={"status": "ok" if ok else "degraded", "ready": ok})
         rec = c.mongo.get_state("startup_reconciliation") or {}
         needs = c.mongo.get_state("needs_recovery")
         body = {"status": "ok" if ok and not needs else "degraded", "ready": ok, "checks": checks,
@@ -121,14 +134,15 @@ def create_app(settings: Settings | None = None, ctx: AppContext | None = None) 
         return JSONResponse(status_code=200 if ok else 503, content=body)
 
     prefix = settings.api_prefix
-    for r in (core.router, compression.router, adaptation.router, metrics.router, versions.router, benchmarks.router, admin.router):
+    for r in (auth_routes.router, public.router, core.router, compression.router, adaptation.router, metrics.router,
+              versions.router, benchmarks.router, admin.router):
         app.include_router(r, prefix=prefix)
 
-    @app.get(f"{prefix}/integrity", tags=["health"])
+    @app.get(f"{prefix}/integrity", tags=["health"], dependencies=[Depends(require_admin)])
     def integrity(request: Request):
         return get_ctx(request).validator.check()
 
-    @app.get(f"{prefix}/config", tags=["health"])
+    @app.get(f"{prefix}/config", tags=["health"], dependencies=[Depends(require_admin)])
     def public_config(request: Request):
         """Non-secret configuration the dashboard displays (thresholds, defaults)."""
         c = get_ctx(request)

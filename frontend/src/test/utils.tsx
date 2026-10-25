@@ -7,10 +7,11 @@ import { ThemeProvider } from "@/lib/theme"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Toaster } from "@/components/ui/sonner"
 import { IngestProvider } from "@/components/app/IngestDialog"
+import { AuthContext, type AuthState } from "@/lib/auth"
 
 type Handler = unknown | ((req: { url: URL; method: string; body: unknown }) => unknown)
 export type Routes = Record<string, Handler>
-export interface Call { method: string; path: string; body: unknown }
+export interface Call { method: string; path: string; body: unknown; headers: Record<string, string> }
 
 /** Routes are keyed "METHOD /api/v1/path". A handler may return data or a { __status, __error } object. */
 export function mockApi(routes: Routes) {
@@ -19,7 +20,7 @@ export function mockApi(routes: Routes) {
     const url = new URL(String(input), "http://localhost")
     const method = (init?.method ?? "GET").toUpperCase()
     const body = typeof init?.body === "string" ? JSON.parse(init.body) : init?.body
-    calls.push({ method, path: url.pathname, body })
+    calls.push({ method, path: url.pathname, body, headers: { ...((init?.headers as Record<string, string> | undefined) ?? {}) } })
     const key = `${method} ${url.pathname}`
     const h = routes[key]
     if (h === undefined) return new Response(JSON.stringify({ error: { code: "not_mocked", message: `no mock for ${key}` } }), { status: 404 })
@@ -32,14 +33,23 @@ export function mockApi(routes: Routes) {
   return { calls, fn, called: (method: string, path: string) => calls.filter((c) => c.method === method && c.path === path) }
 }
 
-export function renderWith(ui: ReactElement, route = "/") {
+/** A static auth context for component tests. The default is the administrator view (what the pre-existing page tests exercise). */
+export function testAuth(kind: "admin" | "user" = "admin", over: Partial<AuthState> = {}): AuthState {
+  const admin = kind === "admin"
+  return { loading: false, isAdminSession: admin, isAdminView: admin, username: admin ? "test-admin" : null, adminConfigured: true, loginOpen: false,
+    openLogin: () => {}, closeLogin: () => {}, login: async () => {}, logout: async () => {}, switchToUser: () => {}, switchToAdmin: () => {}, refresh: async () => {}, ...over }
+}
+
+export function renderWith(ui: ReactElement, route = "/", auth: AuthState = testAuth("admin")) {
   const qc = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: 0, staleTime: 0 }, mutations: { retry: false } } })
   return render(
     <ThemeProvider>
       <QueryClientProvider client={qc}>
         <TooltipProvider>
           <MemoryRouter initialEntries={[route]}>
-            <IngestProvider>{ui}</IngestProvider>
+            <AuthContext.Provider value={auth}>
+              <IngestProvider>{ui}</IngestProvider>
+            </AuthContext.Provider>
           </MemoryRouter>
           <Toaster />
         </TooltipProvider>

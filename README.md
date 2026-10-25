@@ -84,6 +84,10 @@ cd frontend && npm run dev            # http://localhost:5173
 First start loads the embedding model (≈ 10 s after the initial download). If MongoDB or the model is unavailable the
 API still serves `/health` with the reason and the dashboard shows it instead of failing silently.
 
+## Two experiences: User Mode and Admin Mode
+
+The dashboard opens in **User Mode** (Query Playground and a read-only, sanitised Graph Explorer; no sign-in). Press **Admin Login** to reach the full dashboard (Overview, Ingest, Memories, Compression, Adaptation, Metrics, Versions, Benchmarks). Authorization is enforced by the API, not by the UI. Create the administrator account locally with `.venv/bin/python backend/scripts/admin_credentials.py init` (the password is printed once; only its Argon2id hash goes into the git-ignored `backend/.env`). See [`docs/ACCESS_CONTROL.md`](docs/ACCESS_CONTROL.md).
+
 ## Demo (deterministic, reproducible)
 
 The demo never relies on a lucky random sequence. Scenarios create the *conditions*; the adaptation engine still detects,
@@ -161,9 +165,9 @@ internal split. Methodology: `docs/BEIR_BENCHMARK_METHODOLOGY.md`; plan and prot
 ## Tests
 
 ```bash
-cd backend  && ../.venv/bin/python -m pytest                    # 186 backend tests (real algorithms; fake embedder, mongomock, in-memory Qdrant)
-cd frontend && npm test && npm run lint && npm run typecheck    # 70 component/interaction tests, ESLint, strict TypeScript
-cd frontend && npm run e2e                                      # 60 Playwright tests against the RUNNING real stack
+cd backend  && ../.venv/bin/python -m pytest                    # 221 backend tests (real algorithms; fake embedder, mongomock, in-memory Qdrant)
+cd frontend && npm test && npm run lint && npm run typecheck    # 96 component/interaction tests, ESLint, strict TypeScript
+cd frontend && npm run e2e                                      # 77 Playwright tests against the RUNNING real stack
                                                                 # (needs MongoDB + API on :8000; resets and re-seeds the demo data)
 ```
 Demo helpers: `python backend/scripts/demo.py strategies` runs all four strategies over every labeled query on the live architecture and lists the instructive ones; the complete live walkthrough is in [`docs/DEMO_RUNBOOK.md`](docs/DEMO_RUNBOOK.md).

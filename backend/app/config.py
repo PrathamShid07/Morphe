@@ -26,6 +26,19 @@ class Settings(BaseSettings):
     max_request_bytes: int = 2_000_000
     debug_trace_enabled: bool = True
 
+    # --- authentication / roles ---------------------------------------------------------------------------------
+    # Credentials are created locally by `backend/scripts/admin_credentials.py` and live only in the git-ignored backend/.env.
+    admin_username: str = "morphe-admin"
+    admin_password_hash: str = ""            # Argon2id hash; empty = administrator sign-in is disabled (all admin endpoints stay locked)
+    session_secret: str = ""                 # HMAC signing key for session cookies; empty = ephemeral key (development only)
+    admin_session_ttl_minutes: int = 480
+    user_session_ttl_days: int = 30
+    session_cookie_secure: bool | None = None  # None: Secure cookies in production only (plain-HTTP localhost cannot store Secure cookies)
+    login_max_attempts: int = 5
+    login_lockout_seconds: int = 300
+    user_top_k_max: int = 20                 # ordinary visitors may request at most this many results
+    user_history_limit: int = 20             # stored query results kept per visitor session
+
     # --- embeddings --------------------------------------------------------
     embedding_backend: Literal["sentence_transformers", "hashing"] = "sentence_transformers"
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
@@ -178,6 +191,12 @@ class Settings(BaseSettings):
             raise ValueError("MONGO_BACKEND=mongomock is test-only")
         if self.chunk_overlap_tokens >= self.chunk_max_tokens:
             raise ValueError("CHUNK_OVERLAP_TOKENS must be smaller than CHUNK_MAX_TOKENS")
+        if self.session_secret and len(self.session_secret) < 32:
+            raise ValueError("SESSION_SECRET must be at least 32 characters (generate one with backend/scripts/admin_credentials.py)")
+        if self.is_production and self.admin_password_hash and not self.session_secret:
+            raise ValueError("SESSION_SECRET is required in production when an administrator password is configured")
+        if self.admin_session_ttl_minutes <= 0 or self.user_session_ttl_days <= 0:
+            raise ValueError("session lifetimes must be positive")
         return self
 
 

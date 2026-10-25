@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from app.main import create_app
 from tests.beir_fixture import write_beir
-from tests.conftest import make_settings
+from tests.conftest import admin_test_client, make_settings
 
 P = "/api/v1/benchmarks"
 
@@ -15,7 +15,7 @@ P = "/api/v1/benchmarks"
 def bclient(tmp_path):
     write_beir(tmp_path / "beir")
     s = make_settings(tmp_path, beir_data_dir=str(tmp_path / "beir"), beir_artifacts_dir=str(tmp_path / "art"))
-    with TestClient(create_app(s)) as c:
+    with admin_test_client(create_app(s)) as c:
         yield c
 
 

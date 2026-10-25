@@ -20,6 +20,13 @@ export const API = `${BASE}/api/v1`
 
 type Query = Record<string, string | number | boolean | null | undefined>
 
+/** CSRF token of the current administrator session. It is kept in memory only (never in storage) and re-issued by GET /auth/session. */
+let csrfToken: string | null = null
+export const setCsrfToken = (t: string | null): void => { csrfToken = t }
+/** Called when a request that was sent as an administrator comes back 401 (the session expired or was revoked). */
+let onSessionLost: (() => void) | null = null
+export const setSessionLostHandler = (fn: (() => void) | null): void => { onSessionLost = fn }
+
 function qs(params?: Query): string {
   if (!params) return ""
   const sp = new URLSearchParams()
@@ -31,10 +38,14 @@ function qs(params?: Query): string {
 async function request<T>(method: string, url: string, body?: unknown, signal?: AbortSignal): Promise<T> {
   let res: Response
   try {
+    const headers: Record<string, string> = {}
+    if (body !== undefined && !(body instanceof FormData)) headers["Content-Type"] = "application/json"
+    if (csrfToken && method !== "GET") headers["X-CSRF-Token"] = csrfToken
     res = await fetch(url, {
       method,
       signal,
-      headers: body instanceof FormData ? undefined : body !== undefined ? { "Content-Type": "application/json" } : undefined,
+      credentials: "include",  // the session lives in HttpOnly cookies; the SPA never sees or stores a credential
+      headers: Object.keys(headers).length ? headers : undefined,
       body: body instanceof FormData ? body : body !== undefined ? JSON.stringify(body) : undefined,
     })
   } catch (e) {
@@ -52,6 +63,7 @@ async function request<T>(method: string, url: string, body?: unknown, signal?: 
   }
   if (!res.ok) {
     const err = (data as { error?: { code?: string; message?: string; request_id?: string; details?: unknown } } | undefined)?.error
+    if (res.status === 401 && csrfToken && err?.code !== "invalid_credentials") onSessionLost?.()
     throw new ApiError(res.status, err?.code ?? "http_error", err?.message ?? `Request failed (${res.status})`, err?.request_id, err?.details)
   }
   return data as T

@@ -5,10 +5,10 @@ from fastapi import APIRouter, Depends, Query
 
 from ...common import NotFoundError
 from ...container import AppContext
-from ..deps import get_ctx
+from ..deps import get_ctx, require_admin
 from ..schemas.models import AdaptationRequest
 
-router = APIRouter(prefix="/adaptation", tags=["adaptation"])
+router = APIRouter(prefix="/adaptation", tags=["adaptation"], dependencies=[Depends(require_admin)])
 
 
 @router.get("/status")

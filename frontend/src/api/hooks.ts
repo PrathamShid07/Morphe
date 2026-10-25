@@ -1,10 +1,11 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { API, api } from "./client"
+import { useAuth } from "@/lib/auth"
 import type {
   AdaptationEvent, AdaptationStatus, AppConfig, Candidates, CompressionEvent, CompressionRun, CompressionStatus, EvalDataset,
   EvalRun, GraphData, IngestionResponse, Memory, MetricsHistory, MetricsSummary, ModeComparison, ModuleDetail, ModuleInfo,
   Page, QueryMode, QueryResponse, RestorePreview, RestoreResult, ScenarioInfo, StrategyComparison, StrategyGroup, StrategyGroupResult,
-  StrategyRow, StrategyRunDetail, StrategyRunSummary, VersionCompare, VersionDetail, VersionManifest,
+  StrategyRow, StrategyRunDetail, StrategyRunSummary, VersionCompare, VersionDetail, VersionManifest, QueryHistoryItem, StoredQuery,
 } from "./types"
 
 /** Server state is the only source of truth: after any successful mutation everything is refetched. */
@@ -36,10 +37,42 @@ export const useAdaptationEvents = (status?: string, limit = 50) =>
       api.get<Page<AdaptationEvent> & { status_counts: Record<string, number> }>("/adaptation/events", { status: status === "all" ? undefined : status, limit }),
     refetchInterval: POLL.fast,
   })
-export const useGraph = () => useQuery({ queryKey: ["graph"], queryFn: () => api.get<GraphData>("/graph"), refetchInterval: 20000 })
-export const useModules = () => useQuery({ queryKey: ["modules"], queryFn: () => api.get<{ items: ModuleInfo[] }>("/modules") })
-export const useModule = (id: string | null) =>
-  useQuery({ queryKey: ["module", id], queryFn: () => api.get<ModuleDetail>(`/modules/${id}`), enabled: !!id })
+/** Graph and module data come from the administrator endpoints in Admin Mode and from the sanitised, read-only /explore endpoints otherwise. */
+const useScope = () => (useAuth().isAdminView ? "admin" : "user")
+
+/** The visitor endpoints omit operational fields; give them neutral values so the shared components keep one shape (the UI hides those fields in read-only mode). */
+const asModuleInfo = (m: Partial<ModuleInfo> & Pick<ModuleInfo, "module_id" | "name">): ModuleInfo => ({
+  parent_id: null, children: [], record_count: 0, is_container: false, keywords: [], description: "", token_count: 0, total_access_count: 0,
+  last_accessed_at: null, shortcut_edges: 0, created_at: null, last_adapted_at: null, last_change_op: null, profile_status: "indexed", ...m,
+})
+export const useGraph = () => {
+  const scope = useScope()
+  return useQuery({ queryKey: ["graph", scope], queryFn: () => api.get<GraphData>(scope === "admin" ? "/graph" : "/explore/graph"), refetchInterval: 20000 })
+}
+export const useModules = () => {
+  const scope = useScope()
+  return useQuery({
+    queryKey: ["modules", scope],
+    queryFn: async () => {
+      const r = await api.get<{ items: ModuleInfo[] }>(scope === "admin" ? "/modules" : "/explore/modules")
+      return scope === "admin" ? r : { items: r.items.map(asModuleInfo) }
+    },
+  })
+}
+export const useModule = (id: string | null) => {
+  const scope = useScope()
+  return useQuery({
+    queryKey: ["module", scope, id],
+    queryFn: async () => {
+      const d = await api.get<ModuleDetail>(scope === "admin" ? `/modules/${id}` : `/explore/modules/${id}`)
+      return scope === "admin" ? d : { ...asModuleInfo(d), architecture_version: null, parent: d.parent ? asModuleInfo(d.parent) : null, neighbors: d.neighbors ?? [], memories: [], adaptation_history: [], queries_touching_module: 0 }
+    },
+    enabled: !!id,
+  })
+}
+/** The visitor's own recent questions (server-side, scoped to their session). */
+export const useMyQueries = () => useQuery({ queryKey: ["me", "queries"], queryFn: () => api.get<{ items: QueryHistoryItem[] }>("/me/queries", { limit: 10 }) })
+export const fetchStoredQuery = (id: string) => api.get<StoredQuery>(`/me/queries/${id}`)
 export interface MemoryFilters {
   module_id?: string
   source_id?: string
@@ -104,6 +137,7 @@ export function useQuery_() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["summary"] })
       qc.invalidateQueries({ queryKey: ["adaptation"] })
+      qc.invalidateQueries({ queryKey: ["me", "queries"] })
     },
   })
 }

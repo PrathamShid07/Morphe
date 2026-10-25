@@ -19,7 +19,23 @@ All bodies are JSON and validated by Pydantic. A single body limit applies (`MAX
 | 500 | integrity/restore failure (state is recovered and reported truthfully) | `snapshot_invalid`, `restore_failed`, `integrity_error`, `internal_error` |
 | 503 | dependency not ready | `mongodb_unavailable`, `qdrant_unavailable`, `embedding_model_unavailable` |
 
+## Authentication and roles
+
+Full description in [`ACCESS_CONTROL.md`](ACCESS_CONTROL.md). Everything below is **administrator-only** (`401` without a session, `403` for an ordinary visitor, `403 csrf_failed` for a cookie-authenticated write without `X-CSRF-Token`) except the endpoints in this table.
+
+| Method & path | Who | Purpose |
+|---|---|---|
+| `POST /auth/login` | anyone | `{username, password}` → `{authenticated, role, username, expires_at, csrf_token}` and the HttpOnly `morphe_admin` cookie; `401 invalid_credentials`, `429 too_many_attempts`, `503 admin_not_configured` |
+| `GET /auth/session` | anyone | current role (`admin`/`user`), `csrf_token` for an administrator, `admin_configured` |
+| `POST /auth/logout` | admin | revokes the session server-side |
+| `POST /query` | anyone | role-aware: visitors receive a sanitised response (no `access_count`, `source_id`, `architecture_version`, `guided_result_ids`), `top_k` ≤ `USER_TOP_K_MAX`; the result is stored against the caller's session |
+| `GET /me/queries`, `GET /me/queries/{id}` | anyone | the caller's own previous queries (other sessions' ids → 404) |
+| `GET /explore/graph`, `/explore/modules`, `/explore/modules/{id}` | anyone | sanitised read-only graph |
+| `GET /health` | anyone (detail: admin) | non-administrators receive `{status, ready}` only |
+
 ## Core
+
+(`POST /query` is documented here but is open to visitors as described above; every other row in this section, and all later sections, is administrator-only.)
 
 | Method & path | Purpose |
 |---|---|

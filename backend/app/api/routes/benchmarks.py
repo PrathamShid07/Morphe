@@ -12,10 +12,10 @@ from ...benchmark.runner import ALL_METHODS
 from ...benchmark.service import BenchmarkService
 from ...benchmark.strategies_service import StrategyRuns
 from ...container import AppContext
-from ..deps import get_ctx
+from ..deps import get_ctx, require_admin
 from ...common import MorpheError
 
-router = APIRouter(prefix="/benchmarks", tags=["benchmarks"])
+router = APIRouter(prefix="/benchmarks", tags=["benchmarks"], dependencies=[Depends(require_admin)])
 
 
 def get_benchmarks(request: Request) -> BenchmarkService:

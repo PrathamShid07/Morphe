@@ -698,3 +698,24 @@ export type StrategyRow = {
   delta_ndcg_at_10: number
 } & Record<StrategyName, QualityMetrics & { e2e_ms: number; retrieval_ms: number; eligible_candidates: number; fallback: number; modules_searched: number | null; excluded_relevant: number; relevant_total: number
   fallback_reason: string | null; stages_run: number | null; stop_reason: string | null; useful_expansion_steps: number | null; soft_promoted: number | null; soft_demoted: number | null }>
+
+// ---------------------------------------------------------------------------------------------- authentication / visitor mode
+export interface AuthSession {
+  authenticated: boolean
+  role: "admin" | "user"
+  username: string | null
+  /** Unix seconds at which the administrator session ends. */
+  expires_at: number | null
+  csrf_token: string | null
+  admin_configured: boolean
+}
+export interface QueryHistoryItem {
+  query_id: string
+  query: string
+  mode: QueryMode | null
+  top_k: number | null
+  created_at: string
+  result_count: number
+  latency_ms: number | null
+}
+export type StoredQuery = QueryResponse & { query: string; created_at: string }

@@ -6,7 +6,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import create_app
-from tests.conftest import make_settings
+from tests.conftest import admin_test_client, make_settings
 from tests.corpus import DOCS, build_eval_fixture
 
 P = "/api/v1"
@@ -46,7 +46,7 @@ def test_error_shape_validation_and_request_id(client):
 
 def test_request_size_limit(tmp_path):
     app = create_app(make_settings(tmp_path, max_request_bytes=500))
-    with TestClient(app) as c:
+    with admin_test_client(app) as c:
         r = c.post(f"{P}/ingestion", json={"source_name": "x", "text": "a" * 2000})
         assert r.status_code == 413 and r.json()["error"]["code"] == "request_too_large"
 
@@ -201,6 +201,6 @@ def test_compression_endpoints_and_admin_guards(client):
 
 def test_admin_endpoints_can_be_disabled(tmp_path):
     app = create_app(make_settings(tmp_path, allow_admin_endpoints=False))
-    with TestClient(app) as c:
+    with admin_test_client(app) as c:
         assert c.post(f"{P}/admin/reset", json={"confirm": "RESET"}).status_code == 403
         assert c.put(f"{P}/compression/budget", json={"budget_tokens": 10}).status_code == 403

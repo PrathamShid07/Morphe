@@ -4,10 +4,10 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, Query
 
 from ...container import AppContext
-from ..deps import get_ctx
+from ..deps import get_ctx, require_admin
 from ..schemas.models import EvaluationRunRequest, StrategyCompareRequest, VersionCompareRequest
 
-router = APIRouter(tags=["metrics"])
+router = APIRouter(tags=["metrics"], dependencies=[Depends(require_admin)])
 
 
 @router.get("/metrics/summary")

@@ -6,7 +6,7 @@ import { dateTime, num } from "@/lib/format"
 import type { GraphData } from "@/api/types"
 
 /** One selected edge with its real attributes. A shortcut existing is NOT evidence that it helps retrieval, and the panel says so. */
-export function EdgePanel({ edge, graph, onSelectModule }: { edge: GraphData["edges"][number]; graph: GraphData; onSelectModule: (id: string) => void }) {
+export function EdgePanel({ edge, graph, onSelectModule, readOnly = false }: { edge: GraphData["edges"][number]; graph: GraphData; onSelectModule: (id: string) => void; readOnly?: boolean }) {
   const name = (id: string) => graph.nodes.find((n) => n.id === id)?.data.label ?? id
   const co = edge.data.relationType === "co_access"
   const ev = Object.entries(edge.data.evidence ?? {})
@@ -23,12 +23,11 @@ export function EdgePanel({ edge, graph, onSelectModule }: { edge: GraphData["ed
         <button className="rounded-lg border px-2.5 py-1.5 font-medium hover:bg-muted" onClick={() => onSelectModule(edge.target)}>{name(edge.target)}</button>
       </div>
       <KeyValue items={[
-        { k: "Edge id", v: <MonoId id={edge.id} short={28} /> },
+        ...(readOnly ? [] : [{ k: "Edge id", v: <MonoId id={edge.id} short={28} /> }]),
         ...(co ? [{ k: "Observed together", v: <><b>{num(edge.data.coAccessCount)}</b> times</> }, { k: "Weight", v: edge.data.weight.toFixed(3) }] : []),
-        { k: "Created", v: dateTime(edge.data.createdAt) },
-        { k: "Created by operation", v: edge.data.operationId ? <MonoId id={edge.data.operationId} short={24} /> : "initial architecture" },
+        ...(readOnly ? [] : [{ k: "Created", v: dateTime(edge.data.createdAt) }, { k: "Created by operation", v: edge.data.operationId ? <MonoId id={edge.data.operationId} short={24} /> : "initial architecture" }]),
       ]} />
-      {co && (
+      {co && !readOnly && (
         <section>
           <h4 className="mb-2 text-sm font-semibold">Evidence recorded when it was created</h4>
           {ev.length === 0 ? <p className="text-sm text-muted-foreground">No evidence was recorded for this edge.</p> : (

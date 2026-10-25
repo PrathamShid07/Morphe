@@ -25,7 +25,7 @@ function Rel({ n, onSelect }: { n: Neighbor; onSelect: (id: string) => void }) {
 }
 
 /** Details of one module: metadata, capacity, structure, usage, memories and its adaptation history. Missing telemetry is shown as such, never as 0. */
-export function ModulePanel({ moduleId, onSelect }: { moduleId: string; onSelect: (id: string) => void }) {
+export function ModulePanel({ moduleId, onSelect, readOnly = false }: { moduleId: string; onSelect: (id: string) => void; readOnly?: boolean }) {
   const q = useModule(moduleId)
   if (q.isLoading) return <LoadingBlock rows={4} />
   if (q.isError) return <ErrorState error={q.error} onRetry={() => q.refetch()} />
@@ -35,6 +35,7 @@ export function ModulePanel({ moduleId, onSelect }: { moduleId: string; onSelect
   const outgoing = m.neighbors.filter((n) => n.direction !== "parent")
   const util = m.utilization
   const hasActivity = !m.is_container
+  const ro = readOnly  // visitors see structure only: no capacity, usage counters, memory text or adaptation history
   return (
     <div className="space-y-5" data-testid="module-panel">
       <div>
@@ -42,10 +43,10 @@ export function ModulePanel({ moduleId, onSelect }: { moduleId: string; onSelect
           <h3 className="text-lg font-semibold">{m.name}</h3>
           <Badge variant={m.is_container ? "outline" : "secondary"}>{m.is_container ? "group / container" : "content module"}</Badge>
         </div>
-        <MonoId id={m.module_id} short={30} />
+        {!ro && <MonoId id={m.module_id} short={30} />}
         {m.keywords.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">{m.keywords.map((k) => <Badge key={k} variant="outline" className="font-normal">{k}</Badge>)}</div>}
       </div>
-      {!m.is_container && (
+      {!m.is_container && !ro && (
         <div className="rounded-xl border p-3">
           <div className="mb-1.5 flex items-center justify-between text-xs"><span className="flex items-center gap-1.5 font-medium"><Gauge className="size-3.5" />Capacity</span>
             <span className="tabular-nums text-muted-foreground">{typeof util === "number" && m.capacity_threshold ? `${num(m.record_count)} / ${num(m.capacity_threshold)} records · ${(util * 100).toFixed(util < 0.01 ? 2 : 1)}%` : NO_DATA}</span></div>
@@ -53,7 +54,12 @@ export function ModulePanel({ moduleId, onSelect }: { moduleId: string; onSelect
           <p className="mt-1.5 text-[11px] text-muted-foreground">Capacity is the split detector’s threshold: above it the module is treated as overloaded. It is not a hard storage limit.</p>
         </div>
       )}
-      <KeyValue items={[
+      <KeyValue items={ro ? [
+        { k: "Memories held", v: <b>{m.is_container ? "—" : num(m.record_count)}</b> },
+        { k: "Parent", v: m.parent ? <button className="text-accent-foreground hover:underline" onClick={() => onSelect(m.parent!.module_id)}>{m.parent.name}</button> : "none (top level)" },
+        { k: "Child modules", v: m.children.length },
+        ...(m.description ? [{ k: "About", v: m.description }] : []),
+      ] : [
         { k: "Active records", v: <b>{num(m.record_count)}</b> },
         { k: "Tokens", v: m.is_container ? "—" : num(m.token_count) },
         { k: "Parent", v: m.parent ? <button className="text-accent-foreground hover:underline" onClick={() => onSelect(m.parent!.module_id)}>{m.parent.name}</button> : "none (top level)" },
@@ -72,6 +78,8 @@ export function ModulePanel({ moduleId, onSelect }: { moduleId: string; onSelect
         <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold"><ArrowUpFromLine className="size-4" /> Outgoing &amp; shortcuts ({outgoing.length})</h4>
         {outgoing.length === 0 ? <p className="text-sm text-muted-foreground">No children and no shortcuts: this module is reachable only by profile similarity.</p> : <ul className="space-y-1.5">{outgoing.map((n, i) => <Rel key={`${n.module_id}-${n.relation_type}-${i}`} n={n} onSelect={onSelect} />)}</ul>}
       </section>
+      {!ro && (
+        <>
       <section>
         <h4 className="mb-2 flex items-center gap-2 text-sm font-semibold"><Boxes className="size-4" /> Related memories ({m.record_count})</h4>
         {m.memories.length === 0 ? <p className="text-sm text-muted-foreground">This module holds no records directly.</p> : (
@@ -99,6 +107,8 @@ export function ModulePanel({ moduleId, onSelect }: { moduleId: string; onSelect
           </ul>
         )}
       </section>
+        </>
+      )}
     </div>
   )
 }

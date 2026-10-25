@@ -1,12 +1,15 @@
-import { expect, test } from "@playwright/test"
+import { expect, test, type APIRequestContext } from "@playwright/test"
+import { ADMIN_STATE, adminApi } from "./auth"
 
-const API = "http://127.0.0.1:8000/api/v1"
 test.describe.configure({ mode: "serial" })
+test.use({ storageState: ADMIN_STATE })  // the administrator dashboard needs a real admin session
 
-test.beforeAll(async ({ request }) => {
-  const r = await request.post(`${API}/admin/reset`, { data: { confirm: "RESET" } })
+let request: APIRequestContext
+test.beforeAll(async () => {
+  request = await adminApi()
+  const r = await request.post("admin/reset", { data: { confirm: "RESET" } })
   expect(r.ok()).toBeTruthy()
-  expect((await request.post(`${API}/admin/demo/seed`)).ok()).toBeTruthy()
+  expect((await request.post("admin/demo/seed")).ok()).toBeTruthy()
 })
 
 test("query shows how graph routing selected modules", async ({ page }) => {
@@ -19,7 +22,7 @@ test("query shows how graph routing selected modules", async ({ page }) => {
   await expect(page.getByRole("list", { name: "Retrieved memories" }).locator("li").first()).toContainText("PostgreSQL")
 })
 
-test("ingesting new content creates memories visible in the explorer", async ({ page, request }) => {
+test("ingesting new content creates memories visible in the explorer", async ({ page }) => {
   await page.goto("/")
   await page.getByRole("button", { name: "Ingest content" }).first().click()
   await page.getByLabel("Source name", { exact: true }).fill("e2e_notes.md")
@@ -30,13 +33,13 @@ test("ingesting new content creates memories visible in the explorer", async ({ 
   await page.goto("/memories")
   await page.getByLabel("Search memories").fill("consumer groups")
   await expect(page.getByText("Redis streams add consumer groups").first()).toBeVisible()
-  const s = await (await request.get(`${API}/metrics/summary`)).json()
+  const s = await (await request.get(`metrics/summary`)).json()
   expect(s.active_memory_count).toBeGreaterThan(60)
 })
 
-test("mixed-topic module: evaluate, apply, see the new version, then roll back from the UI", async ({ page, request }) => {
-  expect((await request.post(`${API}/admin/demo/scenario/mixed`)).ok()).toBeTruthy()
-  const before = await (await request.get(`${API}/versions`)).json()
+test("mixed-topic module: evaluate, apply, see the new version, then roll back from the UI", async ({ page }) => {
+  expect((await request.post(`admin/demo/scenario/mixed`)).ok()).toBeTruthy()
+  const before = await (await request.get(`versions`)).json()
 
   await page.goto("/adaptation")
   const card = page.getByTestId("proposal").filter({ hasText: "Split module" })
@@ -50,12 +53,12 @@ test("mixed-topic module: evaluate, apply, see the new version, then roll back f
   await expect(dlg.getByRole("table", { name: "Metric comparison" })).toBeVisible()
   await page.keyboard.press("Escape")
 
-  const after = await (await request.get(`${API}/versions`)).json()
+  const after = await (await request.get(`versions`)).json()
   expect(after.active_version).not.toBe(before.active_version)
 
   // roll back to the version that was active before the split, through the confirmation dialog
   await page.goto("/versions")
-  const done = await (await request.get(`${API}/adaptation/events?status=completed&limit=1`)).json()
+  const done = await (await request.get(`adaptation/events?status=completed&limit=1`)).json()
   const target = done.items[0].before_version as string // the checkpoint saved immediately before the split
   await page.getByRole("row").filter({ has: page.getByText(target, { exact: true }) }).getByRole("button", { name: /restore/i }).click()
   const rd = page.getByRole("dialog")
@@ -65,12 +68,12 @@ test("mixed-topic module: evaluate, apply, see the new version, then roll back f
   await rd.getByRole("button", { name: /restore this version/i }).click()
   await expect(page.getByText(/Restored — new active version/)).toBeVisible({ timeout: 60_000 })
 
-  const integrity = await (await request.get(`${API}/integrity`)).json()
+  const integrity = await (await request.get(`integrity`)).json()
   expect(integrity.passed).toBe(true)
-  const graph = await (await request.get(`${API}/graph`)).json()
+  const graph = await (await request.get(`graph`)).json()
   const python = graph.nodes.find((n: { id: string }) => n.id === "mod_python")
   expect(python.data.recordCount).toBe(18) // children merged back into the original module
-  const events = await (await request.get(`${API}/adaptation/events?status=rolled_back`)).json()
+  const events = await (await request.get(`adaptation/events?status=rolled_back`)).json()
   expect(events.total).toBe(1)
 
   await page.goto("/adaptation")
@@ -78,17 +81,17 @@ test("mixed-topic module: evaluate, apply, see the new version, then roll back f
   await expect(page.getByRole("button", { name: /Split module/ })).toContainText("Rolled Back")
 })
 
-test("compression center reflects a real threshold crossing", async ({ page, request }) => {
-  expect((await request.post(`${API}/admin/demo/scenario/compression`)).ok()).toBeTruthy()
+test("compression center reflects a real threshold crossing", async ({ page }) => {
+  expect((await request.post(`admin/demo/scenario/compression`)).ok()).toBeTruthy()
   await page.goto("/compression")
   await expect(page.getByText(/demo budget override active/)).toBeVisible()
   await expect(page.getByRole("button", { name: "Simulate" })).toBeVisible()
   await page.getByRole("button", { name: "Simulate" }).click()
   await expect(page.getByText(/Simulation result \(nothing was changed\)/)).toBeVisible()
-  await request.put(`${API}/compression/budget`, { data: { budget_tokens: null } })
+  await request.put(`compression/budget`, { data: { budget_tokens: null } })
 })
 
-test.afterAll(async ({ request }) => {
-  await request.post(`${API}/admin/reset`, { data: { confirm: "RESET" } })
-  await request.post(`${API}/admin/demo/seed`)
+test.afterAll(async () => {
+  await request.post(`admin/reset`, { data: { confirm: "RESET" } })
+  await request.post(`admin/demo/seed`)
 })

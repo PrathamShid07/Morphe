@@ -9,7 +9,7 @@ from app.benchmark.runner import BenchmarkConfig
 from app.evaluation import run_strategies as RS
 from app.ingestion.embedder import HashingEmbedder
 from tests.beir_fixture import write_beir
-from tests.conftest import make_settings
+from tests.conftest import admin_test_client, make_settings
 
 
 @pytest.fixture()
@@ -127,7 +127,7 @@ def api(finished):
     from app.main import create_app
     (s, cfg, emb, out), man, _, d = finished
     app = create_app(make_settings(out.parent, beir_strategies_dir=str(out / RS.ROOT_NAME)))
-    with TestClient(app) as c:
+    with admin_test_client(app) as c:
         yield c, d
 
 

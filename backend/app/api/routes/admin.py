@@ -6,10 +6,10 @@ from fastapi import APIRouter, Depends
 from ...common import ValidationFailure
 from ...container import AppContext
 from ...demo import DemoService
-from ..deps import get_ctx, require_dev
+from ..deps import get_ctx, require_admin, require_dev
 from ..schemas.models import ResetRequest
 
-router = APIRouter(prefix="/admin", tags=["admin (dev/demo)"])
+router = APIRouter(prefix="/admin", tags=["admin (dev/demo)"], dependencies=[Depends(require_admin)])
 
 
 @router.get("/demo/scenarios")

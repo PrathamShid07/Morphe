@@ -37,6 +37,8 @@ export interface WorkspaceProps {
   onReset: () => void
   onRefresh: () => void
   refreshing: boolean
+  /** Visitors: nodes cannot even be dragged around (nothing is ever persisted, but read-only should look and feel read-only). */
+  readOnly?: boolean
   /** Details panel (desktop). The canvas uses the full width until something is selected, and the layout never depends on whether it is open. */
   side?: React.ReactNode
 }
@@ -229,7 +231,7 @@ export function GraphWorkspace(p: WorkspaceProps) {
         <ReactFlow<AppNode, Edge>
           nodes={nodes} edges={edges} nodeTypes={nodeTypes} onNodeClick={(_, n) => { if (n.type === "moduleNode") { p.onSelect(n.id); p.onSelectEdge(null) } }}
           onEdgeClick={(_, e) => { p.onSelectEdge(e.id); p.onSelect(null) }} onPaneClick={() => { p.onSelect(null); p.onSelectEdge(null) }}
-          fitView minZoom={0.1} maxZoom={1.6} nodesDraggable={!touch} nodesConnectable={false} elementsSelectable connectionMode={ConnectionMode.Loose}
+          fitView minZoom={0.1} maxZoom={1.6} nodesDraggable={!touch && !p.readOnly} nodesConnectable={false} elementsSelectable connectionMode={ConnectionMode.Loose}
           zoomOnPinch panOnDrag proOptions={{ hideAttribution: true }} aria-label="Module graph" defaultEdgeOptions={{ zIndex: 0 }}
         >
           <Background variant={BackgroundVariant.Dots} gap={22} size={1.2} />

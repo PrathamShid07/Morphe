@@ -9,10 +9,10 @@ from fastapi.responses import JSONResponse
 from ...common import ValidationFailure
 from ...container import AppContext
 from ...memory.module_view import ModuleView
-from ..deps import get_ctx
-from ..schemas.models import (IngestionRequest, IngestionResponse, MemoryPatch, QueryRequest, QueryResponse)
+from ..deps import get_ctx, require_admin
+from ..schemas.models import IngestionRequest, IngestionResponse, MemoryPatch
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_admin)])  # every route here is administrator-only (the visitor-facing routes are in public.py)
 
 
 @router.post("/ingestion", response_model=IngestionResponse, tags=["ingestion"],
@@ -40,12 +40,6 @@ async def ingest_file(file: UploadFile = File(...), topic: str | None = Form(Non
     import anyio
     return await anyio.to_thread.run_sync(ctx.ingestion.ingest, file.filename or "upload.txt", text, meta, [], "normal",
                                           False, None)
-
-
-@router.post("/query", response_model=QueryResponse, tags=["query"])
-def query(body: QueryRequest, ctx: AppContext = Depends(get_ctx)):
-    """Graph-guided semantic retrieval (module profiles -> NetworkX expansion -> filtered vector search -> fallback)."""
-    return ctx.retrieval.query(body.query, body.top_k, body.debug_trace, body.mode)
 
 
 @router.get("/memories", tags=["memories"])

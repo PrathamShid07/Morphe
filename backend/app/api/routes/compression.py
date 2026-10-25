@@ -4,10 +4,10 @@ from __future__ import annotations
 from fastapi import APIRouter, Depends, Query
 
 from ...container import AppContext
-from ..deps import get_ctx, require_dev
+from ..deps import get_ctx, require_admin, require_dev
 from ..schemas.models import BudgetRequest, CompressionRunRequest
 
-router = APIRouter(prefix="/compression", tags=["compression"])
+router = APIRouter(prefix="/compression", tags=["compression"], dependencies=[Depends(require_admin)])
 
 
 @router.get("/status")

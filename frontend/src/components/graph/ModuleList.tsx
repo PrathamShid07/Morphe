@@ -13,10 +13,12 @@ import type { GraphData, ModuleInfo } from "@/api/types"
 import type { GraphFilters } from "./GraphWorkspace"
 
 type Sort = "tree" | "name" | "records" | "reads"
-interface Row extends ModuleInfo { neighbours: number; hier: number; co: number; parentName: string | null; depth: number }
+/** Visitors receive only structural fields, so every operational field is optional here. */
+type ListModule = Pick<ModuleInfo, "module_id" | "name" | "parent_id" | "children" | "record_count" | "is_container" | "keywords"> & Partial<ModuleInfo>
+interface Row extends ListModule { neighbours: number; hier: number; co: number; parentName: string | null; depth: number }
 
-export function ModuleList({ modules, graph, filters, selectedId, onSelect, onShowInGraph }: {
-  modules: ModuleInfo[]; graph: GraphData; filters: GraphFilters; selectedId: string | null; onSelect: (id: string) => void; onShowInGraph: (id: string) => void
+export function ModuleList({ modules, graph, filters, selectedId, onSelect, onShowInGraph, readOnly = false }: {
+  modules: ListModule[]; graph: GraphData; filters: GraphFilters; selectedId: string | null; onSelect: (id: string) => void; onShowInGraph: (id: string) => void; readOnly?: boolean
 }) {
   const wide = useMediaQuery("(min-width: 768px)")
   const [sort, setSort] = useState<Sort>("tree")
@@ -29,14 +31,14 @@ export function ModuleList({ modules, graph, filters, selectedId, onSelect, onSh
       if (e.data.relationType === "co_access") x.co += 1; else x.hier += 1
       edge.set(id, x)
     }
-    const depthOf = (m: ModuleInfo): number => { let d = 0, cur: ModuleInfo | undefined = m; const seen = new Set<string>(); while (cur?.parent_id && !seen.has(cur.module_id)) { seen.add(cur.module_id); cur = byId.get(cur.parent_id); d += 1 } return d }
-    const make = (m: ModuleInfo): Row => { const x = edge.get(m.module_id) ?? { hier: 0, co: 0 }; return { ...m, hier: x.hier, co: x.co, neighbours: x.hier + x.co, parentName: m.parent_id ? byId.get(m.parent_id)?.name ?? m.parent_id : null, depth: depthOf(m) } }
+    const depthOf = (m: ListModule): number => { let d = 0, cur: ListModule | undefined = m; const seen = new Set<string>(); while (cur?.parent_id && !seen.has(cur.module_id)) { seen.add(cur.module_id); cur = byId.get(cur.parent_id); d += 1 } return d }
+    const make = (m: ListModule): Row => { const x = edge.get(m.module_id) ?? { hier: 0, co: 0 }; return { ...m, hier: x.hier, co: x.co, neighbours: x.hier + x.co, parentName: m.parent_id ? byId.get(m.parent_id)?.name ?? m.parent_id : null, depth: depthOf(m) } }
     const all = modules.map(make)
     // tree order: each group followed by its children
     const kids = (id: string) => all.filter((r) => r.parent_id === id).sort((a, b) => a.name.localeCompare(b.name))
     const walk = (r: Row, seen: Set<string>): Row[] => seen.has(r.module_id) ? [] : [r, ...kids(r.module_id).flatMap((c) => walk(c, new Set(seen).add(r.module_id)))]
     const tree = all.filter((r) => !r.parent_id || !byId.has(r.parent_id)).sort((a, b) => a.name.localeCompare(b.name)).flatMap((r) => walk(r, new Set()))
-    const sorted = sort === "tree" ? tree : [...all].sort((a, b) => sort === "name" ? a.name.localeCompare(b.name) : sort === "records" ? b.record_count - a.record_count : b.total_access_count - a.total_access_count)
+    const sorted = sort === "tree" ? tree : [...all].sort((a, b) => sort === "name" ? a.name.localeCompare(b.name) : sort === "records" ? b.record_count - a.record_count : (b.total_access_count ?? 0) - (a.total_access_count ?? 0))
     const q = filters.search.trim().toLowerCase()
     return sorted.filter((r) =>
       (kind === "all" || (kind === "groups" ? r.is_container : !r.is_container)) && (r.is_container || r.record_count >= filters.minRecords) &&
@@ -64,7 +66,7 @@ export function ModuleList({ modules, graph, filters, selectedId, onSelect, onSh
         </ToggleGroup>
         <Select value={sort} onValueChange={(v) => setSort(v as Sort)}>
           <SelectTrigger className="h-10 w-48 rounded-xl" aria-label="Sort modules"><SelectValue /></SelectTrigger>
-          <SelectContent><SelectItem value="tree">Sort: hierarchy</SelectItem><SelectItem value="name">Sort: name</SelectItem><SelectItem value="records">Sort: records</SelectItem><SelectItem value="reads">Sort: reads</SelectItem></SelectContent>
+          <SelectContent><SelectItem value="tree">Sort: hierarchy</SelectItem><SelectItem value="name">Sort: name</SelectItem><SelectItem value="records">Sort: records</SelectItem>{!readOnly && <SelectItem value="reads">Sort: reads</SelectItem>}</SelectContent>
         </Select>
         <span className="text-xs text-muted-foreground" aria-live="polite">{rows.length} of {modules.length} modules (search and size filters are shared with the graph)</span>
       </div>
@@ -73,7 +75,7 @@ export function ModuleList({ modules, graph, filters, selectedId, onSelect, onSh
           {wide ? (
           <div>
             <Table aria-label="Modules">
-              <TableHeader><TableRow><TableHead>Module</TableHead><TableHead className="text-right">Records</TableHead><TableHead>Parent</TableHead><TableHead className="text-right">Neighbours</TableHead><TableHead>Relationships</TableHead><TableHead>Last structural change</TableHead><TableHead>Recent access</TableHead><TableHead /></TableRow></TableHeader>
+              <TableHeader><TableRow><TableHead>Module</TableHead><TableHead className="text-right">Records</TableHead><TableHead>Parent</TableHead><TableHead className="text-right">Neighbours</TableHead><TableHead>Relationships</TableHead>{!readOnly && <TableHead>Last structural change</TableHead>}{!readOnly && <TableHead>Recent access</TableHead>}<TableHead /></TableRow></TableHeader>
               <TableBody>
                 {rows.map((r) => (
                   <TableRow key={r.module_id} data-state={selectedId === r.module_id ? "selected" : undefined} className="cursor-pointer" onClick={() => onSelect(r.module_id)}>
@@ -82,8 +84,8 @@ export function ModuleList({ modules, graph, filters, selectedId, onSelect, onSh
                     <TableCell className="max-w-[10rem] truncate">{r.parentName ?? <span className="text-muted-foreground">top level</span>}</TableCell>
                     <TableCell className="text-right tabular-nums">{r.neighbours}</TableCell>
                     <TableCell>{rel(r)}</TableCell>
-                    <TableCell className="text-xs">{change(r)}</TableCell>
-                    <TableCell className="text-xs">{reads(r)}</TableCell>
+                    {!readOnly && <TableCell className="text-xs">{change(r)}</TableCell>}
+                    {!readOnly && <TableCell className="text-xs">{reads(r)}</TableCell>}
                     <TableCell><Button variant="ghost" size="icon" className="size-9" aria-label={`Show ${r.name} in graph`} onClick={(e) => { e.stopPropagation(); onShowInGraph(r.module_id) }}><Network className="size-4" /></Button></TableCell>
                   </TableRow>
                 ))}
@@ -100,7 +102,7 @@ export function ModuleList({ modules, graph, filters, selectedId, onSelect, onSh
                     <span className="min-w-0 flex-1"><span className="block truncate font-medium">{r.name}</span><span className="block text-xs text-muted-foreground">{r.is_container ? `group · ${r.children.length} modules` : `${num(r.record_count)} records`}{r.parentName ? ` · in ${r.parentName}` : ""}</span></span>
                     <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
                   </button>
-                  <div className="mt-2 space-y-1.5 border-t pt-2 text-xs"><div>{rel(r)}</div><div className="text-muted-foreground">Change: {change(r)}</div><div className="text-muted-foreground">Access: {reads(r)}</div></div>
+                  <div className="mt-2 space-y-1.5 border-t pt-2 text-xs"><div>{rel(r)}</div>{!readOnly && <div className="text-muted-foreground">Change: {change(r)}</div>}{!readOnly && <div className="text-muted-foreground">Access: {reads(r)}</div>}</div>
                   <Button variant="outline" size="sm" className="mt-2 h-10 w-full gap-2" onClick={() => onShowInGraph(r.module_id)}><Network className="size-4" />Show in graph</Button>
                 </div>
               </li>

@@ -64,3 +64,6 @@ backend/artifacts/
 # Third-party UI screenshots and the original specification document supplied as design input; kept on disk, not published.
 UI reference/
 reference document/
+
+# Playwright admin session cookie (contains a live session; never commit)
+frontend/e2e/.auth/

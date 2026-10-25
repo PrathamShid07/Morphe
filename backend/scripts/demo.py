@@ -13,6 +13,9 @@ not open it directly).
     python backend/scripts/demo.py strategies <id>  # the same comparison for one labeled query id (e.g. the one to show live)
     python backend/scripts/demo.py full             # reset + seed + merge + mixed + replay + adapt x3 + eval
     python backend/scripts/demo.py reset --offline  # server stopped: delete data/qdrant and drop the MongoDB database
+
+The API is administrator-only, so every command except `reset --offline` first signs in as the administrator. Provide the credentials with
+MORPHE_ADMIN_USERNAME (default morphe-admin) and MORPHE_ADMIN_PASSWORD; if the password variable is unset you are prompted for it.
 """
 from __future__ import annotations
 
@@ -29,6 +32,18 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = os.environ.get("MORPHE_API", "http://127.0.0.1:8000")
 P = f"{BASE}/api/v1"
 c = httpx.Client(timeout=300)
+
+
+def sign_in() -> None:
+    """Authenticate the script as the administrator (cookie session + CSRF header, exactly like the dashboard)."""
+    import getpass
+    user = os.environ.get("MORPHE_ADMIN_USERNAME", "morphe-admin")
+    password = os.environ.get("MORPHE_ADMIN_PASSWORD") or getpass.getpass(f"MORPHE administrator password for {user}: ")
+    r = c.post(f"{P}/auth/login", json={"username": user, "password": password})
+    if r.status_code != 200:
+        print(f"! administrator sign-in failed ({r.status_code}): {r.json().get('error', {}).get('message', r.text[:200])}", file=sys.stderr)
+        raise SystemExit(1)
+    c.headers["X-CSRF-Token"] = r.json()["csrf_token"]
 
 
 def call(method: str, path: str, **kw):
@@ -167,6 +182,8 @@ def main() -> None:
     ap.add_argument("name", nargs="?")
     ap.add_argument("--offline", action="store_true")
     a = ap.parse_args()
+    if not (a.cmd == "reset" and a.offline):
+        sign_in()
     if a.cmd == "status":
         status()
     elif a.cmd == "reset":

@@ -25,6 +25,8 @@ curl -s http://127.0.0.1:8000/api/v1/benchmarks/strategies/runs | python3 -c "im
 python3 scripts/verify_baseline_hashes.py                      # frozen baselines untouched
 ```
 
+Create the administrator account once (`.venv/bin/python backend/scripts/admin_credentials.py init`, restart the API) and export `MORPHE_ADMIN_PASSWORD` in the terminal that runs `demo.py`; the demo script signs in with it. In the browser press **Admin Login** (the demo begins in Admin Mode; end it by switching to **User Mode** to show what an ordinary visitor sees).
+
 Start from a clean, deterministic demo state (this deletes **only** MORPHE's own demo collections and database, nothing else):
 
 ```bash

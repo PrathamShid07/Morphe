@@ -1,4 +1,8 @@
 import { expect, test } from "@playwright/test"
+import { ADMIN_STATE } from "./auth"
+
+const VISITOR = { cookies: [], origins: [] }
+const USER_PAGES = ["/query", "/graph"]
 
 const PAGES = ["/", "/query", "/memories", "/graph", "/compression", "/adaptation", "/metrics", "/versions", "/benchmarks"]
 const VIEWPORTS = [
@@ -10,7 +14,7 @@ const VIEWPORTS = [
 
 for (const vp of VIEWPORTS) {
   test.describe(`${vp.name}`, () => {
-    test.use({ viewport: { width: vp.width, height: vp.height }, hasTouch: vp.width < 800 })
+    test.use({ viewport: { width: vp.width, height: vp.height }, hasTouch: vp.width < 800, storageState: ADMIN_STATE })
     for (const path of PAGES) {
       test(`${path} has no horizontal page overflow and no console errors`, async ({ page }) => {
         const errors: string[] = []
@@ -28,7 +32,7 @@ for (const vp of VIEWPORTS) {
 
 for (const vp of VIEWPORTS) {
   test.describe(`${vp.name} new views`, () => {
-    test.use({ viewport: { width: vp.width, height: vp.height }, hasTouch: vp.width < 800 })
+    test.use({ viewport: { width: vp.width, height: vp.height }, hasTouch: vp.width < 800, storageState: ADMIN_STATE })
     const check = async (page: import("@playwright/test").Page, errors: string[]) => {
       await page.waitForTimeout(500)
       const { sw, cw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }))
@@ -71,6 +75,8 @@ for (const vp of VIEWPORTS) {
   })
 }
 
+test.describe("admin mobile shell", () => {
+test.use({ storageState: ADMIN_STATE })
 test("mobile navigation drawer opens and navigates", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto("/")
@@ -91,8 +97,10 @@ test("mobile touch targets are at least 40px", async ({ page }) => {
   }
 })
 
+})
+
 test("graph is touch-operable: tapping a module opens a bottom sheet with its details", async ({ browser }) => {
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true })
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, storageState: ADMIN_STATE })
   const page = await ctx.newPage()
   await page.goto("/graph", { waitUntil: "networkidle" })
   const node = page.locator('[data-testid^="module-node-"]').filter({ hasText: "records" }).first()
@@ -102,3 +110,35 @@ test("graph is touch-operable: tapping a module opens a bottom sheet with its de
   await expect(page.getByText(/Incoming \(\d+\)/)).toBeVisible()
   await ctx.close()
 })
+
+// ---- User Mode: no session at all (a plain visitor) ----
+for (const vp of VIEWPORTS) {
+  test.describe(`${vp.name} user mode`, () => {
+    test.use({ viewport: { width: vp.width, height: vp.height }, hasTouch: vp.width < 800, storageState: VISITOR })
+    for (const path of USER_PAGES) {
+      test(`${path} has no horizontal page overflow and no console errors`, async ({ page }) => {
+        const errors: string[] = []
+        page.on("pageerror", (e) => errors.push(String(e)))
+        page.on("console", (m) => m.type() === "error" && errors.push(m.text()))
+        await page.goto(path, { waitUntil: "networkidle" })
+        await page.waitForTimeout(500)
+        const { sw, cw } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth }))
+        expect(sw, `scrollWidth ${sw} > clientWidth ${cw}`).toBeLessThanOrEqual(cw + 1)
+        expect(errors).toEqual([])
+      })
+    }
+    test("the admin login dialog fits the viewport", async ({ page }) => {
+      const errors: string[] = []
+      page.on("pageerror", (e) => errors.push(String(e)))
+      await page.goto("/query", { waitUntil: "networkidle" })
+      if (vp.width < 1024) await page.getByRole("button", { name: "Open navigation" }).click()
+      await page.getByRole("button", { name: /admin login/i }).first().click()
+      const dialog = page.getByRole("dialog", { name: "Administrator sign in" })
+      await expect(dialog).toBeVisible()
+      const box = (await dialog.boundingBox())!
+      expect(box.x).toBeGreaterThanOrEqual(0)
+      expect(box.x + box.width).toBeLessThanOrEqual(vp.width + 1)
+      expect(errors).toEqual([])
+    })
+  })
+}

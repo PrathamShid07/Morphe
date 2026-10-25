@@ -121,7 +121,7 @@ class RetrievalService:
         self.on_query_completed = on_query_completed or (lambda event: None)
 
     def query(self, text: str, top_k: int | None = None, debug_trace: bool = False, mode: str = "graph",
-              track: bool = True) -> dict[str, Any]:
+              track: bool = True, session_id: str | None = None, actor: str | None = None) -> dict[str, Any]:
         t0 = time.perf_counter()
         text = (text or "").strip()
         if not text:
@@ -159,6 +159,8 @@ class RetrievalService:
                  "candidate_count": outcome.candidate_count, "latency_ms": round(latency_ms, 3),
                  "fallback_used": outcome.fallback_used, "architecture_version": version, "success": success,
                  "top_score": round(outcome.results[0].score, 4) if outcome.results else None, "tracked": track}
+        if session_id:  # which visitor session asked (a server-issued id); powers per-session history, never shown to other sessions
+            event["session_id"], event["actor"] = session_id, actor or "user"
         if track:
             self.tracker.record(event)
         response: dict[str, Any] = {"query_id": query_id, "architecture_version": version, "top_k": top_k,

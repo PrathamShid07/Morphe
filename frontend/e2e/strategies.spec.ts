@@ -1,11 +1,13 @@
 import { expect, test } from "@playwright/test"
+import { ADMIN_STATE, adminApi } from "./auth"
 
-const API = "http://127.0.0.1:8000/api/v1"
 test.describe.configure({ mode: "serial" })
+test.use({ storageState: ADMIN_STATE })  // the administrator dashboard needs a real admin session
 
-test.beforeAll(async ({ request }) => {
-  expect((await request.post(`${API}/admin/reset`, { data: { confirm: "RESET" } })).ok()).toBeTruthy()
-  expect((await request.post(`${API}/admin/demo/seed`)).ok()).toBeTruthy()
+test.beforeAll(async () => {
+  const request = await adminApi()
+  expect((await request.post("admin/reset", { data: { confirm: "RESET" } })).ok()).toBeTruthy()
+  expect((await request.post("admin/demo/seed")).ok()).toBeTruthy()
 })
 
 test("graph explorer: search, details with capacity, and the module list", async ({ page }) => {

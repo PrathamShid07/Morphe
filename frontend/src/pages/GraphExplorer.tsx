@@ -16,6 +16,7 @@ import { useGraph, useModules } from "@/api/hooks"
 import { useIngestDialog } from "@/components/app/IngestDialog"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { routeStates, useRoute } from "@/lib/route-store"
+import { useAuth } from "@/lib/auth"
 
 export default function GraphExplorer() {
   const [selected, setSelected] = useState<string | null>(null)
@@ -29,6 +30,7 @@ export default function GraphExplorer() {
   const route = useRoute()
   const desktop = useMediaQuery("(min-width: 1024px)")
   const { open } = useIngestDialog()
+  const readOnly = !useAuth().isAdminView  // visitors get a sanitised, read-only view (the server enforces this; the UI just does not offer what it would refuse)
   const empty = g.data && g.data.nodes.length === 0
   const routeActive = routeOn && routeStates(route).modules.size > 0
   const edge = useMemo(() => g.data?.edges.find((e) => e.id === selectedEdge) ?? null, [g.data, selectedEdge])
@@ -37,31 +39,34 @@ export default function GraphExplorer() {
   const pickEdge = (id: string | null) => { setSelectedEdge(id); if (id) setSelected(null) }
   const showInGraph = (id: string) => { setView("graph"); setSelected(id); setSelectedEdge(null); setFocusRequest({ id, n: Date.now() }) }
 
-  const details = edge && g.data ? <EdgePanel edge={edge} graph={g.data} onSelectModule={(id) => pick(id)} />
-    : selected ? <ModulePanel moduleId={selected} onSelect={pick} /> : null
-  const emptyDetails = <EmptyState title="Select a module" description="Click a node in the list to see its capacity, memories, relationships and adaptation history." icon={<Boxes className="size-5" />} className="border-0" />
+  const details = edge && g.data ? <EdgePanel edge={edge} graph={g.data} onSelectModule={(id) => pick(id)} readOnly={readOnly} />
+    : selected ? <ModulePanel moduleId={selected} onSelect={pick} readOnly={readOnly} /> : null
+  const emptyDetails = <EmptyState title="Select a module" description={readOnly ? "Click a module in the list to see where it sits in the hierarchy and how it connects to other modules." : "Click a node in the list to see its capacity, memories, relationships and adaptation history."} icon={<Boxes className="size-5" />} className="border-0" />
 
   return (
     <Tabs value={view} onValueChange={setView} className="gap-0 space-y-4">
-      <PageHeader title="Graph Explorer" description="Search, filter and select modules, or trace a real query to see the route it took."
+      <PageHeader title="Graph Explorer" description={readOnly ? "Explore how MORPHE organises its memory into modules, and trace a question to see the route it took. This view is read-only." : "Search, filter and select modules, or trace a real query to see the route it took."}
         actions={g.data && !empty ? <TabsList><TabsTrigger value="graph">Graph</TabsTrigger><TabsTrigger value="list">Module list</TabsTrigger></TabsList> : undefined} />
       {g.data && (
         <div className="-mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
           <span><b className="text-foreground">{g.data.counts.nodes}</b> nodes</span><span><b className="text-foreground">{g.data.counts.edges}</b> edges</span>
-          <span className="flex items-center gap-1">architecture <MonoId id={g.data.architecture_version} short={14} /></span>
-          {g.data.capacity_threshold ? <span>split capacity threshold <b className="text-foreground">{g.data.capacity_threshold.toLocaleString()}</b> records</span> : null}
+          {!readOnly && <span className="flex items-center gap-1">architecture <MonoId id={g.data.architecture_version} short={14} /></span>}
+          {!readOnly && g.data.capacity_threshold ? <span>split capacity threshold <b className="text-foreground">{g.data.capacity_threshold.toLocaleString()}</b> records</span> : null}
+          {readOnly && <span className="rounded-full border px-2 py-0.5">read-only</span>}
         </div>
       )}
       {g.isLoading && <LoadingBlock rows={4} />}
       {g.isError && <ErrorState error={g.error} onRetry={() => g.refetch()} />}
-      {empty && <EmptyState title="The graph is empty" description="Modules appear as soon as content is ingested. Load the demo corpus with `python backend/scripts/demo.py seed`, or ingest your own text." action={<Button onClick={open}>Ingest content</Button>} />}
+      {empty && (readOnly
+        ? <EmptyState title="The graph is empty" description="There are no memory modules to show yet. They appear as soon as an administrator adds content." />
+        : <EmptyState title="The graph is empty" description="Modules appear as soon as content is ingested. Load the demo corpus with `python backend/scripts/demo.py seed`, or ingest your own text." action={<Button onClick={open}>Ingest content</Button>} />)}
       {g.data && !empty && (
         <>
           <RouteProbe route={route} routeOn={routeOn} onRouteOn={setRouteOn} />
           <TabsContent value="graph" className="space-y-3">
             <ReactFlowProvider>
               <GraphWorkspace graph={g.data} selectedId={selected} selectedEdgeId={selectedEdge} onSelect={pick} onSelectEdge={pickEdge} filters={filters} onFilters={patch}
-                route={route} routeOn={routeOn} focusRequest={focusRequest} onReset={() => { setSelected(null); setSelectedEdge(null); setFilters(DEFAULT_FILTERS) }} onRefresh={() => g.refetch()} refreshing={g.isFetching}
+                route={route} routeOn={routeOn} focusRequest={focusRequest} readOnly={readOnly} onReset={() => { setSelected(null); setSelectedEdge(null); setFilters(DEFAULT_FILTERS) }} onRefresh={() => g.refetch()} refreshing={g.isFetching}
                 side={desktop && details ? <aside className="surface scroll-thin max-h-[calc(100dvh-8rem)] self-start overflow-y-auto p-4 lg:sticky lg:top-4" aria-label="Details">{details}</aside> : undefined} />
             </ReactFlowProvider>
             <GraphLegend route={routeActive} />
@@ -69,7 +74,7 @@ export default function GraphExplorer() {
           <TabsContent value="list">
             {modules.isLoading ? <LoadingBlock /> : modules.isError ? <ErrorState error={modules.error} onRetry={() => modules.refetch()} /> : (
               <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-[minmax(0,1fr)_24rem]">
-                <ModuleList modules={modules.data?.items ?? []} graph={g.data} filters={filters} selectedId={selected} onSelect={pick} onShowInGraph={showInGraph} />
+                <ModuleList modules={modules.data?.items ?? []} graph={g.data} filters={filters} selectedId={selected} onSelect={pick} onShowInGraph={showInGraph} readOnly={readOnly} />
                 {desktop && <aside className="surface scroll-thin max-h-[calc(100dvh-8rem)] self-start overflow-y-auto p-4 lg:sticky lg:top-4" aria-label="Details">{details ?? emptyDetails}</aside>}
               </div>
             )}
